@@ -19,6 +19,9 @@ function camelize(str) {
 }
 
 const getDateString = (date) =>  {
+  if (!date) {
+    return "";
+  }
   return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 }
 
@@ -52,6 +55,9 @@ class SearchForm extends Component {
   }
 
   getDateString(date) {
+    if (!date) {
+      return "";
+    }
     return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
   }
 
@@ -78,6 +84,11 @@ class SearchForm extends Component {
   };
 
   handleDateFrom = date => {
+    if (!date) {
+      this.setState({ dateFrom: "" });
+      return;
+    }
+
     let dateString =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     this.setState({
@@ -86,6 +97,11 @@ class SearchForm extends Component {
   };
 
   handleDateTo = date => {
+    if (!date) {
+      this.setState({ dateTo: "" });
+      return;
+    }
+
     let dateString =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     this.setState({
@@ -94,26 +110,19 @@ class SearchForm extends Component {
   };
 
   handleClearResults = () => {
-    //Resets the search form
-    this.setState({
+    const searchOptions = {
       dateFrom: datePreviousMonthString,
       dateTo: dateNowString,
-      dateNow: dateNowString,
       poNumber: "",
       status: ""
+    };
+
+    //Resets the search form
+    this.setState({
+      ...searchOptions,
+      dateNow: dateNowString,
     });
-    
-    //Resets the results
-    this.state.dateFrom = datePreviousMonthString;
-    this.state.dateTo = dateNowString;  
-    this.state.poNumber = "";
-    this.state.status = "";
-    
-    const dateFrom = this.state.dateFrom;
-    const dateTo = this.state.dateTo;
-    const poNumber = this.state.poNumber;
-    const status = this.state.status;
-    const searchOptions = { dateFrom, dateTo, poNumber, status };
+
     this.props.onUpdateSearchOrdersOptions(searchOptions);
     this.props.onToggleLoadOrdersFlag();
   };

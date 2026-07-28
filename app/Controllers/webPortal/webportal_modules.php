@@ -41,5 +41,17 @@ CONST WEB_PORTAL_MODULES = array(
         'name'       => 'webportal_api_updateaddress',
         'subFolder'  => '/webPortal/api/updateaddress',
         'controller' => array('controller' => 'webPortal\api\UpdateAddressController', 'method'=>'UpdateAddressAction')
+    ),
+    //webportal_api_getsamplecode
+    array(
+        'name'       => 'webportal_api_getsamplecode',
+        'subFolder'  => '/webPortal/api/getSampleCode',
+        'controller' => array('controller' => 'webPortal\api\GetSampleCodeController', 'method'=>'GetSampleCodeAction')
+    ),
+    //webportal_api_getsampletemplate
+    array(
+        'name'       => 'webportal_api_getsampletemplate',
+        'subFolder'  => '/webPortal/api/getSampleTemplate',
+        'controller' => array('controller' => 'webPortal\api\GetSampleTemplateController', 'method'=>'GetSampleTemplateAction')
     )
 );

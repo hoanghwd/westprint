@@ -60,8 +60,8 @@ class ProductSku extends Component {
     }
     else {
       this.setState({
-        skus: response.data.skus,
-        total: response.data.total,
+        skus: Array.isArray(response.data.skus) ? response.data.skus : [],
+        total: response.data.total || 0,
         isReady: true,
         mapProductUsingSKU : response.data.mapProductUsingSKU,
         placeHolderId : response.data.placeHolderId
@@ -86,7 +86,7 @@ class ProductSku extends Component {
        });
     } else {
       this.setState({
-        csv: response.data.csv,
+        csv: Array.isArray(response.data.csv) ? response.data.csv : [],
       });
     }
   }

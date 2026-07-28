@@ -2,22 +2,23 @@
 //App Root
 define('APP_ROOT', dirname(dirname(__FILE__)));
 define('URL_ROOT', '/');
-define('URL_SUBFOLDER', 'westprint');
+define('URL_SUBFOLDER', '');
 
 //site name
-define('SITE_ROOT_SHORT', 'personal.huynhdo.us/westprint');
+define('SITE_ROOT_SHORT', 'https://dev.huynhdous.com');
 define('SITE_NAME', 'West Print');
-define('SITE_ROOT', '/westprint/');
-define('SITE_WSDL', 'https://personal.huynhdo.us/wsdl/');
-define('SITE_WEB_LOGIN_API_PORTAL', 'https://personal.huynhdo.us/westprint/loginapiportal');
-define('SITE_WEB_PORTAL', 'https://personal.huynhdo.us/webPortal/');
+define('SITE_ROOT', '/');
+define('SITE_WSDL', SITE_ROOT_SHORT . '/wsdl/');
+define('SITE_WEB_LOGIN_API_PORTAL', SITE_ROOT_SHORT . '/loginapiportal');
+define('SITE_WEB_PORTAL', SITE_ROOT_SHORT . '/webPortal/');
 define('WESTPRINT_API', 'webPortal/api');
 define('ENC_KEY', '2slasher2');
 
 //DB Params
-define('DB_HOST', 'www.huynhdo.us');
-define('DB_USER', 'root');
-define('DB_PASS', '!DarkNight2024@');
+define('DB_HOST', 'www.huynhdous.com');
+define('DB_USER', 'webappuser');
+define('DB_PASS', '!webAppuser2024@');
+
 const HD_DB = array(
     'host' => DB_HOST,
     'username' => DB_USER,

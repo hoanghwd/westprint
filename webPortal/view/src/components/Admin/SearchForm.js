@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import axios from "axios";
 import {connect} from 'react-redux';
 import {doToggleLoadClients, doUpdateSearchClientsOptions} from '../../actions'
 import Form from "react-bootstrap/Form";
@@ -74,14 +73,53 @@ function getCookie(cName) {
     return res;
 }
 
-const getAllClients = async (adminName, jwt) => {
+const normalizeResponseData = data => {
+    if (typeof data === 'string') {
+        return JSON.parse(data);
+    }
+
+    return data;
+};
+
+const getJsonp = url => new Promise((resolve, reject) => {
+    const callbackName = `westprintPortalSearch_${Date.now()}_${Math.round(Math.random() * 100000)}`;
+    const script = document.createElement('script');
+    const separator = url.indexOf('?') === -1 ? '?' : '&';
+    const timeoutId = setTimeout(() => {
+        cleanup();
+        reject(new Error('Customer search request timed out'));
+    }, 60000);
+
+    function cleanup() {
+        clearTimeout(timeoutId);
+        delete window[callbackName];
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+    }
+
+    window[callbackName] = data => {
+        cleanup();
+        resolve(normalizeResponseData(data));
+    };
+
+    script.onerror = () => {
+        cleanup();
+        reject(new Error('Customer search request failed'));
+    };
+
+    script.src = `${url}${separator}callback=${callbackName}`;
+    document.body.appendChild(script);
+});
+
+const getAllClients = async (adminName) => {
     const searchParams = `?orderBy=userName&descAsc=desc&adminName=${adminName}`;
 
     //http://hdo-jondo.jondodev.com/webPortal/api/listClients.php?userName=&companyName=undefined&clientStatus=&page=0&limit=20&orderBy=id&descAsc=desc&adminName=hdo
-    return await axios.get(
+    return await getJsonp(
         process.env.REACT_APP_WESTPRINT_API +
         process.env.REACT_APP_GET_CLIENTS +
-        searchParams, {headers: {'Authorization': 'Bearer '+jwt}}
+        searchParams
     );
 };
 
@@ -115,16 +153,23 @@ class SearchForm extends Component {
         //let adminName = this.props.userName;
         //if(adminName == '') {
         let  adminName = getCookie('adminName');
-        //}
-        const jwt = this.props.jwt;
-        const responseData = await getAllClients(adminName, jwt);
-
-        if (responseData.data.error) {
-            this.setState({error: responseData.data.error.text});
+        if (!adminName) {
+            adminName = this.props.userName;
         }
-        else {
-            //responseData.data = {"clients":[{}..{}],"total":123}
-            this.setState({ allClients: responseData.data.clients });
+        //}
+        try {
+            const data = await getAllClients(adminName);
+
+            if (data.error) {
+                this.setState({error: data.error.text, allClients: []});
+            }
+            else {
+                //data = {"clients":[{}..{}],"total":123}
+                this.setState({ allClients: data.clients || [] });
+            }
+        }
+        catch (error) {
+            this.setState({error: error.message, allClients: []});
         }
     }
 
@@ -359,7 +404,7 @@ class SearchForm extends Component {
                             value={this.state.clientStatus}
                             onChange={this.handleClientStatusChange}>
                             <option>ALL</option>
-                            {this.props.clientStatuses.map(status => <option key={status}>{status}</option>)}
+                            {(this.props.clientStatuses || []).map(status => <option key={status}>{status}</option>)}
                         </Form.Control>
                     </Col>
                 </Form.Group>

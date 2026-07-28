@@ -61,7 +61,14 @@ class TestAddresses extends Component {
      */
     _getZoneArrayHtml(data)
     {
-        const {sampleAdd, zoneName, imgUrl, description, emptyMessage} = data;
+        const {
+            sampleAdd = [],
+            zoneName = '',
+            imgUrl = '',
+            description = '',
+            emptyMessage = 'No sample addresses found.'
+        } = data || {};
+        const sampleAddresses = Array.isArray(sampleAdd) ? sampleAdd : [];
         let ZoneArrayHtml = '';
 
         //console.log(imgUrl);
@@ -74,8 +81,8 @@ class TestAddresses extends Component {
         /**
          * When user has some sample addresses already set up
          */
-        if ( sampleAdd.length > 0 && emptyMessage == '' ) {
-            ZoneArrayHtml = sampleAdd.map((zone) =>
+        if ( sampleAddresses.length > 0 && emptyMessage == '' ) {
+            ZoneArrayHtml = sampleAddresses.map((zone) =>
                 <Card key={zone.zoneName} className="my-3 text-left">
                     <Card.Header className="card-header-account text-light">
                         Zone {zone.zoneName}
@@ -112,6 +119,14 @@ class TestAddresses extends Component {
         ).catch(error => {
             console.log(error.response)
         });
+
+        if (!response || !response.data) {
+            this.setState({
+                sampleAddHtml: this._getZoneArrayHtml({ emptyMessage: 'Unable to load sample addresses.' }),
+                isDataReady: true
+            });
+            return;
+        }
 
         /**
          * If user API is verified

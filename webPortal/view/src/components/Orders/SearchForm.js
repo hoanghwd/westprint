@@ -15,6 +15,9 @@ import "./Orders.css";
 
 
 const getDateString = (date) =>  {
+  if (!date) {
+    return "";
+  }
   return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 }
 
@@ -81,6 +84,11 @@ class SearchForm extends Component {
   };
 
   handleDateFrom = date => {
+    if (!date) {
+      this.setState({ dateFrom: "" });
+      return;
+    }
+
     let dateString =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     this.setState({
@@ -89,6 +97,11 @@ class SearchForm extends Component {
   };
 
   handleDateTo = date => {
+    if (!date) {
+      this.setState({ dateTo: "" });
+      return;
+    }
+
     let dateString =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     this.setState({
@@ -97,8 +110,7 @@ class SearchForm extends Component {
   };
 
   handleClearResults = () => {
-    //Reset search form
-    this.setState({
+    const searchOptions = {
       dateFrom: datePreviousMonthString,
       dateTo: dateNowString,
       dateNow: dateNowString,
@@ -106,17 +118,12 @@ class SearchForm extends Component {
       status: "",
       locId: "",
       trackingNumber: ""
-    });
-    
-    //Resets the results
-    this.state.dateFrom = datePreviousMonthString;
-    this.state.dateTo = dateNowString;  
-    this.state.orderId = "";
-    this.state.status = "";
-    this.state.locId = "";
-    this.state.trackingNumber = "";
-    
-    this.props.onUpdateSearchOrdersOptions(this.state);
+    };
+
+    //Reset search form
+    this.setState(searchOptions);
+
+    this.props.onUpdateSearchOrdersOptions(searchOptions);
     this.props.onToggleLoadOrdersFlag();
   };
 

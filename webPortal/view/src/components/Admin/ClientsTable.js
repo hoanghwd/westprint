@@ -34,14 +34,53 @@ function setCookie(cName, cValue, expDays) {
     document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 }
 
-const getClients = async (searchData, adminName, jwt) => {
+const normalizeResponseData = data => {
+    if (typeof data === 'string') {
+        return JSON.parse(data);
+    }
+
+    return data;
+};
+
+const getJsonp = url => new Promise((resolve, reject) => {
+    const callbackName = `westprintPortalData_${Date.now()}_${Math.round(Math.random() * 100000)}`;
+    const script = document.createElement('script');
+    const separator = url.indexOf('?') === -1 ? '?' : '&';
+    const timeoutId = setTimeout(() => {
+        cleanup();
+        reject(new Error('Customer list request timed out'));
+    }, 60000);
+
+    function cleanup() {
+        clearTimeout(timeoutId);
+        delete window[callbackName];
+        if (script.parentNode) {
+            script.parentNode.removeChild(script);
+        }
+    }
+
+    window[callbackName] = data => {
+        cleanup();
+        resolve(normalizeResponseData(data));
+    };
+
+    script.onerror = () => {
+        cleanup();
+        reject(new Error('Customer list request failed'));
+    };
+
+    script.src = `${url}${separator}callback=${callbackName}`;
+    document.body.appendChild(script);
+});
+
+const getClients = async (searchData, adminName) => {
     const { userName, clientStatus, page, limit, orderBy, descAsc = "desc", companyName } = searchData;
     const searchParams = `?userName=${userName}&companyName=${companyName}&clientStatus=${clientStatus}&page=${page}&limit=${limit}&orderBy=${orderBy}&descAsc=${descAsc}&adminName=${adminName}`;
 
-    return await axios.get(
+    return await getJsonp(
         process.env.REACT_APP_WESTPRINT_API +
         process.env.REACT_APP_GET_CLIENTS +
-        searchParams, {headers: {'Authorization': 'Bearer '+jwt}}
+        searchParams
     );
 };
 
@@ -82,7 +121,52 @@ class ClientsTable extends Component {
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleShowModal = this.handleShowModal.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.loadClients = this.loadClients.bind(this);
 
+    }
+
+    async loadClients(searchOptions, adminName) {
+        const requestId = Date.now();
+        this.activeClientsRequestId = requestId;
+        this.setState({ isDataReady: false, error: "" });
+
+        const timeoutId = setTimeout(() => {
+            if (this._isMounted && this.activeClientsRequestId === requestId) {
+                this.setState({
+                    error: "Unable to load customer list. Please refresh the page or log in again.",
+                    clients: [],
+                    total: 0,
+                    isDataReady: true
+                });
+            }
+        }, 60000);
+
+        try {
+            const data = await getClients(searchOptions, adminName);
+
+            if (!this._isMounted || this.activeClientsRequestId !== requestId) {
+                return;
+            }
+
+            if (data.error) {
+                this.setState({ error: data.error.text, clients: [], total: 0, isDataReady: true });
+            }
+            else {
+                this.setState({
+                    clients: Array.isArray(data.clients) ? data.clients : [],
+                    total: data.total || 0,
+                    isDataReady: true
+                });
+            }
+        }
+        catch (error) {
+            if (this._isMounted && this.activeClientsRequestId === requestId) {
+                this.setState({ error: error.message, clients: [], total: 0, isDataReady: true });
+            }
+        }
+        finally {
+            clearTimeout(timeoutId);
+        }
     }
 
     async updateTable() {
@@ -92,21 +176,13 @@ class ClientsTable extends Component {
         // if the request come from recent order page, just use the default options
         const searchOptions = {...this.props.searchOptions, ...extraOptions};
         const adminName = this.props.userName;
-        const jwt = this.props.jwt;
-        const response = await getClients( searchOptions, adminName, jwt);
 
-        if (response.data.error) {
-            this.setState({ error: response.data.error.text });
-        }
-        else {
-            this.setState({ clients: response.data.clients, total: response.data.total, isDataReady: true });
-        }
+        await this.loadClients(searchOptions, adminName);
     }
 
     // update the table when submit search form
-    componentDidUpdate() {
-        const { loadNewData } = this.props;
-        if (loadNewData) {
+    componentDidUpdate(prevProps) {
+        if (!prevProps.loadNewData && this.props.loadNewData) {
             this.props.onToggleLoadClientsFlag();
             this.setState({
                 page: 0
@@ -117,27 +193,21 @@ class ClientsTable extends Component {
     // update the the table when first load
     async componentDidMount() {
 
-        this.setState({ isDataReady: false });
+        this._isMounted = true;
         const searchOptions = this.props.searchOptions;
         let adminName = getCookie('adminName');
-        if( adminName == '' ) {
-            setCookie('adminName', 'hdo', 30);
+        if( !adminName ) {
+            adminName = this.props.userName;
+            setCookie('adminName', adminName, 30);
         }
 
-        const jwt = this.props.jwt;
-        const response = await getClients( searchOptions, adminName, jwt);
+        await this.loadClients(searchOptions, adminName);
 
-        if (response.data.error) {
-            this.setState({ error: response.data.error.text });
-        }
-        else {
-            this.setState({
-                clients: response.data.clients,
-                total: response.data.total,
-                isDataReady: true
-            });
-        }
+    }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+        this.activeClientsRequestId = null;
     }
 
     // ***************************************** */
@@ -298,8 +368,11 @@ class ClientsTable extends Component {
             );
         }
 
-        const { clients, isDataReady } = this.state;
-        const pageCount = Math.ceil(parseInt(this.state.total) / this.props.searchOptions.limit);
+        const clients = Array.isArray(this.state.clients) ? this.state.clients : [];
+        const { isDataReady } = this.state;
+        const clientStatuses = Array.isArray(this.props.clientStatuses) ? this.props.clientStatuses : [];
+        const limit = parseInt(this.props.searchOptions.limit) || this.state.limit || 20;
+        const pageCount = Math.ceil(parseInt(this.state.total) / limit);
 
         let errMsg;
         errMsg = this.state.errorSubmit && (
@@ -348,6 +421,14 @@ class ClientsTable extends Component {
                         </tr>
                     </tbody>
                 </Table>
+            );
+        }
+
+        if (this.state.error) {
+            return (
+                <Alert variant="danger">
+                    {this.state.error}
+                </Alert>
             );
         }
 
@@ -415,7 +496,7 @@ class ClientsTable extends Component {
                                         onChange={this.handleChange}
                                     >
                                         <option>Select One</option>
-                                        {this.props.clientStatuses.filter(status => status== 'ENABLED' || status== 'DISABLED' || this.props.level == 'advanced')
+                                        {clientStatuses.filter(status => status== 'ENABLED' || status== 'DISABLED' || this.props.level == 'advanced')
                                             .map(status => <option key={status}>{status}</option>)}
 
                                     </Form.Control>
@@ -465,7 +546,7 @@ class ClientsTable extends Component {
                 <Footer
                     page={this.state.page}
                     total={this.state.total}
-                    offset={this.props.searchOptions.limit}
+                    offset={limit}
                     handleClick={this.handleClick}
                     handleNext={this.handleNext}
                     handlePrevious={this.handlePrevious}

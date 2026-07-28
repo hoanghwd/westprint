@@ -9,7 +9,10 @@ class SkuTable extends Component {
        
     render() {
 
-        const pageCount = Math.ceil(parseInt(this.props.total) / this.props.limit);
+        const skus = Array.isArray(this.props.skus) ? this.props.skus : [];
+        const csv = Array.isArray(this.props.csv) ? this.props.csv : [];
+        const total = parseInt(this.props.total || 0);
+        const pageCount = Math.ceil(total / this.props.limit);
         const fileName = this.props.userName + "_products.csv";
         
         if (!this.props.isReady) {
@@ -18,7 +21,7 @@ class SkuTable extends Component {
             )
         }
 
-        if (this.props.skus.length === 0) {
+        if (skus.length === 0) {
             return (
                 <div className="SkuTable">
                     <p>No Records Found</p>
@@ -46,7 +49,7 @@ class SkuTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.skus.map(sku => (
+                        {skus.map(sku => (
                             <tr key={sku.id}>
                                 <td>{sku.id}</td>
                                 <td>{sku.psTitle}</td>
@@ -75,7 +78,7 @@ class SkuTable extends Component {
                     pageCount={pageCount}
                 />
 
-                <CSVLink filename={fileName} className="btn btn-primary" data={this.props.csv}>Export To Excel</CSVLink>
+                <CSVLink filename={fileName} className="btn btn-primary" data={csv}>Export To Excel</CSVLink>
             </div>
         );
     }
