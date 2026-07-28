@@ -1,0 +1,14 @@
+img.card-img {
+    width: 40%;
+}
+
+.card-header-register {
+    background: #F9F9F9 !important;
+}
+
+.sub-heading {
+    color: #000000 !important;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}

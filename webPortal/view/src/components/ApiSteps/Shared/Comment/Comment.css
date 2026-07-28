@@ -1,0 +1,17 @@
+.wrapper {
+    display: inline-block;
+    cursor: 'not-allowed';
+  }
+  
+
+.btn-disabled { 
+  pointer-events: none;
+}
+
+.input-comment {
+  width: 50%;
+}
+
+.support-text {
+  font-size: 13px !important;
+}

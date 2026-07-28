@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="<?= CSS_URL ?>oauth.css" type="text/css">
+
+<!-- GRAY LINE -->
+<div style="margin-top: 1px; border-top: 1px solid #dedede; clear: left;"></div>
+
+<div class="test-container">
+    <div class="container">
+        <div class="intro">
+            <h4 class="text-center">Request New Token</h4>
+        </div>
+        <div id="testHelper">
+            <div class="intro">
+                <h6 class="text-center">Enter your credentials to generate a new token</h6>
+            </div>
+            <div class="form-group">
+                <div class="form-group form-group-lg flex justify-center">
+                    <div class="col-sm-3" style="padding: 10px;">
+                        <input class="form-control" type="number" name="userId" id="userId" placeholder="User ID">
+                    </div>
+                    <div class="col-sm-3" style="padding: 10px;">
+                        <input class="form-control" type="text" name="apiKey" id="apiKey" placeholder="API Key">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-lg flex justify-center">
+                <button class="btn btn-primary" type="button" id="test">Generate</button>
+            </div>
+            <div class="form-group form-group-lg flex justify-center" style="margin-top: 10px">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input class="form-control" type="text" id="token" name="token" placeholder="Token">
+                        <div class="input-group-addon tooltipSelector" data-toggle="tooltip" id="copy"
+                             data-title="Copy to clipboard" title="Copy to clipboard"><span
+                                    class="glyphicon glyphicon-copy" aria-hidden="true"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('body').tooltip({
+            selector: '.tooltipSelector'
+        });
+
+        $('#test').click(function () {
+            let userId = $('#userId').val().trim();
+            let apiKey = $('#apiKey').val().trim();
+
+            if (userId === "" && apiKey === "") {
+                $('#userId').addClass('is-invalid');
+                $('#apiKey').addClass('is-invalid');
+            }
+            else if (userId === "") {
+                $('#userId').addClass('is-invalid');
+            }
+            else if (apiKey === "") {
+                $('#apiKey').addClass('is-invalid');
+            }
+            else {
+                $('#userId').removeClass('is-invalid');
+                $('#apiKey').removeClass('is-invalid');
+
+                $.ajax({
+                    url: baseUrl + "oauth/tokenresponse",
+                    beforeSend: function (xhr) {
+                        $('#copy').find('.glyphicon').removeClass('glyphicon glyphicon-copy glyphicon-remove').addClass('glyphicon glyphicon-refresh glyphicon-refresh-animate');
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(userId + ":" + apiKey));
+                    },
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'grant_type': 'client_credentials'
+                    },
+                    success: function (data) {
+                        $('#copy').find('.glyphicon').removeClass('glyphicon glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon glyphicon-copy');
+                        let accessToken = (data.access_token);
+                        $('#token').val(accessToken);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        $('#copy').find('.glyphicon').removeClass('glyphicon glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon glyphicon-remove');
+                        $('#token').val("Invalid token");
+                    }
+                });
+            }
+        });
+
+        $('#copy').click(function () {
+            let tokenToCopy = $('#token').val();
+
+            if (tokenToCopy !== null) {
+                navigator.clipboard.writeText(tokenToCopy).then(
+                    function () {
+                        // Clipboard successfully set
+                        $('.tooltipSelector').attr('data-original-title', 'Copied!').tooltip('show');
+                    },
+                    function () {
+                        // Clipboard write failed
+                        window.prompt("Copy to clipboard: Ctrl + C or Command + C, Enter", tokenToCopy);
+                    }
+                )
+            }
+
+            setTimeout(function () {
+                $('.tooltipSelector').attr('data-original-title', 'Copy to clipboard');
+            }, 100);
+
+        });
+    });
+</script>

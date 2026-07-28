@@ -1,0 +1,36 @@
+<?php
+$loginAPIHdl = $modelObj;
+$userInfo = $loginAPIHdl->getUserInfoJWTData();
+if( $loginAPIHdl->isLoggedIn() ) {
+?>
+<script>
+    const session = {
+        logged: true,
+        userId: <?=$userInfo["id"]?>,
+        userName: '<?=$userInfo['userName']?>',
+        apiKey: '<?= $loginAPIHdl->decrypt2($userInfo["apiKey"])?>',
+        phone: '<?=$userInfo["phone"]?>',
+        email: '<?=$userInfo["email"]?>',
+        street: '<?=$userInfo["street"]?>',
+        city: '<?=$userInfo["city"]?>',
+        state: '<?=$userInfo["state"]?>',
+        zip: '<?=$userInfo["zip"]?>',
+        country: '<?=$userInfo["country"]?>',
+        shipUrl: '<?=$userInfo["shipUrl"]?>',
+        level: '<?=$userInfo["level"]?>',
+        userStatus: '<?=$userInfo["userStatus"]?>',
+        jwt: '<?= $_COOKIE['jwt'] ?>',
+        company: '<?=$userInfo["company"]?>',
+        asUser: false
+    }
+
+    // set expire time 1 hour
+    const expire = Date.now() + 3600000;
+    localStorage.setItem('userData', JSON.stringify(session));
+    localStorage.setItem('expire', expire);
+</script>
+<?php
+}
+?>
+
+<script>window.location.href = '<?= SITE_WEB_PORTAL ?>';</script>

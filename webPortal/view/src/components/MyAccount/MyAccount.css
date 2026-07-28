@@ -1,0 +1,33 @@
+#user-info {
+    padding: 0;
+    list-style: none;
+}
+
+.progress-bar {
+    background: #2E59A0 !important;
+}
+
+.card-header-account {
+    background: #AAAAAA !important ;
+    font: 16px;
+}
+
+.password-validation {
+    margin-bottom: 0 !important;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+h2.font-weight-bold{
+    font-family: 'OpenSans-Semibold' !important;
+    font-size: 36px;
+    color: #000000;
+    letter-spacing: 0px;
+    padding-left: 1.25rem;
+}

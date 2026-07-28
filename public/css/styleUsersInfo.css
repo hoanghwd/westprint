@@ -1,0 +1,193 @@
+/**
+ * CSS for Users Controller and related views on Users Page
+ *
+ * Created By - Akshay Vaze
+ * Created Date: 7/7/2014
+ *
+ */
+
+/*----------------------------------------*/
+/* USERS TABLE - Users page      */
+/*----------------------------------------*/
+
+table.users_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 500px;
+}
+table.users_table th {
+	padding: 5px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.users_table td {
+        padding: 5px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/* Styling for Submit Buttons */
+button {
+	font-size: 15px bold; 
+	font-family: Helvetica;
+	height:28px;
+	background:#2A57A2; 
+	border:0 none; 
+	color:#FFF;
+        cursor:pointer;
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px; 
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px; 
+}
+
+/*----------------------------------------*/
+/* PERMISSIONS TABLE - Users page      */
+/*----------------------------------------*/
+
+table.permissions_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 350px;
+}
+table.permissions_table th {
+	padding: 5px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.permissions_table td {
+        padding: 5px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+table.permissions_table2 {
+    border: medium none;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-left: 0;
+    padding: 0;
+    width: 1120px;
+}
+table.permissions_table2 th {
+    padding: 10px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    font-weight: bold;
+    text-align: left;
+    vertical-align: top;
+    border: 1px dotted #AAAAAA;
+    border-bottom: none;
+}
+table.permissions_table2 td {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px dotted #aaaaaa;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 7px;
+    text-align: left;
+    vertical-align: top;
+}
+
+/*----------------------*/
+
+/* Account settings */
+
+#passwordContainer,
+#rePasswordContainer {
+    position: relative;
+}
+#passwordInfo,
+#rePasswordInfo {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px #ccc;
+    left: 190px;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    width: 350px;
+}
+#passwordInfo::before,
+#rePasswordInfo::before {
+    color: #ddd;
+    content: "\25B2";
+    display: block;
+    font-size: 14px;
+    left: -13px;
+    line-height: 14px;
+    position: absolute;
+    text-shadow: none;
+    top: 2px;
+    -webkit-transform: rotate(270deg);
+       -moz-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+         -o-transform: rotate(270deg);
+            transform: rotate(270deg);
+}
+#passwordInfo h4,
+#rePasswordInfo h4 {
+    font-weight: normal;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+#passwordInfo ul,
+#passwordInfo li,
+#rePasswordInfo ul, 
+#rePasswordInfo li {
+    list-style-type: none;
+}
+#passwordInfo ul,
+#rePasswordInfo ul {
+    margin: 0;
+    padding: 0;
+}
+#passwordInfo li,
+#rePasswordInfo li {
+    margin: 0 0 0 15px;
+    padding: 0 0 0 30px;
+}
+.validPassword {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDEyIDE2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMiAxNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6IzNBN0QzNDt9DQo8L3N0eWxlPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEyLDVsLTgsOEwwLDlsMS41LTEuNUw0LDEwbDYuNS02LjVMMTIsNXoiLz4NCjwvc3ZnPg0K) no-repeat 0 0/18px;
+    color: #3a7d34;
+    fill: #3a7d34;
+    line-height: 22px;
+    padding-left: 22px;
+}
+.validInputPassword {
+    border: 2px solid #3a7d34;
+}
+.invalidPassword {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDEyIDE2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMiAxNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6I0VDM0Y0MTt9DQo8L3N0eWxlPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTcuNSw4bDMuNywzLjhsLTEuNSwxLjVMNiw5LjVsLTMuOCwzLjhsLTEuNS0xLjVMNC41LDhMMC44LDQuM2wxLjUtMS41TDYsNi41bDMuOC0zLjhsMS41LDEuNUw3LjUsOHoiLz4NCjwvc3ZnPg0K) no-repeat 0 0/18px;
+    color: #ec3f41;
+    fill: #ec3f41;
+    line-height: 22px;
+    padding-left: 22px;
+}
+.invalidInputPassword {
+    border: 2px solid #ec3f41;
+}

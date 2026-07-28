@@ -1,0 +1,140 @@
+<!-- GRAY LINE -->
+<div style="margin-top: 1px; border-top: 1px solid #dedede; clear: left;"></div>
+
+<div class="test-container" style="padding: 50px 0">
+    <div class="container">
+        <div class="intro">
+            <h4 class="text-center">Request New Order</h4>
+        </div>
+        <div id="respDataDiv"></div>
+        <div id="requestXmlDiv" style="display: block">
+        <form id='newOrderRequestForm' method='post' enctype="multipart/form-data">
+            <textarea name='xml' id="xmlData" rows='40' cols='160' style="border: 1px solid #ededed">
+<root>
+  <orderRequest>
+    <userId>90</userId>
+    <apiKey>hs6fYcBz564sHj</apiKey>
+    <customerInfo>
+      <thirdPartyId>21954620</thirdPartyId>
+    </customerInfo>
+    <shippingType>Basic</shippingType>
+    <testMode>0</testMode>
+    <poNumber>wp_TEST_ORDER_<?php echo time() ?></poNumber>
+    <firstName>Christina</firstName>
+    <lastName>OBryan</lastName>
+    <address>349 Tall Oak</address>
+    <city>Irvine</city>
+    <state>CA</state>
+    <zip>92603</zip>
+    <country>US</country>
+    <phoneNumber>9376728485</phoneNumber>
+    <company/>
+    <email>christinaobryan@yahoo.com</email>
+    <services>
+      <branding>
+        <packingSlip>
+          <frontImage>https://images-gp.canvaspeople.com/app/content/live-db/uploads/images/insert/packing-slip-front-CP-US.jpg</frontImage>
+          <backImage>https://images-gp.canvaspeople.com/app/content/live-db/uploads/images/insert/packing-slip-front-CP-US-back.jpg</backImage>
+          <template>1</template>
+          <footerText>Thank you for your order!</footerText>
+        </packingSlip>
+        <insertCard>
+          <outsideImage>https://images-gp.canvaspeople.com/app/content/live-db/uploads/images/insert/062822-brand-cp-insert-free-offer.jpg</outsideImage>
+          <insideImage>https://images-gp.canvaspeople.com/app/content/live-db/uploads/images/insert/040622-cp-tb-card-insert-back.jpg</insideImage>
+        </insertCard>
+        <sticker>
+          <frontImage>https://images-gp.canvaspeople.com/app/content/live-db/uploads/images/insert/cp-sticker-landscape.jpg</frontImage>
+        </sticker>
+      </branding>
+    </services>
+    <orderItems>
+      <orderItem>
+        <qt>1</qt>
+        <code>90009</code>
+        <retailPrice>0</retailPrice>
+        <imageLocation>https://image-service-uat.canvaspeople.com/api/ddcf1ca2-c111-2a7d-d1a4-1bc60af0964c</imageLocation>
+      </orderItem>
+      <orderItem>
+        <qt>1</qt>
+        <code>90311</code>
+        <retailPrice>0</retailPrice>
+        <imageLocation>https://image-service.canvaspeople.com/api/19811c04-6c0f-e264-a72f-fc6259cb1789</imageLocation>
+        <imageLocation>https://image-service.canvaspeople.com/api/84d75297-15b9-3e4d-f4a5-de0d2fec6c13</imageLocation>
+        <imageLocation>https://image-service.canvaspeople.com/api/c66d62df-9503-1a77-d208-d96131e299d9</imageLocation>
+      </orderItem>
+      <orderItem>
+        <qt>1</qt>
+        <code>90104</code>
+        <retailPrice>0</retailPrice>
+        <imageLocation>https://image-service.canvaspeople.com/api/c81bf446-09b3-b164-7143-0f40a0a793e5</imageLocation>
+        <imageLocation>https://image-service.canvaspeople.com/api/96181ae0-2d65-2a9f-726f-0309d1679746</imageLocation>
+      </orderItem>
+    </orderItems>
+  </orderRequest>
+</root>
+            </textarea>
+            <div class="input-group" style="width: 20%; margin-top: 10px;">
+                <label><strong>Token</strong></label>
+                <input type='test' size='50' name='token' id="token" value="aa7645524ce4c8136e504c41d10221f488b3dd87">
+                <a target="_blank" href="<?php echo SITE_ROOT ?>oauth/requesttoken">Request new token</a>
+                <div style="margin-top: 10px" class="input-group">
+                    <input class="form-control search-input" type="submit"  aria-label="Post request" placeholder="Post request" style="height: 40px !important;" >
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function() {
+    //hang on event of form with id=myform
+    $("#newOrderRequestForm").submit(function(e) {
+        e.preventDefault();
+
+        let xmlData = $('#xmlData').val().trim();
+        let token = $('#token').val().trim();
+
+        let param = { headerTxtId: { text: 'Alert: '} }
+        if( token == '' ) {
+            openAlert("Please enter token!", param);
+        }
+        else if( xmlData == '' )  {
+            openAlert("Nothing to create!", param);
+        }
+        else {
+            $.ajax({
+                url: baseUrl + "orders/createnew",
+                beforeSend: function (xhr) {
+                    $('#requestXmlDiv').hide();
+                    $('#respDataDiv').html('<div style="font-weight: 600; margin: 0 10px 10px 0">Creating new order...</div>');
+                },
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'xml': xmlData,
+                    'token': token
+                },
+                success: function (data) {
+                    let errorMsg = data.errorMsg;
+
+                    if( errorMsg != '' ) {
+                        $('#respDataDiv').html('');
+                        $('#requestXmlDiv').show();
+                        let param = { headerTxtId: { text: 'Alert' } }
+                        openAlert('<div style="font-weight: 400; margin: 0 10px 10px 0">' +errorMsg + '</div>', param);
+                    }
+                    else {
+                        let orderId = data.orderId;
+                        let userName = data.userName;
+                        window.location.href = baseUrl + 'orders/receipt?orderId=' + orderId +'&userName=' + userName;
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                }
+            });
+        }
+    });
+});
+</script>

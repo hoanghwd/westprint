@@ -1,0 +1,65 @@
+.mlddm
+{	margin: 0;
+	padding: 0}
+
+	.mlddm li
+	{	display: inline;
+		list-style: none;
+		float: left;
+		margin: 0;
+		padding: 0}
+	
+	.mlddm li a
+	{	display: block;
+		margin: 0 2px 0 0;
+		padding: 4px 20px;
+		width: auto;
+		font: bold 15px Helvetica;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		color: #111111;
+		background-color: #FFFFFF}
+
+	.mlddm li a:hover
+	{	background-color: #888888;
+		color: #FFFFFF}
+
+	.mlddm > li > a:hover
+	{	color: #FFFFFF}
+
+		.mlddm ul
+		{	z-index: 100;
+			position: absolute;
+			visibility: hidden;
+			margin: 2px 0 0 0;
+			padding: 0;
+			background: #DADADA;
+			filter:alpha(opacity=40)}
+
+			.mlddm ul li
+			{	float: none}
+
+			.mlddm ul li a
+			{	display: block;
+				width: auto;
+				margin: 0;
+				padding: 5px 17px 5px 13px;
+				font-weight: normal;
+				text-align: left;
+				text-transform: none;
+				white-space: pre;
+				color: #111111;
+				background: transparent;
+				border-width: 0}
+
+	.mlddm ul li .hsub
+	{	background-image: url(arrow.gif);
+		background-position: right;
+		background-repeat:  no-repeat}
+
+	.mlddm ul li .hsub:hover
+	{	background-image: url(arrow.gif);
+		background-position: right;
+		background-repeat:  no-repeat}

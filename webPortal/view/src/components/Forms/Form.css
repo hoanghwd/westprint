@@ -1,0 +1,33 @@
+.input {
+  background: #F8F8F8 ;
+  border: none;
+  border-radius: 0;
+  font-size: 14px !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+.prepend {
+    background: #F8F8F8 ;
+    border: none;
+    border-radius: 0;
+    font-size: 14px !important;
+}
+
+#password-strength-meter-progress {
+  top:10px;
+  right:0;
+  position: absolute;
+  z-index:10;
+}
+
+#password-strength-meter-label {
+  top:10px;
+  right:25px;
+  position: absolute;
+  z-index:20;
+}
+
+.error {
+  background: #5E5E5E;
+}
+

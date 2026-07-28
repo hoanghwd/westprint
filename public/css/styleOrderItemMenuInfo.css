@@ -1,0 +1,117 @@
+/**
+ * CSS for Order Item Menu Info on Order Page (For menu that appears after clicking the item thumbnail)
+ *
+ * Created By - Akshay Vaze (akshayvaze@gmail.com)
+ * Created Date: 2/19/2014
+ *
+ * Modified By - Akshay Vaze (akshayvaze@gmail.com)
+ * Modified Date: 3/4/2014
+ */
+ 
+.mainMenuBox{
+	text-align:left;
+	padding: 10px; 
+	width:700px;
+	/*height:1180px; */
+	height:auto; 
+	background-color: #FFFFFF; 
+	color: #000;	
+}
+
+.alignleft {
+	float: left;
+	text-align:left;
+	width:50%;
+}
+
+.alignright {
+	float: right;
+	text-align:right;
+	width:50%;
+}
+
+.mainMenuBoxHistoryHelper{
+	text-align:left;
+	padding: 10px; 
+	width:600px; 
+	height:600px;  
+ 	background-color: #FFFFFF;  
+ 	color: #000;	
+}
+
+.advanceImageBox{
+	padding-top: 10px; 
+	padding-bottom: 10px; 
+	border-bottom: 0px; 
+	width:600px; 
+	height:135px; 
+	background-color: #FFFFFF; 
+	color: #000;	
+}
+
+.moveImageBox{
+	padding-top: 10px; 
+	padding-bottom: 10px; 
+	border-bottom: 0px; 
+	width:600px; 
+	height:100px; 
+	background-color: #FFFFFF; 
+	color: #000;	
+}
+
+.holdImageBox{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 0px;
+        width:600px;
+	height:90px; 
+	background-color: #FFFFFF; 
+	color: #000;	
+}
+
+.unHoldImageBox{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 0px;
+        width:600px;
+		height:140px;
+		background-color: #FFFFFF;
+		color: #000;
+}
+
+.submitReprintBox{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 0px;
+        width:600px;  
+	height:110px; 
+	background-color: #FFFFFF; 
+	color: #000;	
+}
+
+.itemHistoryBox{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width:600px;
+	overflow-y:scroll;
+	height:250px; 
+	background-color: #FFFFFF;
+	color: #000;	
+}
+
+.itemOnlyHistoryBox{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width:600px;
+	overflow-y:scroll;
+	height:900px; 
+	background-color: #FFFFFF;
+	color: #000;
+}
+
+.itemHistoryBoxHeading{
+        padding-top: 10px;
+        padding-bottom: 10px;
+	background-color: #FFFFFF;
+	color: #000;
+}

@@ -1,0 +1,228 @@
+#nav li {
+#border-top: 3px solid red;
+#border-top: 3px solid red;
+list-style: none;
+float: left;
+font: bold 16px arial;
+}
+
+#nav li a.menu {
+display: block;
+text-align: center;
+#background: #2175bc;
+padding: 4px 10px;
+margin: 0 1px 0 0;
+color: #111;
+width: 110px;
+text-decoration: none;
+}
+
+#nav li a.menu:hover {
+background: #fff;
+}
+
+.submenu {
+background: #E6E5E5;
+#border-bottom: 3px solid red;
+visibility: hidden;
+position: absolute;
+z-index: 5;
+}
+
+.submenu a {
+display: block;
+font: 16px arial;
+text-align: left;
+text-decoration: none;
+color: #000;
+width: 110px;
+padding: 4px 10px;
+text-align: center;
+}
+
+.submenu a:hover {
+background: #555;
+color: #fff;
+}
+
+.warningAlert {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    margin-bottom: 1rem;
+    padding: .75rem 0;
+    position: relative;
+    -webkit-transition: opacity .15s linear;
+       -moz-transition: opacity .15s linear;
+         -o-transition: opacity .15s linear;
+            transition: opacity .15s linear;
+}
+
+.successAlert {
+    background-color: #d4edda;
+    border: 1px solid #d4edda;
+    color: #155724;
+    margin-bottom: 1rem;
+    padding: .75rem 0;
+    position: relative;
+    -webkit-transition: opacity .15s linear;
+       -moz-transition: opacity .15s linear;
+         -o-transition: opacity .15s linear;
+            transition: opacity .15s linear;
+}
+
+.alertWrapper {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.warningClose {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 700;
+    float: right;
+    line-height: 1;
+    opacity: .5;
+    padding: .75rem 1.25rem;
+    position: absolute;
+    right: 3.7rem;
+    text-shadow: 0 1px 0 #fff;
+    top: 0;
+}
+
+.warningClose:hover {
+    color: #000;
+    opacity: .75;
+    text-decoration: none;
+}
+
+.warningAlert a,
+.warningAlert a:active,
+.warningAlert a:visited,
+.warningAlert a:hover {
+    color: inherit;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.warningAlert a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.warningAlert img {
+    filter: invert(1) sepia(100%) saturate(100000) hue-rotate(330deg);
+    margin: 0 10px 0 30px;
+    vertical-align: bottom;
+}
+
+.successAlert img {
+    filter: invert(1) sepia(100%) saturate(100000) hue-rotate(50deg);
+    margin: 0 10px 0 30px;
+    vertical-align: bottom;
+}
+
+/* Header  */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+div#banner {
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    background-color: #FF342D;
+    width: 100%;
+}
+
+div#banner-content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    /*border: 1px solid #000;*/
+    color: #FFFFFF;
+}
+
+.menuHeader {
+    letter-spacing: 3.82px;
+}
+
+.searchItem {
+    display: flex;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    min-width: 99%;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    color: #000;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+select, input {
+    margin: 0;
+    padding: 0 5px;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 20px;
+}
+
+.pre-header {
+    margin-left:auto;
+    margin-right:auto;
+    width: 1200px;
+}
+
+.welcome-back {
+    float: left;
+    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+    width: 30%;
+    margin-top: 14px;
+    margin-left: 10px;
+}
+
+.global-search {
+    float: right;
+    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+    margin-top: 14px;
+    margin-left: 10px;
+}
+
+.global-search-table {
+    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+/* Header  */
+
+

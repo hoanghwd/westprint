@@ -1,0 +1,235 @@
+<?php
+$masterScheduleHdl = $modelObj;
+?>
+<style>
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 1px solid #ededed;
+        border-right-width:0px;
+        border-left-width:0px;
+    }
+    div.scroll {
+        height: 350px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="<?= CSS_URL ?>main.css">
+<link rel="stylesheet" type="text/css" href="<?= CSS_URL ?>statusReport.css">
+<link rel="stylesheet" href="<?=CSS_URL?>style_tabs.css" type="text/css">
+<link rel="stylesheet" href="<?=CSS_URL?>workorder.css" type="text/css">
+
+
+<section class="my-5">
+    <div class="container">
+        <div class="main-body">
+            <div class="row" style="align-items: normal !important;">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <div class="mt-3">
+                                    <h5>Quick Report</h5>
+                                </div>
+                            </div>
+                            <div class="list-group list-group-flush text-left mt-4">
+                                <div class="list-group-item list-group-item-action border-0 ">Image Validation
+                                </div>
+                                <div href="#" class="list-group-item list-group-item-action border-0">Order Validation</div>
+                                <div href="#" class="list-group-item list-group-item-action border-0">Staging</div>
+                                <div href="#" class="list-group-item list-group-item-action border-0">Processing</div>
+                                <div href="#" class="list-group-item list-group-item-action border-0">Finalizing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="top-status">
+                                <h5>PROCESS STATUS</h5>
+                                <ul>
+                                    <li class="active" id="imagevalidationSTATUS">
+                                        <div class="status-fonts">Image Validation</div>
+                                    </li>
+                                    <li id="ordervalidationSTATUS">
+                                        <div class="status-fonts">Order Validation</div>
+                                    </li>
+                                    <li id="ordertranferringSTATUS">
+                                        <div class="status-fonts" >Staging</div>
+                                    </li>
+                                    <li id="orderinprocessSTATUS">
+                                        <div class="status-fonts">Processing</div>
+                                    </li>
+                                    <li id="orderfinalizingSTATUS">
+                                        <div class="status-fonts">Finalizing</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-login100-form-btn" style="margin-top: 10px;">
+                        <button class="login100-form-btn" id="start-all">
+                            Start All
+                        </button>
+                        <button class="login100-form-btn" id="reset-all" style="margin-left: 5px;">
+                            Reset All
+                        </button>
+                    </div>
+                    <div class="card mt-4">
+                        <div class="card-body p-0 table-responsive">
+                            <h4 class="p-3 mb-0">Report Details</h4>
+                            <!-- <div style="margin-left: 10px;height: 300px" id="process-response"></div> -->
+                            <!-- START TABS -->
+                            <div id="tabs_wrapper" style="margin-top: 20px !important;">
+                                <!-- CONTAINER OF TABS -->
+                                <div id="infoTabContainer">
+                                    <ul id="infoTabWrapper">
+                                        <li class="infoTabs active" id="imageValidationLi">
+                                            <a id="imagevalidationA" href="#imagevalidationTab">Image Validation</a>
+                                        </li>
+                                        <li class="infoTabs inactive" id="ordervalidationLi">
+                                            <a id="ordervalidationA" href="#ordervalidationTab">Order Validation</a>
+                                        </li>
+                                        <li class="infoTabs inactive" id="ordertranferringLi">
+                                            <a id="ordertransferringA" href="#ordertranferringTab">Staging</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- CONTAINER OF TAB CONTENT -->
+                                <div id="tabs_content_container">
+                                    <!-- Image Validation -->
+                                    <div id="imagevalidationTab" class="tab_content scroll" style="display: block;font-size: 13px"></div>
+                                    <!-- Order Validation -->
+                                    <div id="ordervalidationTab" class="tab_content scroll" style="font-size: 13px"></div>
+                                    <!-- Order Transferring -->
+                                    <div id="ordertranferringTab" class="tab_content scroll" style="font-size: 13px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Schedule Timeline -->
+                    <div class="card mt-4">
+                        <div class="card-body scroll">
+                            <h4>Schedule Timeline</h4>
+                            <ul class="timeline">
+                                <li class="active" id="imagevalidationTimeLineLi">
+                                    <h6>Image Validation</h6>
+                                    <div class="text-muted" id ="imagevalidationDateReport" style="height: 35px;margin-bottom: 5px"></div>
+                                    <p class="mb-0 text-muted" id="imagevalidationTimeLine"></p>
+                                </li>
+                                <li id="ordervalidationTimeLineLi">
+                                    <h6>Order Validation</h6>
+                                    <div class="text-muted" id="ordervalidationDateReport" style="height: 35px;margin-bottom: 5px"></div>
+                                    <p class="mb-0 text-muted" id="ordervalidationTimeLine"></p>
+                                </li>
+                                <li id="ordertranferringTimeLineLi">
+                                    <h6>Order Staging</h6>
+                                    <div class="text-muted" id="ordertranferringDateReport" style="height: 35px;margin-bottom: 5px"></div>
+                                    <p class="mb-0 text-muted" id="ordertranferringTimeLine"></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Optional JavaScript -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="<?=JS_URL?>workorder/tabs.js"></script>
+
+<script>
+    let urls = [
+        baseUrl + 'cron/ordervalidation',
+        baseUrl + 'cron/imagevalidation'
+    ];
+
+    let processArray = [
+        'imagevalidation', 'ordervalidation'
+    ];
+    let i = 0;
+    let j = 0;
+
+    function ajaxRequest (urls)
+    {
+        if (urls.length > 0) {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: urls.pop(),
+                beforeSend: function () {
+                    let currId = processArray[j];
+                    $('#' + currId + 'STATUS').addClass('active');
+                    $('#' + currId + 'TimeLineLi').addClass('active');
+                    $('#' + currId + 'Tab').html('Processing...');
+                    j++;
+                },
+                success: function (data) {
+                    let currId = processArray[i];
+                    let responseHtml = data.htmlReport;
+                    let responseDetailsHtml = data.htmlReportDetails;
+                    let dateReport = data.dateReport;
+
+                    $('#' + currId + 'Tab').html(responseDetailsHtml); //For details
+                    $('#' + currId + 'STATUS').removeClass('active');
+                    $('#' + currId + 'DateReport').html(dateReport);
+                    $('#' + currId + 'TimeLine').html(responseHtml);
+
+                    ajaxRequest(urls);
+                    i++;
+                    if( i == processArray.length ) {
+                        //$('#' + currId + 'STATUS').addClass('active');
+                    }
+                },
+                error: function (data) {
+                    //console.log(data);
+                }
+
+            });
+        }
+    }
+
+    function resetAllStatus()
+    {
+        i = 0;
+        j = 0;
+
+        urls = [
+            baseUrl + 'cron/ordervalidation',
+            baseUrl + 'cron/imagevalidation'
+        ];
+
+        processArray.forEach(function(process) {
+            $('#' + process + 'STATUS').removeClass('active');
+            $('#' + process + 'Tab').html('');
+            $('#' + process + 'TimeLineLi').removeClass('active');
+            $('#' + process + 'TimeLine').html('');
+            $('#' + process + 'DateReport').html('');
+        });
+    }
+
+    $(document).ready(function()
+    {
+        resetAllStatus();
+
+        $('#start-all').on('click', function(event) {
+            resetAllStatus();
+            ajaxRequest(urls);
+        });
+
+        $('#reset-all').on('click', function(event) {
+            resetAllStatus();
+        });
+    });
+</script>

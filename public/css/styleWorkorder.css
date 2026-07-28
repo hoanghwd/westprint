@@ -1,0 +1,234 @@
+/* 
+    Style management for all Workorder (not synworkorder) related items.
+
+    Created On  : Oct 2022
+    Created By  : Jenny Nguyen
+*/
+
+/* -------- Shared: Item Details -------- */
+.deletedBillable { background-color: #BFD4FF !important; }
+.deletedNonBillable { background-color: #FF968C !important; }
+.activeReprint { background-color: #FAE598 !important; }
+.activeHolding { background-color: #CCC !important; }
+
+.searchContainer { width: auto; }
+.searchItem {
+    grid-template-columns: minmax(10%, auto) 1fr 1fr;
+    column-gap: 10px;
+    font-family: var(--openSanFont);
+}
+.searchItem span { 
+    display: block;
+    font-weight: bold; 
+}
+.searchItem select, .searchItem input { 
+    height: 20px;
+    width: 100%;
+}
+
+.dataTable { font-size: 12px; }
+.dataBody p {
+    padding: 0;
+    background: none;
+    margin: 7px 0;
+}
+#itemDetailsBody tr:not(#itemDetailsBody tr:first-child) { border-top: 1px solid var(--lineGray); }
+
+/* -------- Item Details: Pagination -------- */
+#pagination { padding: 10px 0; }
+#pagination {
+    font-size: 14px; 
+    font-family: var(--openSanFont);
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none;
+}
+
+#pageResult {
+    width: 50%;
+    margin-left: 5px;
+}
+
+#pageSelect { 
+    width: 50%;
+    text-align: right; 
+}
+#pageSelect span:not(.pageContainer) {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 3px;
+    width: 32px;
+    height: 22px;
+}
+
+.activePage {
+    color: var(--white) !important;
+    background: var(--blue);
+    border-radius: 50%;
+}
+
+#select_low, #select_high {
+    width: inherit;
+    height: inherit;
+    border: 1px solid #5E5E5E;
+}
+
+/* -------- Shared: Manual Shipping -------- */
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+#tab5 input:disabled { background-color: #e6e6e6; }
+.setError { background-color: rgb(255, 153, 153); }
+
+.packAreaHeader {
+    align-items:center; 
+    padding-top:10px;
+}
+
+#addNewStandardPack, #addNewCustomPack {
+    height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+#standardPackArea, #customPackArea, #gsPackArea {
+    gap: 30px 25px;
+    padding: 5px 0 40px 0;
+}
+
+.formTitle { padding-left: 10px; }
+
+.tableDisplay {
+    display: table;
+    border-spacing: 0 10px;
+}
+.tableRowDisplay {
+    display: table-row;
+    text-align: left;
+}
+.tableCellLeft {
+    display: table-cell;
+    vertical-align: middle;
+    width: 30%;
+    padding: 0 5px;
+}
+.tableCellRight {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 5px;
+}
+
+/* ----------- Pack Containers & Shared Pack Stylings ----------- */
+#standardPackArea, #gsPackArea { grid-template-columns: repeat(3, 1fr); }
+#customPackArea { grid-template-columns: repeat(2, 425px); }
+
+.inputRow {
+    width: 100%; 
+    display: table;
+    padding: 5px 0;
+}
+.inputRow div { display:table-cell; }
+
+.standard_left { width:45%; }
+.custom_left { width: 40%; }
+.right { width: 100% }
+.right select:not(.customPackBoxes), .right input:not([id*='SelectedItem_']):not(.customPackQuantity) { width: inherit; }
+
+.formContainer {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.formHeader {
+    width: 100%;
+    align-items: center;
+    height: 25px;
+    color: #FFFFFF;
+    background: #333644;
+    font-size: 14px;
+    border-radius: 5px 5px 0 0;
+}
+
+.formBody {
+    font-size: 11px;
+    padding: 0 10px;
+    border: 1px solid #333644;
+    border-style: none solid solid solid;
+    border-radius: 0 0 5px 5px;
+}
+.formBody select, .formBody input, .formBody button { 
+    height: 22px;
+    font-size: 11px;
+}
+
+.formDivider {
+    background: #333644;
+    margin: 10px 0;
+}
+
+.formConfirmation { 
+    padding-bottom: 5px;
+    justify-content: space-between;
+}
+.formConfirmation button:not([id*='ViewItem_']) { width: 60px; }
+
+[id*='addStdBox_'], .deleteStdBox { width: 125px; }
+[id*='AddItem_'] {
+    width: 80px;
+    margin-left: 10px;
+}
+[id*='ViewItem_'] { width: 90px; }
+[id*='Edit_'] { margin-right: 5px; }
+
+/* -------- Custom Packs Extra Styling -------- */
+.customPackBoxes { margin-right: 5px; }
+.customPackQuantity { max-width: 65px; }
+[id*='customPackLength'], [id*='customPackWidth'], [id*='customPackHeight'] { max-width: 72px !important; }
+[id*='gsPackLength'], [id*='gsPackWidth'], [id*='gsPackHeight'] { max-width: 53px !important; }
+
+/* ----------- Add Pack Item Modal ----------- */
+.modalBody {
+    min-width: 500px;
+    max-width: 1000px;
+}
+#modalAlert .modalBody, #modalConfirm .modalBody { max-width: 40%; }
+
+.modalSubHeader {
+    font-size:14px;
+    padding: 20px 0 0 25px;
+    align-items: center;
+}
+
+#modalGrid { grid-template-columns: repeat(4, 1fr); }
+
+.markImg {
+    width: 20px;
+    height: 22px;
+}
+
+.addItemsToPack {
+    width: 50px;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid var(--darkGray);
+}
+
+#addItemSubHeader { flex-wrap: wrap; }
+
+/* -------- Pricing and Shipping Confirmation -------- */
+#manualShipReason {
+    width: 270px;
+    max-width: 400px;
+    height: 30px;
+}
+
+.shippingData { padding: 5px 0; }
+.shippingData input, select { height: 20px; }
+
+#viewAllItems { 
+    width: 135px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 5px;
+}
+#shipOrder, #shipGroupedShipment { border: none; }
+#viewAllItems, #shipOrder, #shipGroupedShipment { height: 40px; }

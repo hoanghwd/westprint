@@ -1,0 +1,183 @@
+.col-border-right {
+    border-right: 1px solid #DDDDDD;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.no-padding {
+    padding: 0 15px;
+}
+
+.background-dark {
+    background: #333644;
+}
+
+.card-header-response {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.card-body-response {
+    background: #1E202C;
+    color: #F06292;
+    position: relative;
+    padding: 0px;
+}
+
+.card-response {
+    border: 1px solid #5E5E5E;
+}
+
+.title-response {
+    color: #AAAAAA;
+}
+
+.nav-item-circle {
+    border: none;
+    font-size: 12px;/*24*/
+    border-radius: 100%;
+    background: #2E59A0;
+}
+
+.nav-item-circle-disabled {
+    opacity: 0.3;
+    border: none;
+    font-size: 12px;
+    border-radius: 100%;
+    background: #8D8D8D;
+}
+
+.request-url {
+    background: #F3F3F3;
+    border: 1px solid #DDDDDD;
+}
+
+.nav-link-steps {
+    color: #2E59A0 !important;
+    font-family: OpenSans-Semibold;
+    font-size: 16px;
+    letter-spacing: 0;
+}
+
+.nav-link-steps:hover {
+    text-decoration: underline;
+}
+
+.nav-link-steps.active {
+    background: transparent !important;
+}
+
+.btn-clipboard {
+    opacity: 0.3;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    margin: 10px;
+    z-index:2;
+    background: #AAAAAA !important;
+}
+
+.btn-expand {
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    z-index:2;
+    background: #333644 !important;
+}
+.btn-clipboard:hover {
+    opacity: 1;
+}
+
+.btn-expand:hover {
+    opacity: 1;
+}
+
+.ace_content {
+    background: #1E202C;
+}
+
+.child {
+    margin-left: 30px;
+    color: black !important;
+}
+
+.incompleted {
+    opacity: 0.3;
+}
+
+.modal-body-editor {
+    padding:0;
+}
+
+.btn-hide {
+    display: none;
+}
+
+.modal-header-editor > button {
+    color: white;
+}
+
+.modal-header-editor > button:hover {
+    color: #AAAAAA;
+}
+
+.modal-header-editor {
+    background: #000000;
+    color: white;
+    border: none;
+}
+
+.table-header-balck {
+    background: #1E202C;
+    color: white;
+    text-align: center;
+}
+
+.color-red{
+    color: #FF342D;
+}
+
+.color-blue{
+    color: #2F59A1;
+}
+
+.center-align{
+    text-align: center;
+}
+
+.spinn-container{
+    padding-top: 200px;
+    text-align: center;
+}
+
+.width100{
+    width: 100px;
+}
+
+.red{
+    color: red;    
+}
+
+div.nav-item a.active{
+    font-weight: bold;
+}
+
+div.nav-item a.menu-header{    
+    text-decoration: none;
+    pointer-events: none;
+}
+
+
+
+.red a{
+    color: red;
+}
+
+
+.button-right{
+    text-align: right;
+}

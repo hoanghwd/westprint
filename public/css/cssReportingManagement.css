@@ -1,0 +1,47 @@
+/* 
+    Notes: 
+        General GUI for similar management page styles. (Ex: At Risk Report)
+        
+    References:
+        Grid UI: https://css-tricks.com/snippets/css/complete-guide-grid/
+
+    Created on : Mar 10, 2020
+    Author     : Jenny Nguyen
+*/
+
+/* -------- Shared Properties -------- */
+select, input {
+    margin: 0;
+    padding: 0 5px; 
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+select:disabled { background-color: #e6e6e6; }
+
+/* -------- Search Filter -------- */
+#searchFilter {
+    width: 1140px;
+    height: 45px;
+    padding: 20px 10px;
+    background-color: #F9F9F9;
+}
+
+/* Create the grid columns on a page-per-page basis  */
+#searchGrid {
+    display: grid;
+    height: 100%;
+    align-items: center;
+}
+#searchGrid select { height: 20px !important; }
+
+#goBtn {
+    width: 40px;
+    height: 35px;
+    color: #FFFFFF;
+    background-color: #333644;
+    border-radius: 3px;
+    border: 1px solid #333644;
+}
+
+    

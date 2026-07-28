@@ -1,0 +1,519 @@
+/**
+ * 	CSS styling for Order Info on Order Pages (synworkorder & workorder).
+ *
+ * 	Created By 		: Akshay Vaze
+ * 	Created Date	: 1/23/2014
+
+ *	Updated By 		: Jenny
+ *	Updated Date	: Sept 2022
+ */
+
+/* -------- Global Overwrites -------- */
+h1 { margin: 20px 0 5px 0; }
+
+
+/* -------- Shared Styling -------- */
+.orderInfoLink, .orderInfoLink:link, .orderInfoLink:visited, .orderInfoLink:hover,
+.orderInfoLinkRed, .orderInfoLinkRed:link, .orderInfoLinkRed:visited, .orderInfoLinkRed:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.orderInfoLink {
+	padding-bottom: 1px;
+	border-bottom: 1px solid var(--blackRussianBlue);
+	color: var(--blackRussianBlue);
+}
+.orderInfoLinkRed {
+	padding-bottom: 1px;
+	border-bottom: 1px solid var(--red);
+	color: var(--red);
+}
+.orderInfoLink:hover, .orderInfoLinkRed:hover {
+	border-bottom: 1px solid var(--blue);
+	color: var(--blue);
+}
+
+.flexWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+/* -------- Shared Containers -------- */
+.orderDetailBox {
+	background-color: var(--backgroundGray);
+	padding: 10px;
+	font-size: 13px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.orderDetailItems {
+	display: flex;
+	padding: 3px 0;
+	margin: 0 3px;
+	align-items: center;
+}
+
+.orderDetailItemTitle {
+	font-weight: bold;
+	width: 35%;
+}
+
+.orderDetailItemData { width: 65%; }
+.orderDetailItemData::before {
+	content: ": ";
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+/* Order info is displayed in table format, this styling is for the same */
+table.fancy {
+	margin: 1em 1em 1em 0;
+	#background: whitesmoke;
+	background: none;
+	border-collapse: collapse;
+}
+table.fancy th, table.fancy td {
+	border: 1px silver gainsboro;
+	padding: 0.5em;
+}
+table.fancy th {
+	/* background: gainsboro; */
+	text-align: left;
+}
+/*
+table.fancy tr:hover td {
+	background: #555 !important;
+	color: #fff;
+}
+*/
+table.fancy caption {
+	margin-left: inherit;
+	margin-right: inherit;
+}
+
+/*--------------------------------*/
+/* Form Tables - Orders page  */
+/*--------------------------------*/
+
+table.form_table {
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table.form_table th {
+	padding: 3px;
+	text-align: left;
+	font-weight: bold;
+}
+table.form_table td {
+	padding: 3px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*----------------------*/
+
+/*--------------------------------*/
+/* Accordian Stuff - Orders page  */
+/*--------------------------------*/
+
+.accordian_table {
+	*border-collapse: collapse; /* IE7 and lower */
+	border-spacing: 0;
+	/* width: 100%; */
+	width: 875px;
+}
+
+p {
+	font-weight: normal;
+	/* padding-left: 10px; */
+	color: #000;
+	background-color: #fff;
+}
+p.msg_head_billing {
+	padding-top: 15px;
+	font-size: 15px;
+ 	font-weight: bold;
+	padding-bottom: 10px;
+	margin: 0px;
+	margin-bottom: 5px;
+	width: 1135px;
+	clear: left;
+}
+
+/*----------------------*/
+
+/*--------------------------------*/
+/* ORDER DETAIL INFO TABLE        */
+/*--------------------------------*/
+
+table.orderDetail {
+	font-family: Helvetica;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.orderDetail th {
+	text-align:left;
+	padding: 3px;
+	width: 150px;
+}
+
+table.orderDetail td {
+	text-align:left;
+	padding: 3px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width:250px;
+}
+
+/* delete later */
+fieldset {
+	font-family: Helvetica;
+	border: 1px dotted #AAAAAA;
+	background: #efefef;
+	width: 1123px;
+}
+
+/* delete later */
+legend {
+	font-size: 15px;
+}
+
+.shippedPackages {
+	width: 1155px;
+	overflow:auto;
+}
+
+/*----------------------*/
+
+
+
+/* -------- Pricing Info -------- */
+
+
+/* delete later - pricingDetail */
+table.pricingDetail {
+	font-family: Helvetica;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.pricingDetail th {
+	text-align:left;
+	padding: 3px;
+}
+
+table.pricingDetail td {
+	text-align:left;
+	padding: 3px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width:150px;
+}
+
+/*----------------------*/
+
+/*---------------------------*/
+/*    QUOTING INFO TABLE     */
+/*---------------------------*/
+
+table.quoteDetail {
+	font-family: Helvetica;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.quoteDetail th {
+	text-align:left;
+	padding: 2px;
+	background: none;
+        border: 1px dotted #AAAAAA;
+}
+
+table.quoteDetail td {
+	text-align:left;
+	padding: 2px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width:450px;
+	background: none;
+        border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*--------------------------------*/
+/* SHIPPED PACKAGES TABLE        */
+/*--------------------------------*/
+
+table.shippingDetail {
+	font-family: Helvetica;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.shippingDetail th {
+	text-align:left;
+	padding: 3px;
+	width:80px;
+}
+
+table.shippingDetail td {
+	text-align:left;
+	padding: 3px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width:200px;
+}
+
+/*----------------------*/
+
+/*--------------------------------*/
+/* ITEM Tables - Orders page      */
+/*--------------------------------*/
+
+table.item_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	background: none;
+	width: 1145px;
+	height: 160px;
+	#border: 1px solid #2f59a1;
+}
+table.item_table th {
+	padding: 10px 10px 10px 0px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+}
+table.item_table td {
+	padding: 10px 10px 10px 0px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* NESTED  ITEM Tables - Orders page      */
+/*----------------------------------------*/
+
+table.nested_item_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+#	background: none;
+	border: none;
+}
+table.nested_item_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border-top: 1px solid #2f59a1;
+	border: 1px dotted #AAAAAA;
+}
+table.nested_item_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* TICKET ITEM Tables - Orders page      */
+/*----------------------------------------*/
+
+table.ticket_item_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+}
+table.ticket_item_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border-top: 1px solid #2f59a1;
+	border: 1px dotted #AAAAAA;
+}
+table.ticket_item_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* ASSETS Tables - Orders page      */
+/*----------------------------------------*/
+
+table.assets_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+}
+table.assets_table th {
+	width: 200px;
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border-top: 1px solid #2f59a1;
+	border: 1px dotted #AAAAAA;
+}
+table.assets_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+/*----------------------------------------*/
+/* ITEM SUMMARY Tables - Orders page      */
+/*----------------------------------------*/
+
+table.itemSummary_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+}
+table.itemSummary_table th {
+	width: 200px;
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border-top: 1px solid #2f59a1;
+	border: 1px dotted #AAAAAA;
+}
+table.itemSummary_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* SHIPPING GUI - Orders page      */
+/*----------------------------------------*/
+
+table.shippinggui_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+}
+table.shippinggui_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border-top: 1px solid #2f59a1;
+	border: 1px dotted #AAAAAA;
+}
+table.shippinggui_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* GROUPING TABLE - Orders page      */
+/*----------------------------------------*/
+
+table.grouping_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+        width: 700px;
+}
+table.grouping_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.grouping_table td {
+	padding: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+/*----------------------------------------*/
+/* ALERTS TABLE      */
+/*----------------------------------------*/
+
+table.alertsTable {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+        cellpadding: 5px;
+}
+
+table.alertsTable td {
+	padding: 0.5em;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}

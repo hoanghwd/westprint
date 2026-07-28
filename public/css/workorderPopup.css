@@ -1,0 +1,140 @@
+/**
+ * CSS for Pop Up View of Order Page
+ *
+ * Created By - Akshay Vaze (akshayvaze@gmail.com)
+ * Created Date: 2/11/2014
+ *
+ * Modified By - Akshay Vaze (akshayvaze@gmail.com)
+ * Modified Date: 3/4/2014
+ */
+
+/* Styling for Submit Buttons */
+input[type=submit] {
+	font-size: 15px bold; 
+	font-family: Helvetica;
+	height:40px;
+	background:#2A57A2; 
+	border:0 none; 
+	color:#FFF;
+        cursor:pointer;
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px; 
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px; 
+}
+
+/* Styling for Abort Button */
+button[type=button] {
+	font-size: 15px bold;
+	height:40px;
+	background:#FAC50F; 
+	border:0 none; 
+	color:#FFF;
+        cursor:pointer; 
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px; 
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px; 
+}
+
+.orderPopUpHeader {
+    width: 600px;
+    text-align:left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    color: #000;    
+}
+
+.alignleft {
+	float: left;
+	text-align:left;
+	width:50%;
+}
+
+.alignright {
+	float: right;
+	text-align:right;
+	width:50%;
+}
+
+.addOrderNotesBox {
+    width: 600px;
+    text-align:left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    color: #000;
+    height:200px;
+    overflow-y:scroll;
+}
+
+.editItemInstructionsBox {
+    width: 700px;
+    text-align:left;
+    padding: 0px;
+    padding-right: 10px;
+    background-color: #FFFFFF; 
+    color: #000;
+    height:350px;
+    overflow-y:scroll;
+}
+
+.editBillingAddressBox {
+    width: 600px;
+    text-align:left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    color: #000;
+    height:410px;
+}
+
+.editShippingAddressBox {
+    width: 600px;
+    text-align:left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    color: #000;
+    height:380px;
+}
+
+.setNoChargeBox {
+    width: 600px;
+    text-align:left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    color: #000;
+    height:170px;
+}
+
+.editSlaEndDateBox {
+    width: 600px; 
+    height: auto;
+    text-align: left;
+    padding: 10px;
+    background-color: #FFFFFF; 
+    display:flex; 
+    flex-direction:row;
+}
+.editSlaEndDateBox select { color: black; }
+
+.errorBox {
+	width: 600px;
+	color: #000; 
+	padding: 3px; 
+	background-color: #ccc; 
+	margin-bottom: 3px; 
+	border: red solid 1px;
+}
+.errorHeading {
+	font-weight: bold;
+	color: red;
+	font-size: 22px;
+}
+.errorText {
+	font-weight: bold;
+	color: red;
+}
+

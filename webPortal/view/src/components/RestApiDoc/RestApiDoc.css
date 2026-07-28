@@ -1,0 +1,44 @@
+.active {
+    color:#2E59A0 !important;
+}
+
+.tab {
+    color: black !important;
+}
+
+.activeDoc {
+    color:#2E59A0 !important;
+    /*font-size: 16px;*/
+    font-size: 17px;
+    font-family: 'OpenSans-Semibold';
+    /*font-weight: bold;*/ 
+    font-weight: bolder;
+}
+
+.tabDoc {
+    color: black !important;
+    font-size: 16px;
+    font-family: 'OpenSans';
+}
+
+#col-left {
+    border-right: solid #DDDDDD 1px;
+}
+
+ul.nav {
+    list-style: none;
+}
+
+ul.nav .flex-column{
+    color: black !important;
+    font-size: 16px;
+    font-family: 'OpenSans';
+}    
+
+.width100{
+    width: 100px;
+}
+
+.errCodes {
+    color: #DC143C;
+}

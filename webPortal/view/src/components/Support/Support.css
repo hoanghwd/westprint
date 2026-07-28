@@ -1,0 +1,17 @@
+.sm-img {
+    vertical-align: middle;
+    width: 40px;
+}
+
+.inline-text {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+
+.code-list li{
+
+    line-height: 30px;
+
+}

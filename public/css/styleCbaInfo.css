@@ -1,0 +1,56 @@
+/**
+ * CSS for Cba Controller
+ *
+ * Created By - Akshay Vaze
+ * Created Date: 3/31/2014
+ *
+ */
+
+/*----------------------------------------*/
+/* CBA TABLE - CBA page      */
+/*----------------------------------------*/
+
+table.cba_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 600px;
+}
+table.cba_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.cba_table td {
+	padding-left: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/* Styling for Submit Buttons */
+button {
+	font-size: 15px bold; 
+	font-family: Helvetica;
+	height:40px;
+	background:#2A57A2; 
+	border:0 none; 
+	color:#FFF;
+        cursor:pointer;
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px; 
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px; 
+}

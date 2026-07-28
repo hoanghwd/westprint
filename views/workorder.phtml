@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="<?=CSS_URL?>style_tabs.css" type="text/css">
+<link rel="stylesheet" href="<?=CSS_URL?>styleOrderInfo.css" type="text/css">
+<link rel="stylesheet" href="<?=CSS_URL?>styleWorkorder.css" type="text/css">
+<link rel="stylesheet" href="<?=CSS_URL?>workorder.css" type="text/css">
+<script type="text/javascript" src="<?=JS_URL?>shippingGuiValidation.js"></script>
+
+<?php
+$workOrderHdl = $modelObj;
+$orderId = $workOrderHdl->getOrderId();
+$locId = $workOrderHdl->getLocId();
+$hdOrderId = $workOrderHdl->getOrderId();
+$simpleOrderInfo = $workOrderHdl->getSimpleOrderInfo();
+?>
+
+<!-- GENERAL INFO BOX -->
+<script>
+    let headerId = '<h5 style="margin-top: 4px;">Order: ' + '<?php echo $orderId ?>-' + <?php echo $locId ?> + '</h5>';
+    $('#breadcrumbs-title').html(headerId);
+    let HDorderId = '<?php echo $hdOrderId; ?>';
+    let simpleOrderObject = JSON.parse('<?php echo json_encode($simpleOrderInfo); ?>');
+</script>
+
+<?php
+//Render general info box
+$workOrderHdl->renderGeneralInfo();
+//Render tabs
+$workOrderHdl->renderTabs();
+?>

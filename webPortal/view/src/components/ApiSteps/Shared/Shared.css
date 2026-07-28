@@ -1,0 +1,18 @@
+.wrapper {
+    display: inline-block;
+    cursor: 'not-allowed';
+  }
+  
+.btn-disabled {
+  pointer-events: none;
+}
+
+.scroll{
+  max-height: 300px; 
+  overflow-y: auto;
+}
+
+.title-header {
+    color: #DC143C;
+    font-size: 14px;
+}

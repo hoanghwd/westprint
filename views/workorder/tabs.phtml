@@ -1,0 +1,212 @@
+<?php
+$workOrderHdl = $modelObj;
+$itemArray = $workOrderHdl->getHDOrderSkuItemArray();
+
+// Permission flags
+//$viewPrice = ($user->checkPermission("seePricingOnOrder")) ? true : false;
+//$viewSubstrate = ($user->checkPermission("seeExactSubstrate")) ? true : false;
+$viewPrice = true;
+$viewSubstrate = true;
+?>
+
+<style>
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 1px solid #ededed;
+        border-right-width:0px;
+        border-left-width:0px;
+    }
+</style>
+
+
+<!-- Image modal -->
+<div class="modal" id="imgMenuModal">
+    <div class="modalBody">
+        <div class="row modalHeader"><span>Image Menu</span></div>
+        <!-- Items on hold -->
+        <div class="row modalTabsContainer" id="holdLock">
+            <div class="cursorPointer imgMenuTab inactive" id="unholdImgTab">Unhold</div>
+        </div>
+        <!-- Items not on hold -->
+        <div class="row modalTabsContainer" id="unholdLock">
+            <div class="col-2 cursorPointer imgMenuTab inactive" id="moveImgTab">Move</div>
+            <div class="col-2 cursorPointer imgMenuTab inactive" id="holdImgTab">Hold</div>
+            <div class="col-2 cursorPointer imgMenuTab inactive" id="reprintImgTab">Reprint</div>
+        </div>
+        <hr class="modalDivider" style="margin-bottom:10px;">
+
+        <div class="modalForm row">
+            <div style="float: left;width: 110px"><img id="imgMenuImgSrc" src=""></div>
+            <div id="imgMenuImgData">
+                <p>
+                    <b>Item #:</b> <span id="imgMenuItemNum"></span><br>
+                    <b>Department Status:</b> <span id="imageMenuDept"></span><br>
+                    <b>Title:</b> <span id="imageMenuTitle"></span>
+                </p>
+                <!-- Unhold Image Form -->
+                <div id="unholdImgItem" data-tab-status="inactive">
+                    <b>Select unhold reason:</b><br>
+                    <?=$workOrderHdl->loadHoldReasonsHTML()?>
+                </div>
+                <!-- Move Image Form -->
+                <div id="moveImgItem" data-tab-status="inactive">
+                    <!-- To-Do: refactor and update this -->
+                    <b>Select department to send image to:</b><br>
+                    <?= $workOrderHdl->loadAllDepartmentsHtml(0, 1) ?>
+
+                </div>
+                <!-- Hold Image Form -->
+                <div id="holdImgItem" data-tab-status="inactive">
+                    <b>Select hold reason:</b><br>
+                    <?=$workOrderHdl->loadHoldReasonsHTML()?>
+                </div>
+
+                <!-- Reprint Image Form -->
+                <div id="reprintImgItem" data-tab-status="inactive">
+                    <b>Select reprint reason:</b><br>
+                    <?=$workOrderHdl->loadReprintReasonsHTML()?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Holding status info: temp -->
+        <p id="holdImgStatus" style="padding-left:20px; display:none;"></p>
+
+        <div class="modalForm row">
+            <textarea id="imgMenuInput" placeholder="Enter reasons/details..."></textarea>
+        </div>
+
+        <hr class="modalDivider">
+        <div class="modalConfirmation">
+            <button class="whiteBtn" id="closeImgMenu">Cancel</button>
+            <button class="navyBtn" id="submitImgMenu" data-tab-submit="moveImgTab">Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- START TABS -->
+<div id="tabs_wrapper">
+    <!-- CONTAINER OF TABS -->
+    <div id="infoTabContainer">
+        <ul id="infoTabWrapper">
+            <li class="infoTabs active" id="">
+                <a id="" href="#orderDetailsTab">Order Details</a>
+            </li>
+            <li class="infoTabs inactive" id="itemsDetail">
+                <a id="" href="#itemDetailsTab">Items Detail</a>
+            </li>
+            <li class="infoTabs inactive" id="assets">
+                <a id="assets" href="#assetsTab">Assets</a>
+            </li>
+        </ul>
+    </div>
+    <!-- CONTAINER OF TAB CONTENT -->
+    <div id="tabs_content_container">
+        <!-- ORDER DETAILS -->
+        <div id="orderDetailsTab" class="tab_content" style="display: block">
+            <h6>Order Info</h6>
+        </div>
+        <!-- ORDER items -->
+        <div id="itemDetailsTab" class="tab_content">
+            <!-- Item Details Table -->
+            <div id="itemsDetailCont">
+                <div class='activeDiv'>
+                    <table
+                        id="table"
+                        data-toggle="table"
+                        data-pagination="true"
+                        data-search="true"
+                        data-searchable="true"
+                        data-show-search-button="true"
+                        data-show-search-clear-button="true"
+                        class="table-search-results dataTable" >
+                        <thead class='dataHeader'>
+                            <tr>
+                                <th width='100px'>Image</th>
+                                <th width='140px'>Name/Size</th>
+                                <th>Qt</th>
+                                <th width='85px'>Status</th>
+                                <th width='165px'>Item / SKU / Track</th>
+                                <th>Attributes</th>
+                                <th>Borders</th>
+                                <th>Substrate</th>
+                                <th width='70px'>Assembly</th>
+                                <th width='65px'>Price</th>
+                                <th>Instructions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemDetailsBody">
+                            <?php
+                            foreach ($itemArray as $id => $item) {
+                                $label = $item["label"];
+                                $size = $item["x"]." x ".$item['y'];
+                                $sku = $item["itemCode"] . " / " . $item["sku"] . (($item["isDynamic"] == "Y") ? " <b>(D)</b>" : "");
+                                $holding = $item['holding'];
+                                $trBkgroundClass = $item['trBkGroundStatusClass'];
+                                $substrateId = "substrates" . $id;
+                                $galleryWrapId = "galleryWrap" . $id;
+                                ?>
+                                <tr
+                                    class='<?php echo $trBkgroundClass; ?>'
+                                    data-row-id = '<?php echo $id ?>'
+                                    data-row-internal-name = '<?php echo $label ?>'
+                                    data-row-dept = '<?php echo $item['departmentName'] ?>'
+                                    data-row-img-status='<?php echo $item['imageStatus'] ?>'
+                                    data-row-sla=''>
+                                    <td>
+                                        <a class='orderInfoLink imgMenuBtn' style='border:none;'>
+                                            <img class='defaultThumbSize' style='border:none;' src="<?php echo $item['thumbLocation'] ?>">
+                                        </a>
+                                        <br/>
+                                        <div style="margin-top: 5px"><b>ID#: </b><?php echo $item['imageTitle'] ?></div>
+                                    </td>
+                                    <td>
+                                        <b>Customer:</b><?php echo $item["psTitle"] ?><br/>
+                                        <b>Internal:</b><?php echo $label ?>
+                                    </td>
+                                    <td><?php echo $item["qt"] ?></td>
+                                    <td>
+                                        <?php echo upperCaseFirst($item["itemStatus"]) ?><br/>
+                                        <a class='orderInfoLink' target="_blank" href='workorder/history/hd?item=<?php echo $id ?>'>Show History</a>
+                                    </td>
+                                    <td>
+                                        <b>Item #:&nbsp;</b><?php echo $item["itemNumber"] ?><br/>
+                                        <b>SKU:</b>&nbsp;<?php echo $sku;  ?><br/>
+                                    </td>
+                                    <td><?php echo $item["attributeCode"] ?></td>
+                                    <td><?php echo $item["borderName"] ?></td>
+                                    <td>
+                                        <b><?php echo $item["substrateGroup"] ?></b><br>
+                                        <span id='<?php echo $substrateId ?>'><?php echo $item["substrateName"] ?></span>
+                                    </td>
+                                    <td>
+                                        <?php echo $item["stretchingName"] ?><br>
+                                        <span id='<?php echo $galleryWrapId ?>'>
+                                            <?php echo $item["galleryWrapName"]  ?><br>
+                                            <?php echo $item["hardwareName"] ?>
+                                        </span>
+                                    </td>
+                                    <td><?php echo $item["price"] ?></td>
+                                    <td><?php echo $item["specialInstructions"] ?></td>
+                                </tr>
+                            <?php
+                            }//foreach
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- ASSETS -->
+        <div id="assetsTab" class="tab_content">
+            <h6>Prints</h6>
+            <table class="dataTable" id="assetTable"></table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="<?=JS_URL?>workorder/tabs.js"></script>

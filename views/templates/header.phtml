@@ -1,0 +1,97 @@
+<?php
+$baseHdl = new \App\Models\Base();
+$isLoggedIn= $baseHdl->isLoggedIn();
+
+$page = getPageName();
+if(!$isLoggedIn) {
+    session_destroy();
+    //If already in the page then stop
+    if($page != 'Auth') {
+        header("Location: ".SITE_ROOT.'auth');
+    }
+}
+$displayUserName = '';
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <?php require_once VIEW_DIR."templates/head.phtml"; ?>
+</head>
+
+<body onload="setGlobalSearchOnDrops()">
+<?php
+if( $isLoggedIn ) {
+    $displayUserName = $_SESSION['userFullName'];
+}
+$modalHdl = new \App\Models\Base();
+$modalHdl->createCustomModal('alert');
+$modalHdl->createCustomModal('confirm');
+?>
+<div id="pre_header">
+    <div class="pre-header">
+        <div class="welcome-back">
+            <?php
+            if( $isLoggedIn ) { ?>
+                Welcome back, <?=$displayUserName;?>!
+                <a style="color: #fff; font-size: 15px;" href='<?=SITE_ROOT;?>logout'>[Logout]</a>
+            <?php
+            }?>
+        </div>
+        <!--- Global Search -->
+        <div class="global-search">
+            <?php
+            if( $isLoggedIn ) {
+                $globalSearchHdl = new \App\Models\GlobalSearch();
+                $globalSearchHdl->renderTopSearchHtml();
+            }
+            ?>
+        </div>
+    </div>
+</div>
+
+
+<div id="wrapper">
+    <div id="header">
+        <div style="float:left;">
+            <a id="logoRef" href="<?php echo SITE_ROOT ?>">
+                <img width="177px"  border="0" src="<?= IMAGES_URL; ?>logo.png">
+            </a>
+        </div>
+        <div class="menu-system">
+            <!----- START NAVIGATION MENU BAR ----->
+            <div style="float: right;">
+                <ul id="menu">
+                    <?php
+                        $menuHdl = new \App\Models\Menu();
+                        $menuHtml = $menuHdl->renderMenu();
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Main  -->
+    <div id="main">
+        <!-- GRAY LINE -->
+        <div class="gray-line"></div>
+        <!-- BEGIN TITLE AND BREADCRUMBS -->
+        <div class="bread-crumb">
+            <div style="float: left; width: 30%">
+                <span id="breadcrumbs-title">
+                    <h5 style="margin-top: 9px;"><?php echo $page; ?></h5>
+                <span>
+            </div>
+            <!-- START Title & Breadcrumb Trail -->
+            <div class="breadcrumb_container" style="float: right;">
+                <?php if( $page != "Auth" ) { ?>
+                <span class="breadcrumb" style="display: block !important;">Navigation: <a href="<?= SITE_ROOT; ?>auth">auth</a></span>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        <!-- BLUE LINE -->
+        <div class="blue-line"></div>
+
+

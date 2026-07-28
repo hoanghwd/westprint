@@ -1,0 +1,547 @@
+/* -------- Shared -------- */
+.row {
+    align-items: center;
+}
+
+.col-2 {
+    width: 49%;
+}
+
+/* overwrite to allow padding in-between items */
+.col-3 {
+    width: 32.5%;
+}
+
+/* overwrite to allow padding in-between items */
+
+.pii {
+    font-weight: bold;
+}
+
+#shippingAddressInfo, #customerAddressInfo {
+    margin: 20px 0 5px 0;
+}
+
+.modalForm .dataHeader th {
+    min-width: 150px;
+}
+
+.imgPopupAlert {
+    width: 100%;
+}
+
+/* Grid Wrapper -------- */
+.gridWrapper {
+    grid-template-columns: repeat(auto-fill, minmax(32%, auto));
+    column-gap: 15px;
+    row-gap: 15px;
+}
+
+/* Toggle View (DIVs) -------- */
+.toggleViewBtn {
+    align-items: center;
+    width: 100%;
+    background-color: var(--white);
+    border: none;
+    /* margin: 20px 0 5px 0; */
+    padding: 0;
+}
+
+.activeAngle::after {
+    content: "\2039";
+    transform: rotate(90deg);
+    font-size: 28px;
+    font-weight: 600;
+    margin: 20px 0 5px 30px;
+}
+
+.inactiveAngle::after {
+    content: "\2039";
+    transform: rotate(270deg);
+    font-size: 28px;
+    font-weight: 600;
+    margin: 20px 0 5px 30px;
+}
+
+.inactiveDiv {
+    display: none;
+}
+
+[data-parent-btn='shippingPackagesBtn'].activeDiv {
+    display: grid !important;
+}
+
+/* -------- Tabs -------- */
+div#infoTabContainer {
+    display: flex;
+    border-bottom: 1px solid var(--blue);
+}
+
+ul#infoTabWrapper {
+    list-style: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-inline-start: 0;
+    margin-block-end: 8px;
+}
+
+li.infoTabs {
+    display: inline;
+    cursor: pointer;
+    margin-right: 3px;
+    padding: 10px;
+    border-radius: 5px 5px 0px 0px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+
+li.infoTabs a {
+    text-decoration: none;
+    font-size: 15px;
+    /* padding: 10px; */
+    /* border-radius: 5px 5px 0px 0px; */
+}
+
+li.infoTabs.active {
+    background: var(--white);
+    border: 1px solid var(--blue);
+    border-bottom: 2px solid var(--white);
+}
+
+li.infoTabs.active a {
+    font-weight: bold;
+    color: var(--blue);
+    /* background: var(--white);
+    border: 1px solid var(--blue);
+    border-bottom: 1px solid var(--white); */
+}
+
+li.infoTabs.inactive {
+    background: var(--blue);
+    border-bottom: 1px solid var(--blue);
+}
+
+li.infoTabs.inactive a {
+    color: var(--white);
+    /* background: var(--blue); */
+    /* border-bottom: 1px solid var(--blue); */
+}
+
+
+/* -------- Items (summary) -------- */
+#itemsSearchCont .searchItem {
+    grid-template-columns: auto 10%;
+    grid-template-rows: repeat(2, auto);
+}
+
+#itemsSearchCont .searchItem .searchBtn {
+    align-self: end;
+}
+
+#itemsSearchInput {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 32.5px; /* height 30 + border 1.25 (top + bottom) */
+    /* background: var(--disabledGray); */
+    border: 1px solid var(--lineGray);
+}
+
+#itemsSearchInput span#itemsSearchPlaceholder {
+    display: none;
+    font-weight: normal;
+    margin: 5px;
+    color: var(--lightGray);
+    width: 100%;
+}
+
+#itemsSearchInput button.btnOptions {
+    margin-top: 0;
+}
+
+#itemsSearchInput button.btnOptions:first-child {
+    margin-left: 5px;
+}
+
+#itemsSearchOptions {
+    display: flex;
+    align-items: center;
+}
+
+button.btnOptions {
+    height: 30px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    line-height: 0;
+}
+
+button.btnOptions span.addOption:after {
+    content: "| \00A0 \002B";
+    padding-left: 10px;
+}
+
+button.btnOptions span.minusOption:after {
+    content: "| \00A0 \2212";
+    padding-left: 10px;
+}
+
+/* Move Bulk Items -------- */
+div#itemOperationContainer {
+    display: none;
+}
+
+div#itemOperationContainer button#moveItems {
+    /* display: none; */
+    width: var(--filter-btn-width);
+    height: 40px;
+    font-size: 14px;
+    font-family: var(--openSanFont);
+    font-weight: var(--filter-btn-weight);
+    letter-spacing: var(--default-letter-spacing);
+}
+
+/* Item Summary Display -------- */
+#itemsTable {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Need to reset the default font-size for <h_> cause fuck whoever coded that globally */
+#itemsTable h1 {
+    font-size: 2em;
+}
+
+#itemsTable h2 {
+    font-size: 1.5em;
+}
+
+#itemsTable h3 {
+    font-size: 1.17em;
+}
+
+#itemsTable h1,
+#itemsTable h2,
+#itemsTable h3,
+#itemsTable h4,
+#itemsTable h5,
+#itemsTable h6 {
+    margin: 5px 0;
+}
+
+#itemsTable #itemsTableHeader {
+    font-size: 14px;
+    border-bottom: 1px solid var(--lightGray);
+}
+
+#itemsTable #itemsTableHeader tr th {
+    padding-bottom: 10px;
+}
+
+/* Preset width of table columns */
+#itemsTable #itemsTableHeader tr th:nth-child(2) {
+    width: 100px;
+}
+
+#itemsTable #itemsTableHeader tr th:nth-child(3) {
+    width: 5%;
+}
+
+#itemsTable #itemsTableHeader tr th:last-child {
+    width: 10%;
+}
+
+#itemsTable .tableColLeftAlign {
+    text-align: left;
+}
+
+#itemsTable:not(.tableColLeftAlign) {
+    text-align: right;
+}
+
+#itemsTable #itemsTableBody tr {
+    border-bottom: 1px solid var(--lineGray);
+}
+
+#itemsTable #itemsTableBody tr:hover {
+    background-color: var(--tableGray);
+}
+
+#itemsTable #itemsTableBody tr td:first-child {
+    width: 20%;
+}
+
+#itemsTable #itemsTableBody tr:last-child {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#itemsTable #itemsTableBody tr.layoutTableSpacer {
+    height: 25px;
+    border-bottom: none;
+    background: transparent;
+}
+
+#itemsTable #itemsTableBody tr img {
+    max-height: 100px;
+}
+
+#itemsTable #itemsTableBody tr a.viewItemHistory button {
+    width: 100px;
+    height: 30px;
+    letter-spacing: 0.5px;
+}
+
+#itemsTable #itemsTableBody tr span.layoutTableSubHeader {
+    font-weight: bold;
+}
+
+#moveBulkItemsModal .modalBody {
+    max-width: 40%;
+}
+
+#moveBulkItemsModal select {
+    width: 50%;
+    margin: 10px 0 10px 0;
+}
+
+#moveBulkItemsModal textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    resize: vertical;
+}
+
+/* -------- Item Details -------- */
+.tableDetailsBody img.defaultThumbSize {
+    max-width: 100px;
+}
+
+#attrModal .modalBody {
+    max-width: 500px;
+}
+
+/* Special case for links since image is included within the tag */
+.imgMenuBtn span {
+    padding-bottom: 1px;
+    border-bottom: 1px solid var(--blackRussianBlue);
+}
+
+.imgMenuBtn span:hover {
+    border-bottom: 1px solid var(--blue);
+}
+
+.addInstrBtn {
+    line-height: 1.5;
+}
+
+/* Image Menu Section -------- */
+#imgMenuModal .imgMenuTab.active {
+    color: var(--navyBlue);
+}
+
+#imgMenuModal .imgMenuTab.inactive {
+    color: var(--lightGray);
+}
+
+/* Note: I am using data-* so that the .active/.inactive remains untouched */
+[data-tab-status="inactive"] {
+    display: none;
+}
+
+.modalTabsContainer {
+    display: none;
+    margin: 20px 20px 10px 20px;
+    justify-content: center;
+}
+
+.modalTabsContainer[style*="display: block"] {
+    display: flex !important;
+}
+
+.imgMenuTab {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    width: 28%;
+}
+
+#imgMenuModal .modalBody {
+    max-width: 600px;
+}
+
+#imgMenuModal img#imgMenuImgSrc {
+    max-width: 100px;
+}
+
+#imgMenuModal #imgMenuImgData {
+    margin-bottom: auto;
+    margin-left: 20px;
+    width: 60%;
+    font-size: 12px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+
+}
+
+#imgMenuModal #imgMenuImgData p {
+    margin-top: 0;
+}
+
+/* -------- Column Rows Display -------- */
+.col-2.columnContainer, .col-3.columnContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.row.columnHeader {
+    justify-content: space-between;
+}
+
+.orderDetailBox.columnBody {
+    height: 100%;
+}
+
+#decisionMakerInfo > h3 {
+    margin-bottom: 5px;
+}
+
+#decisionMakerInfo > .decisionMakerData > .dataBody tr:last-child {
+    font-weight: bold;
+}
+
+/* Uniform the columns but fix set the first column to line up DM and error table */
+#decisionMakerInfo .dataHeader tr th {
+    min-width: 100px;
+}
+
+#decisionMakerInfo .dataHeader tr th:first-child {
+    width: 150px;
+}
+
+/* Notes Section -------- */
+#addNotesModal .modalForm, #addInstrModal .modalForm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+/* Temp: Until i figure out where all the textarea is at in this page, this is the solution */
+#imgMenuInput, #addNotesModal textarea, #addInstrModal textarea {
+    width: 100%;
+    min-height: 100px;
+    height: 100px;
+    padding: 10px;
+    resize: vertical;
+}
+
+/* Pricing Section -------- */
+#pricingBody {
+    display: flex;
+    column-gap: 10px;
+}
+
+#pricingBody .flexColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#pricingBody .flexColumn span {
+    padding: 3px 0;
+}
+
+#pricingBody .flexColumn:first-child {
+    font-weight: bold;
+    width: 35%;
+}
+
+#pricingBody .flexColumn:nth-child(2) span::before {
+    content: ": ";
+    font-weight: bold;
+    padding-left: 2px;
+    padding-right: 3px;
+}
+
+#pricingBody .flexColumn:nth-child(2) span {
+    display: flex;
+    justify-content: space-between;
+}
+
+#pricingBody .flexColumn:nth-child(1) span:nth-child(3),
+#pricingBody .flexColumn:nth-child(3) span:nth-child(3) {
+    padding: 4px 0;
+}
+
+/* temporary */
+
+/* Shipped Packages Section -------- */
+.shippedPackagesDiv {
+    height: 100%;
+}
+
+.shippedPackagesDiv h3 {
+    margin-bottom: 0;
+}
+
+.shippedPackagesDiv > .orderDetailBox.columnBody {
+    height: auto;
+}
+
+/* -------- Assets -------- */
+#assetTable {
+    table-layout: fixed
+}
+
+#assetTable tbody tr:not(.dataHeader):nth-child(even) {
+    background-color: var(--tableGray);
+}
+
+/* custom overwrite */
+#assetTable tbody tr.dataHeader {
+    background: var(--lightGray);
+}
+
+#assetTable .imgThumbAsset {
+    vertical-align: top;
+}
+
+/* since we can't tell for rowspan=1, it's fine to do it for all */
+#assetTable .imgThumbAsset img {
+    max-width: 100px;
+}
+
+/* Fixed width for Asset URLs */
+#assetTable thead.dataHeader th:last-child,
+#premiumComponentsTable thead.dataHeader th:last-child {
+    width: 70px;
+}
+
+.copyToClipboardBtn {
+    cursor: pointer;
+    height: 20px;
+    width: auto;
+}
+
+.halfTableCell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    word-break: break-word;
+}
+
+.halfTableCell span:first-child {
+    width: 88%;
+}
+
+.viewImgUrl {
+    height: 30px;
+    width: 70px;
+}
+
+.viewImgUrl a {
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}

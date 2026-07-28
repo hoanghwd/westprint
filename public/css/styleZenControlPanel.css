@@ -1,0 +1,157 @@
+/**
+ * CSS for Zen Control Panel Controller
+ *
+ * Created By - Akshay Vaze
+ * Created Date: 3/25/2014
+ *
+ */
+
+/*------------------------------------------------*/
+/* ZEN TABLE - Zen Control Panel */
+/* Used for Make a Roll Section */
+/*------------------------------------------------*/
+
+table.zen_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 475px;
+}
+table.zen_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.zen_table td {
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+.column table.zen_table .error
+{
+	background-color:#FFE0E0;
+}
+
+.column table.zen_table .sent
+{
+	background-color:#BFD4FF;
+}
+
+/*----------------------*/
+
+/*------------------------------------------------*/
+/* ZEN TABLE - Zen Control Panel */
+/* Used for Active Rolls Section */
+/*------------------------------------------------*/
+
+table.active_roll_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 600px;
+}
+table.active_roll_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.active_roll_table td {
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/*----------------------------------------------------------*/
+/* ZEN STATS TABLE - Zen Control Panel */
+/* Used for some stats displayed above Make a Roll section */
+/*----------------------------------------------------------*/
+
+table.zen_stats_table {
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 425px;
+}
+table.zen_stats_table th {
+	padding-left: 5px;
+	text-align: left;
+	font-weight: bold;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+        width: 350px;
+}
+table.zen_stats_table td {
+	text-align: left;
+        padding-left: 5px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	/* vertical-align: top; */
+	background: none;
+	border: 1px dotted #AAAAAA;
+        width: 70px;
+}
+
+/*----------------------*/
+
+/*----------------------------------------*/
+/* ROLL DETAIL TABLE - Zen Control Panel */
+/* Used for Zen Roll Details View */
+/*----------------------------------------*/
+
+table.roll_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 1050px;
+}
+table.roll_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.roll_table td {
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+.column table.roll_table .error
+{
+	background-color:#FFE0E0;
+}
+
+.column table.roll_table .sent
+{
+	background-color:#BFD4FF;
+}
+
+/*----------------------*/

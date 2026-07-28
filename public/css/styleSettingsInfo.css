@@ -1,0 +1,88 @@
+/**
+ * CSS for Settings Controller and related views on Settings Page
+ *
+ * Created By - Akshay Vaze
+ * Created Date: 7/14/2014
+ *
+ */
+
+/*----------------------------------------*/
+/* SETTINGS TABLE - Settings page      */
+/*----------------------------------------*/
+
+table.settings_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 400px;
+}
+table.settings_table th {
+	padding: 5px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.settings_table td {
+        padding: 5px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/
+
+/* Styling for Submit Buttons */
+button {
+	font-size: 15px bold; 
+	font-family: Helvetica;
+	height:40px;
+	background:#2A57A2; 
+	border:0 none; 
+	color:#FFF;
+        cursor:pointer;
+        border-radius: 4px 4px 4px 4px;
+        -moz-border-radius: 4px 4px 4px 4px;;
+        -webkit-border-top-left-radius: 4px;
+        -webkit-border-top-right-radius: 4px; 
+        -webkit-border-bottom-left-radius: 4px;
+        -webkit-border-bottom-right-radius: 4px; 
+}
+
+/*----------------------------*/
+/* SET ORDER LIMITS page      */
+/*----------------------------*/
+
+table.order_limit_table {
+	margin-left: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+   	width: 275px;
+}
+table.order_limit_table th {
+	padding: 10px;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+table.order_limit_table td {
+	padding-left: 10px;
+	text-align: left;
+	border-collapse: collapse;
+	border-spacing: 0;
+	vertical-align: top;
+	background: none;
+	border: 1px dotted #AAAAAA;
+}
+
+/*----------------------*/

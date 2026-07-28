@@ -1,0 +1,141 @@
+/**
+ * CSS for Navigation Menu in the Header
+ *
+ * Created By - Akshay Vaze
+ * Created Date: 1/24/2014
+ *
+ **/
+
+.ddsmoothmenu{
+font: bold 20px Helvetica;
+background: white; /*background of menu bar (default state)*/
+width: 510px; /* while adding an item, change the width to adjust perfectly */
+color: #111111;
+float:right;
+}
+
+.ddsmoothmenu ul{
+z-index:100;
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+/*Top level list items*/
+.ddsmoothmenu ul li{
+position: relative;
+display: inline;
+float: left;
+background: #AAAAAA;
+}
+
+/*Top level menu link items style*/
+.ddsmoothmenu ul li a{
+font: bold 20px Helvetica;	
+display: block;
+background: #AAAAAA; /*background of menu items (default state)*/
+color: #111111;
+padding: 8px 15px; /* This is the padding between the Main Menu tabs 1st parameter defines the height and 2nd defines width */
+/* border-right: 1px solid #778; */
+/* border-top-right-radius: 15px; */
+/* border-radius: 55px / 25px; */
+color: black;
+text-decoration: none;
+}
+
+* html .ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+display: inline-block;
+}
+
+.ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited{
+color: #111111;
+}
+
+.ddsmoothmenu ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+background: #AAAAAA; 
+color: #111111;
+}
+
+.ddsmoothmenu ul li a:hover{
+background: #888888; /*background of menu items during onmouseover (hover state)*/
+color: #FFFFFF;
+}
+	
+/*1st sub level menu*/
+.ddsmoothmenu ul li ul{
+position: absolute;
+left: 0;
+display: none; /*collapse all sub menus to begin with*/
+visibility: hidden;
+}
+
+/*Sub level menu list items (undo style from Top level List Items)*/
+.ddsmoothmenu ul li ul li{
+display: list-item;
+float: none;
+}
+
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.ddsmoothmenu ul li ul li ul{
+top: 0;
+}
+
+/* Sub level menu links style */
+.ddsmoothmenu ul li ul li a{
+font: normal 20px Helvetica;
+width: 275px; /*width of sub menus*/
+padding: 5px;
+margin: 0;
+border-top-width: 0;
+/*border-bottom: 1px solid gray;*/
+}
+
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+
+
+/* ######### CSS classes applied to down and right arrow images  ######### */
+
+.downarrowclass{
+position: absolute;
+top: 12px;
+right: 7px;
+}
+
+.rightarrowclass{
+position: absolute;
+top: 6px;
+right: 5px;
+}
+
+/* This class is used for adding the design to / between the top level menu items in Nvaigation Menu Bar */
+.spacer{
+font-size:34px;
+font-family:"Times New Roman", Times, serif;
+font: normal;
+padding: 0px 5px;
+}
+
+
+/*
+.ddsmoothmenu li:after {
+content: "/";
+}
+*/
+
+/* ######### CSS for shadow added to sub menus  ######### */
+
+/* .ddshadow{ */ /*shadow for NON CSS3 capable browsers*/
+/*
+position: absolute;
+left: 0;
+top: 0;
+width: 0;
+height: 0;
+background: #336699;
+*/
+/* } */
+
+/* .toplevelshadow{ */ /*shadow opacity for NON CSS3 capable browsers. Doesn't work in IE*/
+/* opacity: 0.8; */
+/* } */

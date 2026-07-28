@@ -1,0 +1,85 @@
+<?php
+$feedBack = isset($_SESSION['maxLoginAttemptsMsg']) ? $_SESSION['maxLoginAttemptsMsg'] : '';
+?>
+
+<link rel="stylesheet" type="text/css" href="<?= CSS_URL ?>util.css">
+<link rel="stylesheet" type="text/css" href="<?= CSS_URL ?>main.css">
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-form-title" style="background-image: url(<?php echo IMAGES_URL ?>bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Sign In
+					</span>
+            </div>
+
+            <form action='<?php echo SITE_ROOT ?>loginaction/verify' method='post' id='loginForm'
+                  class="login100-form validate-form">
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    <span class="label-input100">Username</span>
+                    <input type='text' name='userName' class="input100" placeholder='Enter your User Name...'
+                           tabindex='1' autofocus>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    <span class="label-input100">Password</span>
+
+                    <input type='password' name='password' class='input100 password'
+                           placeholder='Enter your Password...'
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="flex-sb-m w-full p-b-30">
+                    <div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div>
+                        <a href="#" class="txt1">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#submitForm').on('click', function(event) {
+            $('#loginForm').submit();
+        });
+    });
+</script>
+<script src="<?php echo JS_URL ?>main.js"></script>
+
+<?php
+$errorMsg = '';
+if( isset($_SESSION['loginSuccess']) &&  $_SESSION['loginSuccess'] == FALSE) {
+    $errorMsg = "Invalid credentials, please try again!";
+}
+else if( $feedBack != '' ) {
+    $errorMsg = $feedBack;
+}
+?>
+
+<?php if($errorMsg != '') { ?>
+    <script>
+        let param = { headerTxtId: { text: 'Login Error: '} }
+        openAlert('<div style="font-weight: 400; color: crimson"><?php echo $errorMsg ?></div>', param);
+    </script>
+    <?php
+}
+?>

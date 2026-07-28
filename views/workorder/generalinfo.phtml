@@ -1,0 +1,22 @@
+<?php
+$workOrderHdl = $modelObj;
+//$workOrderHdl->dumpVar()
+?>
+<h6>General Info</h6>
+<div class="flexWrapper orderDetailBox">
+    <?php
+        $orderDetailData = $workOrderHdl->generateGeneralInfo();
+        if( is_array($orderDetailData) && sizeof($orderDetailData) > 0 ) {
+            foreach ($orderDetailData AS $key => $value ) { ?>
+                <div class='orderDetailItems col-3'>
+                    <span class='orderDetailItemTitle'><?php echo $key ?></span>
+                    <span class='orderDetailItemData'><?php echo $value ?></span>
+                </div>
+            <?php
+            }//foreach
+        }
+        else {
+            echo "Order Id not found <br/>";
+        }
+    ?>
+</div>

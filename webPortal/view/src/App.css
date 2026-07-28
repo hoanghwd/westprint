@@ -1,0 +1,56 @@
+body {
+  /*background-color: #dddddd !important;*/
+  background-color: #F9F9F9 !important;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 14px !important;
+}
+
+.link {
+  color: #5E5E5E;
+  text-decoration: underline;
+}
+
+.card-header {
+  border: none;
+}
+
+.title {
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.label {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #5E5E5E;
+  letter-spacing: 0;
+}
+
+th {
+  background: #2E59A0;
+  color:  #FFFFFF;
+  border: none !important;
+}
+
+td {
+  border: none !important;
+}
+
+ul.no-bullet {
+  list-style-type: none;
+}
+
+.btn-primary {
+  background-color: #2E59A0 !important;
+  border: none !important;
+}
+.btn-primary:hover {
+  background-color: #203F71 !important;
+  border: none !important;
+}
+
+.container {
+  max-width: 1250px;
+}
+

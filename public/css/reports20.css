@@ -1,0 +1,24 @@
+body { font-family: Helvetica; font-size: 12px; }
+code, kbd, pre, samp{font-family:Helvetica !important;}
+h1 { clear: left; color: #111;  !important;	font-size: 20px;  !important;}
+h1, h2, h3 { font-family: Helvetica;  !important; font-weight: bold;  !important;}
+div#pre_header { color: #eee; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px; text-align: left;  !important;}
+body { color: #000 !important; font-family: Helvetica !important; font-size: 12px !important; }
+button, input, select { line-height:normal !importamt;  !important;}
+select{color:#000;}
+input[type=text]{color:#000;}
+input[type=submit]{color:#000;}
+
+#inner_box_id2{margin: 0px 0px 0px 20px;}
+#inner_box_id3{margin: 0px 0px 10px 40px;}
+#group_by_title1{margin:10px 0px 0px 0px}
+#group_by_title2{margin:10px 0px 0px 20px}
+#group_by_title3{margin:10px 0px 0px 40px}
+
+.search_table { background-color: #eee; border-color: #ccc;  border-radius: 6px;  border-style: solid; border-width: 1px; color: #000; font-weight: normal; padding-left: 10px; padding-right: 10px; width:600px; }
+.inner_box { background-color: #fff; border-color: #eee; border-radius: 6px; border-style: solid; border-width: 1px; color: #5f5f5f; font-weight: normal; padding: 5px 10px;}
+.substrate{background-color:#2F59A1; color:#FFF}
+.gallerywrap{background-color:#FF342D; color:#FFF}
+.framecode{background-color:#F8C22A; color:#000}
+.button_by_location{margin:0px 15px 0px 0px}
+.spaceOnX{margin:0px 0px 0px 15px}

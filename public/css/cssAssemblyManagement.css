@@ -1,0 +1,135 @@
+/* 
+    Note: 
+        General GUI for similar management page styles.
+        (Ex: Manage ADE Packages, Manage Shipping Accounts, etc.)
+        Separate styling is to reduce accidental class/id names that can overlap
+        with styleAssemblyInfo.css and to prevent unncessary naming conventions
+        for maintaining naming uniqueness.
+
+    References:
+        Grid UI: https://css-tricks.com/snippets/css/complete-guide-grid/
+
+    Created on : Feb 20, 2020
+    Author     : Jenny Nguyen
+*/
+
+/* -------- IMPORTS (FONTS, ETC.) -------- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+/* -------- Global Variables -------- */
+body {
+    --filter-btn-height: 44px;  /* Search filter buttons */
+    --filter-btn-weight: 600;
+}
+
+/* -------- Font Schemas -------- */
+
+/* -------- Color Schemas -------- */
+
+/* -------- Shared Properties -------- */
+
+/* -------- Search Filter -------- */
+#rearrangeBtn {
+    width: 147px;
+    height: var(--filter-btn-height);
+    font-weight: var(--filter-btn-weight);
+}
+
+#deleteBtn {
+    width: 108px;
+    height: var(--filter-btn-height);
+    font-weight: var(--filter-btn-weight);
+}
+
+#addNewBtn {
+    width: 126px;
+    height: var(--filter-btn-height);
+    font-weight: var(--filter-btn-weight);
+}
+
+#updateBtn {
+    width: 112px;
+    height: var(--filter-btn-height);
+    font-weight: var(--filter-btn-weight);
+}
+
+.editBtn {
+    width: 45px;
+    height: 35px;
+}
+
+/* -------- Check Box Style -------- */
+#selectAll {
+    height: 0;
+    width: 0;
+}
+
+.checkStyle {
+    width: 16px;
+    height: 12px;
+    margin: 1.5px auto 0 auto;
+}
+
+.checkCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: inherit;
+}
+
+.checkArea {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.checkedItem {
+    width: 0;
+    height: 0 !important;
+    opacity: 0;
+}
+
+.custCheckBox {
+    width: 16px;
+    height: 16px;
+    background: #F9F9F9;
+    border: 1px solid #AAAAAA;
+}
+.custCheckBox:hover {
+    background-color: #BFBFBF;
+    border: 1px solid #FFFFFF;
+}
+
+.checkArea input:checked ~ .custCheckBox:after { display: table-cell; }
+.checkArea .custCheckBox:after {
+    right: 25%;
+    bottom: 25%;
+    width: 5px;
+    height: 5px;
+    border: solid #737373;
+    border-width: 0 4px 4px 0;
+}
+
+/* -------- Assembly Modal Style -------- */
+.assemModalBody {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    margin: 8% auto;
+    width: 70%;
+}
+
+.assemModalErrMsg {
+    padding-bottom:10px; 
+    color:#FF352E;
+    display: none;
+}
+
+.modalSubHeader { justify-content: flex-end; }
+.modalSubHeader span { 
+    font-size: 12px; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}

@@ -1,0 +1,126 @@
+<style>
+                .main #adminPanel td
+                {
+                 padding:10px;
+                 padding-right:7px;
+                 padding-left:7px;
+                }
+                .bigBoardHeader
+                {
+                        background-color:#D3E5EF;
+                        padding:0px;
+                        font-size:18px;
+                        font-weight:bold;
+                        height:45px;
+                }
+                .boardDepartment
+                {
+                        border:1px solid #000;
+                        padding:0px;
+                        margin:5px;
+                }
+                .departmentTable
+                {
+                        border-collapse:collapse;
+                }
+                .departmentTable td
+                {
+                        padding:3px;
+                        padding-right:15px;
+                        padding-left:5px;
+                        padding-bottom:5px;
+                        padding-top:5px;
+                        border:1px dotted #000;
+                }
+                .departmentTable .tableHeader td
+                {
+                        border:1px dotted #000;
+                        /* border-bottom:1px solid #000; */
+                        font-size:12px;
+                        font-weight:bold;
+                }
+                .departmentTextHeader
+                {
+                        background-color:#EFEFEF;
+                        padding:6px;
+                        font-weight:bold;
+
+                }
+                .departmentTable .innerTable td
+                {
+                        border:0px;
+                }
+                #calTable td
+                {
+                        padding:3px;
+                        border:1px solid #CCC;
+                }
+                .dueDateTable td
+                {
+                        padding:2px;
+                        border:0px solid #000;
+                }
+                .none td
+                {
+                        border:0px;
+                        padding:3px;
+                }
+
+                .late
+                {
+                        background-color: #FF968C;
+                }
+                .hold
+                {
+                        background-color: #BFD4FF;
+                }
+
+                .holdPrepress
+                {
+                        background-color: #FAE5948;
+                }
+                .hiddenRow
+                {
+                        display:none;
+                }
+                .chat
+                {
+                        width:540px;
+                        height:90px;
+                        overflow:scroll;
+                        overflow-y:scroll;
+                        border:1px solid #000;
+                        float:left;
+                        padding:5px;
+
+                }
+                .message
+                {
+                        font-size:12px;
+                }
+                .header
+                {
+                        font-size:15px;
+                        font-weight:bold;
+                        padding-right:40px;
+                        padding:10px;
+                }
+                .bodyTr td
+                {
+                        border:1px dashed #000;
+
+                        padding:5px;
+                }
+                .none td
+                {
+                        padding:2px;
+                        border:0px;
+                }
+                #lightbox
+                {
+                        width:800px;
+                        height:550px;
+                        margin-left:-385px; margin-top:-275px;
+                        background-color:#FFFFFF;
+                }
+</style>

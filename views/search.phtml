@@ -1,0 +1,136 @@
+<?php
+$searchHdl = $modelObj;
+$data = $searchHdl->getSearchResultData();
+/**
+ *[0]=>
+array(17) {
+["hdId"]=>
+int(128978478)
+["synId"]=>
+int(16562288)
+["poNumber"]=>
+string(8) "16562288"
+["synPO"]=>
+string(16) "1128-multQtCP-02"
+["unixTs"]=>
+int(1701211484)
+["gallery"]=>
+string(12) "canvasPeople"
+["numberPrints"]=>
+string(2) "24"
+["locId"]=>
+int(3)
+["departmentStatus"]=>
+string(1) "0"
+["departmentList"]=>
+string(5) " Prep"
+["invoiceNumber"]=>
+NULL
+["customerPo"]=>
+string(16) "1128-multQtCP-02"
+["isRedo"]=>
+string(1) "N"
+["shipTime"]=>
+int(0)
+["slaStartDate"]=>
+string(10) "2023-12-04"
+["slaEndTime"]=>
+int(1702334684)
+["locName"]=>
+string(17) "Jondo US: Rocklin"
+}
+ */
+?>
+
+<table
+    id="table"
+    data-toggle="table"
+    data-height="700"
+    data-pagination="true"
+    data-search="true"
+    data-searchable="true"
+    data-show-search-button="true"
+    data-show-search-clear-button="true"
+    class="table-search-results"
+>
+    <thead>
+        <tr>
+            <th>Item ID</th>
+            <th data-field="locId" data-sortable="true" data-sort-name="locId" data-sort-order="desc">Location</th>
+            <th>Issues</th>
+            <th>Status</th>
+            <th data-field="unixTs" data-sortable="true" data-sort-name="unixTs" data-sort-order="desc">Oder Time</th>
+            <th data-field="gallery" data-sortable="true" data-sort-name="gallery" data-sort-order="desc">Customer</th>
+            <th>Thumbnails</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+            if( is_array($data) && sizeof($data) > 0 ) {
+                $i = 0;
+                foreach ($data AS $row) {
+                    $hdOrderId = $row['hdId'];
+                    $ticketIssue = '';
+                    $numPrints = $row['numberPrints'];
+                    $cursor = ($numPrints > 0) ? ' style="cursor: pointer" ' : '';
+                    if( $hdOrderId != '' ) {
+                        $ticketIssue = $searchHdl->getTicketStatusByHdOrderId($hdOrderId);
+                    }
+                    ?>
+                    <tr>
+                        <td>
+                            HD ID:<a target="_blank" href="<?php echo SITE_ROOT ?>workorder?orderId=<?php echo $hdOrderId ?>">
+                                <?php echo $hdOrderId ?>
+                            </a>
+                            <br/>
+                            SYN ID: <?php echo $row['synId'] ?>
+                            <br/>
+                            APO: <?php echo $row['customerPo'] ?>
+                        </td>
+                        <td><?php echo $row['locName']. ' ('. $row["locId"] .')' ?></td>
+                        <td><?php echo $ticketIssue; ?></td>
+                        <td><?php echo upperCaseFirst($row['departmentList']) ?></td>
+                        <td><?php echo unixToReadableDate($row['unixTs']) ?></td>
+                        <td><?php echo $row['gallery'] ?></td>
+                        <td>
+                            <span title="image" href="#" onclick="return openThumbnailModal('<?php echo $hdOrderId ?>', '<?php echo $i ?>', '<?php echo $numPrints ?>')" id="image_<?php echo $i ?>">
+                                <span <?php echo $cursor ?>>Total Images: </span><?php echo $numPrints ?>
+                                <br/>
+                                <span style="display: none;font-weight: 600;font-size: 12px" id="loading_<?php echo $i ?>">Loading..</span>
+                            </span>
+                        </td>
+                    </tr>
+                <?php
+                    $i++;
+                }
+            }
+        ?>
+    </tbody>
+</table>
+<script>
+function openThumbnailModal(hdOrderId, index, numberPrints)
+{
+    if(numberPrints > 0) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "<?=SITE_ROOT?>ajax/search?key=thumbnail&hdOrderId=" + hdOrderId,
+            beforeSend: function () {
+                $('#loading_' + index).show();
+            },
+            success: function (data) {
+                let html = '';
+                for (let i = 0; i < data.length; i++) {
+                    html += '<span style="width: 100px;"><img style="margin: 4px;vertical-align: top" src ="' + data[i] + '" /></span>';
+                }
+                let param = { headerTxtId: { text: 'OrderId: ' + hdOrderId } }
+                openAlert(html, param);
+                $('#loading_' + index).hide();
+            },
+            error: function (data) {
+                //console.log(data);
+            }
+        });
+    }
+}
+</script>

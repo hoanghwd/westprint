@@ -1,0 +1,63 @@
+<?php
+$listClients = $this->getClientNames();
+?>
+<script>
+    let clientsListsGlobalSearch = [];
+    <?php
+        foreach ($listClients as $clientUserName) {
+            echo "clientsListsGlobalSearch.push('" . htmlspecialchars($clientUserName, ENT_QUOTES) . "');";
+        }
+    ?>
+
+    window.addEventListener('load', function (event) {
+        let searchByKeyWord = $("#searchByKeyWord option:selected").val();
+        loadSearchAutoSuggestion(searchByKeyWord);
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if(event.key === 'Enter') {
+            let whatToSearch = $("#whatToSearch").val();
+            if(whatToSearch !== '') {
+                $("#submit_global_search").trigger("click");
+            }
+            else {
+                let param = { headerTxtId: { text: 'Alert' } }
+                openAlert('Please provide somme thing to search!', param);
+            }
+        }
+    });
+</script>
+<div id="searchMenu" >
+    <form method="GET" action="<?php echo SITE_ROOT ?>search" id="form_global_search" name="form_global_search" onsubmit="return onSubmitGlobalSearch();">
+        <table class="global-search-table">
+            <tr>
+                <td>Search Orders:</td>
+                <td>
+                    <select name='whereToSearch' id='whereToSearch' onChange='setDropDownValues(this);' >
+                        <option value='inSYN' id='inSYN'>In Staging</option>
+                        <option value='inHD' id='inHD'>In Processing</option>
+                    </select>
+                </td>
+                <td>
+                    <?php
+                    $htmlSearchFields = '';
+                    foreach (self::searchField AS $value => $text) {
+                        $htmlSearchFields .= '<option value="'.$value.'">'.$text.'</option>';
+                    }
+                    ?>
+                    <select name="searchByKeyWord" id="searchByKeyWord" onChange="manageSearchKeyWordCookie();">
+                        <?php echo $htmlSearchFields; ?>
+                    </select>
+                </td>
+                <td>
+                    <div class="autocomplete">
+                        <input type="text" name="whatToSearch" id="whatToSearch" onKeyUp="autoSuggestAjax()">
+                    </div>
+                </td>
+                <td>
+                    <input type=submit name=submit id="submit_global_search" value='Go'>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

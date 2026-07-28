@@ -1,0 +1,110 @@
+.test-container {
+    color: #313437;
+    background-color: #fff;
+    padding: 50px 0;
+}
+.test-container p {
+    color: #7d8285;
+    line-height: 1.5;
+}
+.test-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    padding-top: 0;
+    margin-top: 0;
+    color: inherit;
+}
+.test-container .intro {
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 25px;
+}
+.test-container .intro p {
+    margin-bottom: 35px;
+}
+.test-container {
+    justify-content: center;
+}
+.test-container .form-control {
+    background: #eff1f4;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    height: 46px;
+
+}
+
+.test-container .form-control.is-invalid {
+    background: #efa2a9;
+    border: 1px #dc3545 solid;
+}
+.test-container form textarea {
+    text-indent: 0 !important;
+}
+.btn {
+    padding: 16px 32px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+}
+.test-container .btn:hover {
+    opacity: 1;
+}
+.test-container .btn:active {
+    transform: translateY(1px);
+}
+.btn-primary {
+    background-color: #055ada !important;
+    color: #fff !important;
+    outline: none !important;
+}
+.flex {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
+}
+#testHelper {
+    -webkit-transition: max-height 0.3s cubic-bezier(0,1,0,1);
+    -moz-transition: max-height 0.3s cubic-bezier(0,1,0,1);
+    -ms-transition: max-height 0.3s cubic-bezier(0,1,0,1);
+    -o-transition: max-height 0.3s cubic-bezier(0,1,0,1);
+    transition: max-height 0.3s cubic-bezier(0,1,0,1);
+}
+.input-group-addon {
+    background-color: #fff;
+    border: 1px solid #eff1f4;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spinWebkit .7s infinite linear;
+    -moz-animation: spinMoz .7s infinite linear;
+}
+
+@-webkit-keyframes spinWebkit {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+@keyframes spinMoz {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+#copy {
+    cursor: pointer;
+}
+#copy:hover {
+    background-color: #F8F8F8;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}

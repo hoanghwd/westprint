@@ -1,0 +1,460 @@
+/* 
+    Management for all shared CSS styling across all webpages. This file 
+    should only host class/id styles that are shared across multiple
+    types of pages (basically the master CSS file). If a styling class/id 
+    is only used for 1 type (ex: reports), put it into its own file.
+
+    Created on : April 3, 2020
+    Author     : Jenny Nguyen
+*/
+
+/* -------- IMPORTS (FONTS, ETC.) -------- */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+/* -------- Browser Overwrites -------- */
+select, input {
+    margin: 0;
+    padding: 0 5px;
+    border: 1px solid #AAAAAA;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    height: 23px;
+}
+select:disabled, input:disabled { 
+    border: none;
+    background-color: var(--disabledGray); 
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+input::-webkit-calendar-picker-indicator { display: none; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* Overwrite the blue auto-fill background on chrome browsers */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active { -webkit-box-shadow: 0 0 0 30px white inset !important; }
+
+/* -------- Font Schemas -------- */
+.arialFont { font-family: Arial, Helvetica, sans-serif; }
+.openSanFont { font-family: 'Open Sans', sans-serif; }
+
+/* -------- Global Variables -------- */
+body {
+    /* If preferred to use in CSS tags */
+    --arialFont: Arial, Helvetica, sans-serif;
+    --openSanFont: 'Open Sans', sans-serif;
+    
+    /*  Colors
+        Note: In case you're wondering why there's a variable for basic colors,
+              it's b/c different browsers might use different color codes.
+    */
+    --white: #FFFFFF;
+    --black: #000000;
+    --lineGray: #DDDDDD;        /* Color for dividers */
+    --lightGray: #AAAAAA;
+    --darkGray: #5E5E5E;
+    --disabledGray: #E6E6E6;    /* Color for disabled inputs/drop downs */
+    --backgroundGray: #F9F9F9;  /* Color for styling container backgrounds */
+    --tableGray: #F3F3F3;       /* Color for <table/> rows/columns */
+    --blue: #2D59A0;
+    --blackRussianBlue: #1E202C;
+    --navyBlue: #333644;
+    --red: #FF352E;
+    --yellow: #F8C32B;
+    
+    /* Default button styling */
+    --filter-btn-height: 44px;
+    --filter-btn-width: 130px;
+    --filter-btn-weight: 600;
+
+    /* Default misc styling */
+    --default-letter-spacing: 0.5px;
+}
+
+/* -------- Loader Schemas -------- */
+.loaderModal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(255,255,255, 0.5);
+    z-index: 999;   /* set it to front */
+}
+
+.loaderImg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+/* -------- Button Schemas -------- */
+button {
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.whiteBtn {
+    color: #333644;
+    background: #FFFFFF;
+    border: 1px solid #333644;
+    height: 32px;
+}
+
+.redBtn {
+    color: var(--white);
+    background: #FF352E;
+    border: 1px solid #FF352E;
+    height: 32px;
+}
+
+.yellowBtn {
+    color: var(--white);
+    background: #F8C32B;
+    border: 1px solid #F8C32B;
+    height: 32px;
+}
+
+.blueBtn {
+    color: var(--white);
+    background: #2E59A0;
+    border: 1px solid #2E59A0;
+    height: 32px;
+}
+
+.navyBtn {
+    color: var(--white);
+    background: #333644;
+    border: 1px solid #333644;
+    height: 32px;
+}
+
+.grayBtn {
+    color: var(--white);
+    background: #8D8D8D;
+    border: 1px solid #8D8D8D;
+}
+
+/* These used to be separate sizes but now we've uniformed them into one and the classes are stuck here haha :V */
+.deleteBtn, .addBtn, .updateBtn {
+    width: var(--filter-btn-width);
+    height: var(--filter-btn-height);
+    font-weight: var(--filter-btn-weight);
+    height: 32px;
+}
+
+/* -------- Layouts -------- */
+.permissionDenied { padding: 20px 10px; }
+.cursorPointer {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Display Flex Row -------- */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.col-2 { width: 50%; }
+.col-3 { width: 33%; }  /* equal 3 div per row */
+.col-4 { width: 25%; }
+
+/* Display Grid -------- */
+.grid { display: grid; }
+/* Default row & column gap */
+.grid-row-gap-10 { row-gap: 10px; }
+.grid-col-gap-10 { column-gap: 10px; }
+/* Extend column to n rows */
+.grid-row-span-2 { grid-row: span 2; }
+.grid-row-span-4 { grid-row: span 4; }
+/* Extend row to n columns */
+.grid-col-span-2 { grid-column: span 2; }
+.grid-col-span-4 { grid-column: span 4; }
+
+.gridItem { 
+    align-self: end;
+    font-size: 14px;
+}
+.gridItem select, .gridItem input { height: 22px; }
+
+/* Display Table -------- */
+.table { display: table; }
+.tableRow { display: table-row; }
+.tableCol { display: table-cell; }
+
+/* -------- Navigation Header -------- */
+.headerDivider {
+    margin-top: 1px; 
+    border-top: 1px solid #DEDEDE; 
+    clear: left;
+}
+
+.headerNavigation { 
+    height: 24px; 
+    align-items: center; 
+    font-family: var(--arialFont);
+}
+
+.navigation {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.title { padding-left: 10px; }
+.title h1 { margin: 0px; }
+
+/* ---------- Timeline ---------- */
+.timelineNav {
+    width: 100%;
+    margin: 30px auto;
+}
+
+.arrowContainer {
+    display: flex;
+    width: 97%;
+    overflow: visible;
+    padding: 6px 0;
+    position: relative;
+}
+
+.arrow {
+    width: 20%;
+    padding: 18px 0;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    letter-spacing: 1px;
+    /* Override button defaults */
+    border-radius: 0;
+    border: none;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    right: -40px;
+    top: 0;
+    border-top: 27px solid transparent;
+    border-bottom: 27px solid transparent;
+    z-index: 99;
+}
+
+.arrow-active {
+    color: var(--white);
+    background: var(--blue);
+}
+.arrow-active:after { border-left: 40px solid var(--blue); }
+
+.arrow-inactive {
+    color: var(--blue);
+    background: var(--lineGray); 
+}
+.arrow-inactive:after { border-left: 40px solid var(--lineGray); }
+
+.arrow-head { margin-right: 5px; }
+.arrow-head span { padding-left: 30px; }
+
+.arrow-tail:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top: 27px solid transparent;
+    border-left: 40px solid var(--white);
+    border-bottom: 27px solid transparent;
+    z-index: 0;
+}
+.arrow-tail { margin: 0 5px; }
+.arrow-tail span { padding-left: 50px; }
+
+/* -------- Search Filter -------- */
+.searchContainer {
+    width: 1140px;
+    min-height: 45px;
+    padding: 20px 10px;
+    background-color: var(--backgroundGray);
+}
+
+.searchItem {
+    height: auto;
+    display: grid;
+    row-gap: 2px;
+    align-items: center;
+}
+.searchItem select { height: 20px !important; }
+.searchItem button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+.searchColGap { column-gap: 20px; }     /* Use this for default column gap in search filter section */
+.search-span-2 { grid-row: span 2; }    /* Deprecated, use grid-row-span-2 */
+
+.searchBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 35px;
+    color: var(--white);
+    background-color: var(--navyBlue);
+    border-radius: 3px;
+    border: 1px solid var(--navyBlue);
+}
+
+/* ---------- Data Results & Export ---------- */
+.exportResults { margin: 10px 5px; }
+.exportResults a { color: var(--black); }
+.exportResults a:hover { color: var(--blue); }
+.exportResults, .exportResults a { font-size: 14px; }
+
+/* -------- Data Table -------- */
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.dataTable td { padding: 13px 10px; }
+
+.dataHeader {
+    vertical-align: middle;
+    text-align: left;
+    letter-spacing: 1px;
+    color: var(--white);
+    background-color: var(--blue);
+}
+.dataHeader tr { height: 40px; }
+.dataHeader th { padding: 5px 10px; }
+
+.dataBody tr { height: 40px; }
+.dataBody:not(.disableAlternate) tr:nth-child(even) { background-color: #F3F3F3; }
+.dataBody:not(.disableHover) tr:hover { background-color: #BFBFBF; }
+.dataBody td { padding: 5px 10px; }
+.dataBody select, .dataBody input:not([type="checkbox"]) { 
+    height: 30px;
+    width: 160px;
+    background: var(--backgroundGray);
+    border: 1px solid var(--lightGray);
+}
+
+.dataResultsFound {
+    font-weight: bold;
+    font-size: 14px;
+    font-family: var(--openSanFont);
+    margin: 10px 5px;
+}
+
+/* -------- Custom Checkmark -------- */
+.checkboxHeader {
+    height: 12px;
+    cursor: pointer;
+}
+
+.checkboxTableCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.checkboxLabel {
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    border: 1px solid var(--lightGray);
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.checkboxLabel img { visibility: hidden; }
+
+.checkboxImg {
+    width: 16px;
+    margin: 1.5px auto 0 auto;
+}
+
+.checkboxInput {
+    width: 0;
+    position: absolute;
+}
+
+/* -------- Alert/Confirmation Modal -------- */
+dl {
+    font-size: 14px;
+    padding: 5px 0; 
+}
+dt { margin: 10px 0; }
+dd {
+    margin-inline-start: 30px;
+    padding: 5px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow-x: auto;
+    z-index: 888;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalBody {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    margin: 8% auto;
+    min-width: 300px;
+    max-width: 40%;
+}
+    
+.modalHeader {
+    width: 100%;
+    align-items: center;
+    height: 42px;
+    color: #FFFFFF;
+    background: #AAAAAA;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    margin-left: 0 !important;
+}
+.modalHeader span {
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 20px;
+}
+
+.modalForm {
+    align-items: baseline;
+    padding: 20px;
+}
+
+.modalDivider { /* Use <hr> tag */
+    background: #DEDEDE;
+    margin: 0 20px 20px 20px;
+    border: 1px solid #DEDEDE;
+}
+
+.modalConfirmation { 
+    text-align: right; 
+    padding: 0 20px 20px 20px;
+}
+.modalConfirmation button { 
+    width: 70px;
+    height: 35px;
+}
+
+.input-group input {
+    height: 32px;
+}

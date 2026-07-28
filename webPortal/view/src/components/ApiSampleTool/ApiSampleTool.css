@@ -1,0 +1,31 @@
+.token-btn {
+    color: black;
+    background: transparent !important;
+    display: inline-block;
+}
+
+.token-btn:hover {
+    color: grey;
+}
+
+.margin-api-sample {
+    margin-bottom: 24px;
+}
+
+.padding-body-api-sample {
+    margin-bottom: 14px;
+}
+
+.btn-api-sample {
+    margin-top: 97px;
+}
+
+.alert-error {
+    background: #5E5E5E;
+    color: white;
+}
+
+
+.reponse-card{
+    height: 890px;
+}

@@ -1,0 +1,174 @@
+<?php
+$orderSummaryHdl = $modelObj;
+$orderDetails = $orderSummaryHdl->getOrderDetails();
+//$orderSummaryHdl->dumpVar($orderDetails);
+
+?>
+<style>
+    .card {
+        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: 1rem;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <?php if(is_array($orderDetails) && sizeof($orderDetails) > 0 ) {
+                        $itemArray = $orderDetails['items'];
+                        $orderId = $orderSummaryHdl->getOrderId();
+                        $orderPO = $orderDetails['poNumber'];
+                        ?>
+                    <div class="invoice-title">
+                        <h4 class="float-end font-size-15">
+                            Invoice #<?php echo $orderId ?> <span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
+                        <div class="mb-4">
+                            <h4 class="mb-1 text-muted"><?php echo SITE_ROOT_SHORT ?></h4>
+                        </div>
+                        <div class="text-muted">
+                            <?php
+                            $wpAddress = WP_ADDRESS.', '.WP_CITY.'<br/>'.WP_STATE.' '.WP_ZIP;
+                            ?>
+                            <p class="mb-1"><?php echo $wpAddress ?></p>
+                            <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i><?php echo WP_EMAIL ?></p>
+                            <p><i class="uil uil-phone me-1"></i><?php echo WP_PHONE ?></p>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="text-muted">
+                                <h5 class="font-size-16 mb-3">Billed To:</h5>
+                                <?php
+                                    $fullName = ($orderDetails['firstName']).' '.$orderDetails['lastName'];
+                                    $fullAddress =
+                                        ($orderDetails['address']).' '.$orderDetails['city'].', '.
+                                        ($orderDetails['state']).' '.$orderDetails['country'].' '.$orderDetails['zip'];
+                                ?>
+                                <h5 class="font-size-15 mb-2"><?php echo $fullName ?></h5>
+                                <p class="mb-1"><?php echo $fullAddress; ?></p>
+                                <p class="mb-1"><?php echo $orderDetails['email'] ?></p>
+                                <p><?php echo $orderDetails['phone'] ?></p>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-sm-6">
+                            <div class="text-muted text-sm-end">
+                                <div class="mt-4">
+                                    <h5 class="font-size-15 mb-1">Order Date:</h5>
+                                    <p><?php echo $orderDetails['orderTimeHuman'] ?> </p>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="font-size-15 mb-1">PO:</h5>
+                                    <p>#<?php echo $orderDetails['poNumber'] ?></p>
+                                </div>
+                                <div>
+                                    <h5 class="font-size-15 mb-1">Order Status:</h5>
+                                    <p><?php echo $orderDetails['statusFM'] ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="py-2">
+                        <h5 class="font-size-15">Order Summary</h5>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-nowrap table-centered mb-0">
+                                <thead>
+                                <tr>
+                                    <th style="width: 70px;">No.</th>
+                                    <th>Item</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th class="text-end" style="width: 120px;">Total</th>
+                                </tr>
+                                </thead><!-- end thead -->
+                                <tbody>
+                                <?php
+                                $i = 1;
+                                foreach ($itemArray AS $item) {
+                                    $size = $item['x'].'x'.$item['y'];
+                                ?>
+                                    <tr>
+                                        <th scope="row"><?php echo $i; ?></th>
+                                        <td>
+                                            <div>
+                                                <h6 class="text-truncate font-size-14 mb-1"><?php echo $item['psTitle'] ?></h6>
+                                                <p class="text-muted mb-0"><?php echo "Item #: ". $item['itemNumber'] ?></p>
+                                            </div>
+                                        </td>
+                                        <td>$<?php echo $item['price'] ?></td>
+                                        <td><?php echo $item['qt'] ?></td>
+                                        <td class="text-end">$<?php echo $item['price'] ?></td>
+                                    </tr>
+                                <?php
+                                    $i++;
+                                }?>
+                                <!-- end tr -->
+
+                                <!-- end tr -->
+                                <tr>
+                                    <th scope="row" colspan="4" class="text-end">Sub Total</th>
+                                    <td class="text-end">$<?php echo $orderDetails['totalMFT'] ?></td>
+                                </tr>
+                                <!-- end tr -->
+                                <!--
+                                <tr>
+                                    <th scope="row" colspan="4" class="border-0 text-end">
+                                        Discount :</th>
+                                    <td class="border-0 text-end">- $25.50</td>
+                                </tr>
+                                -->
+                                <!-- end tr -->
+                                <tr>
+                                    <th scope="row" colspan="4" class="border-0 text-end">
+                                        Shipping Charge :</th>
+                                    <td class="border-0 text-end">$<?php echo $orderDetails['shippingMFT'] ?></td>
+                                </tr>
+                                <!-- end tr -->
+                                <!--
+                                <tr>
+                                    <th scope="row" colspan="4" class="border-0 text-end">
+                                        Tax</th>
+                                    <td class="border-0 text-end">$12.00</td>
+                                </tr>
+                                -->
+                                <!-- end tr -->
+                                <tr>
+                                    <th scope="row" colspan="4" class="border-0 text-end">Total</th>
+                                    <td class="border-0 text-end"><h4 class="m-0 fw-semibold">$<?php echo $orderDetails['grandTotalFMT'] ?></h4></td>
+                                </tr>
+                                <!-- end tr -->
+                                </tbody><!-- end tbody -->
+                            </table><!-- end table -->
+                        </div><!-- end table responsive -->
+                        <div class="d-print-none mt-4">
+                            <div class="float-end">
+                                <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
+                                <a href="#" class="btn btn-primary w-md">Send</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    else {
+                        echo "ORDER NOT FOUND!";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

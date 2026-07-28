@@ -1,0 +1,97 @@
+/**
+ * CSS for Login
+ *
+ * Author: Francisco Palomar
+ * Last modified: 03/10/2020
+ */
+
+.defaultForm {
+    margin: 30px 0;
+}
+
+.formRow {
+    margin: 15px 0;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.legendCol {
+    width: 8%;
+}
+
+.formRow input {
+    height: 35px;
+    width: 250px;
+}
+
+.passwordContainer {
+    position: relative;
+}
+
+.passwordToggle {
+    display: flex;
+    height: 33px;
+    align-items: center;
+    width: 33px;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #aaa;
+    background-color: #f2f1f4;
+    cursor: pointer;
+}
+
+.fa {
+    font-size: 16px !important;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.fa:hover {
+    text-decoration: none;
+}
+
+.loginBtn {
+    padding: 11px 23px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.loginRow {
+    margin-top: 35px;
+}
+
+.errorMessage {
+    display: none;
+}
+
+.errorContainer {
+    height: 35px;
+    align-items: center;
+    display: flex;
+    width: 342px;
+    background-color: #ff9999;
+    justify-content: center;
+    color: var(--navyBlue);
+    margin-left: 40%;
+}
+
+.errorIcon {
+    width: 35px;
+    text-align: center;
+}
+
+.errorIcon a, .errorIcon a:hover {
+    color: var(--navyBlue);
+    cursor: none;
+}
+
+.captchaRow {
+    padding-top: 15px;
+}
+
+.messageRow {
+    color: red;
+    padding-bottom: 10px;
+}
