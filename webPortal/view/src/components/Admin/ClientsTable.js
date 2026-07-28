@@ -18,7 +18,7 @@ import SortButton from "../Misc/SortButton";
 function getCookie(cName) {
     const name = cName + "=";
     const cDecoded = decodeURIComponent(document.cookie); //to be careful
-    const cArr = cDecoded .split('; ');
+    const cArr = cDecoded.split('; ');
     let res;
     cArr.forEach(val => {
         if (val.indexOf(name) === 0) res = val.substring(name.length);
@@ -258,7 +258,7 @@ class ClientsTable extends Component {
         const clientStatus = this.state.updateClientStatus;
 
 
-        if(clientStatus == ''){
+        if(clientStatus === ''){
             this.setState({ errorSubmit: true });
         }else{
 
@@ -496,7 +496,7 @@ class ClientsTable extends Component {
                                         onChange={this.handleChange}
                                     >
                                         <option>Select One</option>
-                                        {clientStatuses.filter(status => status== 'ENABLED' || status== 'DISABLED' || this.props.level == 'advanced')
+                                        {clientStatuses.filter(status => status=== 'ENABLED' || status=== 'DISABLED' || this.props.level === 'advanced')
                                             .map(status => <option key={status}>{status}</option>)}
 
                                     </Form.Control>
@@ -533,7 +533,7 @@ class ClientsTable extends Component {
                                 <td>{item.integrationPercentage}</td>
                                 <td><Button variant="primary" onClick={() => this.loginAs(item.userName)} >Login As</Button></td>
                                 {/*
-                {item.clientStatus == 'SALES_APPROVED ' || item.clientStatus == 'REGISTERED'
+                {item.clientStatus === 'SALES_APPROVED ' || item.clientStatus === 'REGISTERED'
                   ? <td><Button variant="primary" onClick={() => this.handleShowModal(item.id, item.userName, item.email)} >Edit</Button></td>
                   : <td><Button variant="secondary" disabled>Edit</Button></td>
                 }

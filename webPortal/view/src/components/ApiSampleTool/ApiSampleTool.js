@@ -33,7 +33,6 @@ import "./ApiSampleTool.css";
 const format = require('xml-formatter');
 const options = {collapseContent: true};
 const options2 = {collapseContent: true, indentation: '    ',lineSeparator: '\n'};
-let renderReqlXml = '';
 
 class ApiSampleTool extends Component {
     constructor(props) {
@@ -59,7 +58,6 @@ class ApiSampleTool extends Component {
         this.handleShow = this.handleShow.bind(this);
         this.handleSubmitToken = this.handleSubmitToken.bind(this);
         this.handlePreXml = this.handlePreXml.bind(this);
-        let submitted = false;
     }
 
     handleClear(e) {
@@ -89,7 +87,7 @@ class ApiSampleTool extends Component {
     handleBlur(reqXml) {
         reqXml = reqXml.replace(/(\r\n|\n|\r)/gm, "");
         reqXml = reqXml.replace(/\s+/g, '');
-        reqXml = reqXml.replace(/\>\s+\</g, '><');
+        reqXml = reqXml.replace(/>\s+</g, '><');
         reqXml = reqXml.replace(/\\/g, "")
         //console.log(reqXml)
 
@@ -204,7 +202,7 @@ class ApiSampleTool extends Component {
                 {
                     endpoint: this.state.endpoint,
                     httpMethod: (this.state.httpMethod),
-                    reqXml: (this.state.reqXml).replace(/\r\n/g, '').replace(/\>\s+\</g, '><'),
+                    reqXml: (this.state.reqXml).replace(/\r\n/g, '').replace(/>\s+</g, '><'),
                     token: this.state.token
                 }
             );
@@ -212,13 +210,13 @@ class ApiSampleTool extends Component {
         let respXml = res.data.respXml ? res.data.respXml.replace(/\r?\n/g, '') : "";
         let jsonReqXml = res.data.reqXml ? res.data.reqXml.replace(/\r?\n/g, '') : "";
         jsonReqXml = jsonReqXml.replace(/(\r\n|\n|\r)/gm, "")
-        jsonReqXml = jsonReqXml.replace(/\>\s+\</g, '><')
+        jsonReqXml = jsonReqXml.replace(/>\s+</g, '><')
         jsonReqXml = jsonReqXml.replace(/\\/g, "")
         this.state.reqXml = format(jsonReqXml, options2);
 
         try {
             respXml = respXml.replace(/(\r\n|\n|\r)/gm, "")
-            respXml = respXml.replace(/\>\s+\</g, '><')
+            respXml = respXml.replace(/>\s+</g, '><')
             respXml = respXml.replace(/\\/g, "")
             respXml = format(respXml, options2);
         } catch (e) {

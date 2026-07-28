@@ -95,16 +95,16 @@ function handleNext(state, nextPage, score) {
 
     var scoreIsZero = score;
     
-    if (stage == 'create' && state.progress >= 25){
+    if (stage === 'create' && state.progress >= 25){
         score = 0
-    }else if (stage == 'cancel' && state.progress >= 50){
+    }else if (stage === 'cancel' && state.progress >= 50){
         score = 0
-    }else if (stage == 'redo' && state.progress >= 75){
+    }else if (stage === 'redo' && state.progress >= 75){
         score = 0
     }
     
     
-    if ( (state.appStatus === 'inProgress' && !state[stage][page]) || scoreIsZero != 0) {
+    if ( (state.appStatus === 'inProgress' && !state[stage][page]) || scoreIsZero !== 0) {
         return {
             ...state,
             [stage]: {
@@ -285,7 +285,7 @@ function handleStart(state, orderOrigin) {
     let DefaultTestPlan = false;
 
     //console.log('orderOrigin in handleStart: ' + orderOrigin)
-    if(orderOrigin == 'orderDesk'){
+    if(orderOrigin === 'orderDesk'){
         DefatulCurPage =  'testPlan_create';
         DefatulCurPageShow =  'testPlan_create';
         DefaultProgress = 6;
@@ -448,51 +448,51 @@ function handleUpdateFromDB(state, sectionStatus, curStage, curPage,  progress) 
     //console.log(curStage);
     //console.log(curSectionTmp);
     
-    if (sectionStatus.create == 'Skipped'){
+    if (sectionStatus.create === 'Skipped'){
         curSectionTmp = {...curSectionTmp, skipped:true, approved:false }
         activeSection = {...activeSection, skipped:true, approved:false }
         
-    }else if (sectionStatus.create == 'Approved'){
+    }else if (sectionStatus.create === 'Approved'){
         curSectionTmp = {...curSectionTmp, skipped:false, approved:true }
         activeSection = {...activeSection, skipped:false, approved:true }
     }
     //console.log(curSectionTmp);
-    const create = sectionStatus.create != 'Started' ? (curStage === 'create' ? curSectionTmp :  activeSection) : disableSection;
+    const create = sectionStatus.create !== 'Started' ? (curStage === 'create' ? curSectionTmp :  activeSection) : disableSection;
     
     curSectionTmp = {...curSectionTmp, skipped:false, approved:false }
         
-    if (sectionStatus.cancel == 'Skipped'){
+    if (sectionStatus.cancel === 'Skipped'){
         curSectionTmp = {...curSectionTmp, skipped:true, approved:false }
         activeSection = {...activeSection, skipped:true, approved:false }
-    }else if (sectionStatus.cancel == 'Approved'){
+    }else if (sectionStatus.cancel === 'Approved'){
         curSectionTmp = {...curSectionTmp, skipped:false, approved:true }
         activeSection = {...activeSection, skipped:false, approved:true }
     }
     //console.log(curSectionTmp);
-    const cancel = sectionStatus.cancel != 'Started' ? (curStage === 'cancel' ? curSectionTmp :  activeSection) : disableSection;
+    const cancel = sectionStatus.cancel !== 'Started' ? (curStage === 'cancel' ? curSectionTmp :  activeSection) : disableSection;
     
     curSectionTmp = {...curSection, skipped:false, approved:false }
     
-    if (sectionStatus.redo == 'Skipped'){
+    if (sectionStatus.redo === 'Skipped'){
         curSectionTmp = {...curSectionTmp, skipped:true, approved:false }
         activeSection = {...activeSection, skipped:true, approved:false }
-    }else if (sectionStatus.redo == 'Approved'){
+    }else if (sectionStatus.redo === 'Approved'){
         curSectionTmp = {...curSectionTmp, skipped:false, approved:true }
         activeSection = {...activeSection, skipped:false, approved:true }
     }
     //console.log(curSectionTmp);
-    const redo = sectionStatus.redo != 'Started' ? (curStage === 'redo' ? curSectionTmp :  activeSection) : disableSection;
+    const redo = sectionStatus.redo !== 'Started' ? (curStage === 'redo' ? curSectionTmp :  activeSection) : disableSection;
     curSectionTmp = {...curSectionTmp, skipped:false, approved:false }
 
-    if (sectionStatus.status == 'Skipped'){
+    if (sectionStatus.status === 'Skipped'){
         curSectionTmp = {...curSectionTmp, skipped:true, approved:false }
         activeSection = {...activeSection, skipped:true, approved:false }
-    }else if (sectionStatus.status == 'Approved'){
+    }else if (sectionStatus.status === 'Approved'){
         curSectionTmp = {...curSectionTmp, skipped:false, approved:true }
         activeSection = {...activeSection, skipped:false, approved:true }
     }
     //console.log(curSectionTmp);
-    const status = sectionStatus.status != 'Started' ? (curStage === 'status' ? curSectionTmp :  activeSection) : disableSection;
+    const status = sectionStatus.status !== 'Started' ? (curStage === 'status' ? curSectionTmp :  activeSection) : disableSection;
     
     //console.log('create');
     //console.log(create);

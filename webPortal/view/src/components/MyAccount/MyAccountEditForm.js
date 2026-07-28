@@ -145,11 +145,10 @@ class MyAccountEditForm extends Component {
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-    
-    if(event.target.name == "country") {
-        this.state.state = "";
-    }
+    this.setState({
+      [event.target.name]: event.target.value,
+      ...(event.target.name === "country" ? { state: "" } : {})
+    });
   };
 
   handlePassword = event => {
@@ -225,7 +224,7 @@ class MyAccountEditForm extends Component {
     }
     
     let setStateForm;
-    if(this.state.country == "US") {
+    if(this.state.country === "US") {
         setStateForm = <Form.Control
                     className="input"
                     as="select"
@@ -368,7 +367,6 @@ class MyAccountEditForm extends Component {
         />
 
         <InputFormWithText
-          required = {false}
           placeholder="Password"
           label="Password"
           handleInput={this.handlePassword}
@@ -381,7 +379,6 @@ class MyAccountEditForm extends Component {
         />
 
         <InputFormWithText
-          required = {false}
           placeholder="Confirm Password"
           label="Confirm Password"
           handleInput={this.handleChange}

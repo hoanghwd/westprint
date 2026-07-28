@@ -5,7 +5,6 @@ import { doToggleLoadLogs } from '../../actions'
 import Table from "react-bootstrap/Table";
 import Footer from "../Misc/Footer";
 import SortButton from "../Misc/SortButton";
-import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 
 const LIMIT = 30;
@@ -219,7 +218,7 @@ class LogTable extends Component
       )
     }
 
-    {/*<Link to={"/viewXml/" + item.logId} className="link">View</Link>*/}
+    //<Link to={"/viewXml/" + item.logId} className="link">View</Link>
     return (
         <div className="LogTable" ref={this.myRef}>
           <Table striped bordered hover>
@@ -240,7 +239,7 @@ class LogTable extends Component
                       */}
                           {
                             item.validReq ? (
-                                <a target="_blank" href={`#/viewXml/` + item.logId}>View</a>
+                                <a target="_blank" rel="noopener noreferrer" href={`#/viewXml/` + item.logId}>View</a>
                             ) : (
                                 'NA'
                             )}

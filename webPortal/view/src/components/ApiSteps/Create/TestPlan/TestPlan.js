@@ -96,7 +96,7 @@ class TestPlan extends Component {
                     <Spinner animation="border" variant="primary" />
                 </div>
             )
-        } else if (testPlan == null || testPlan.length === 0) {
+        } else if (testPlan === null || testPlan.length === 0) {
             return (
                 <div className="OrdersTable">
                     No test orders found for this account. To test Place Order feature, please submit a few test orders.

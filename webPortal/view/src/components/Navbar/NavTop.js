@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import logo from "../../images/logo1.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
@@ -25,7 +24,7 @@ class NavTop extends Component {
     return (
       <Navbar id="nav-top">
          
-         {this.props.level == 'basic'
+         {this.props.level === 'basic'
               ? <Link to="/myaccount/info" >
                   <Navbar.Brand >
                     WESTPRINT EXPRESS
@@ -45,7 +44,7 @@ class NavTop extends Component {
           </Nav>
           <Nav className="text-right">
             
-            {this.props.level == 'basic'
+            {this.props.level === 'basic'
               ? <Link to="/myaccount/info" className="text-light nav-link">
                   My Account
                 </Link>

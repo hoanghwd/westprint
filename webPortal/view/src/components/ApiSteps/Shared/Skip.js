@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import { handleSkip, handleGoLive } from '../../../actions';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import Row from "react-bootstrap/Row";
 
 import "./Shared.css";

@@ -3,9 +3,7 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Skip from '../../Shared/Skip';
 
-const orderId = "{orderId}"
 //const p = "If your Request failed, you should see one of the following error codes in the Response XML. Please fix the error reported and resubmit your order."
-const p = "Please use the following redo codes in the Redo XML relevant to the reason of re-submission.";
 class ErrorCodes extends Component {
     
     componentDidUpdate() {

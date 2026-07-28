@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import Col from "react-bootstrap/Col";
 import Tab from "react-bootstrap/Tab";
 import Sample from "./Introduction/SampleOrder";
-import Xml from "./Introduction/XmlStructure"
-import Errors from "./Introduction/ErrorCodes";
 import TestPlan from "./TestPlan/TestPlan";
-import TestPlanStatus from "./TestPlan/TestPlanStatus";
 import Review from "./Review/Review";
 import { connect } from 'react-redux';
 import { handleNext } from '../../../actions'

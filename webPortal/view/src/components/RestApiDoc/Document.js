@@ -25,8 +25,6 @@ import {
     statusUpdateItemizeProcessing
 } from '../../constants/xml';
 import {redoAsIs, redoWithChanges, redoResp, redoRespError} from '../../constants/xml'
-import {statusUpdateAck, statusUpdateAckError} from '../../constants/xml'
-import {cancelled, accepted, onHold, processing, shipped, cancelledByCustomer} from '../../constants/statusArrays'
 
 /*
 * Huynh - 08/19/2021
@@ -65,15 +63,12 @@ const xmlRedoWithChanges = format(redoWithChanges.replace(/(\r\n|\n|\r| {2,})/gm
 const xmlRedoResp = format(redoResp.replace(/(\r\n|\n|\r| {2,})/gm, ""), options)
 const xmlRedoRespError = format(redoRespError.replace(/(\r\n|\n|\r| {2,})/gm, ""), options)
 
-const xmlStatusUpdateAck = format(statusUpdateAck.replace(/(\r\n|\n|\r| {2,})/gm, ""), options)
-const xmlStatusUpdateAckError = format(statusUpdateAckError.replace(/(\r\n|\n|\r| {2,})/gm, ""), options)
 const xmlCancelled = statusUpdateItemizedCancel
 const xmlAccepted = statusUpdateItemizeAccepted
 const xmlRejected = statusUpdateItemizeRejected
 const xmlOnHold = statusUpdateItemizedHold
 const xmlProcessing = statusUpdateItemizeProcessing
 //const xmlShipped = shipped
-const xmlCancelledByCustomer = cancelledByCustomer
 const xmlShippedItemized = statusUpdateItemized
 
 /*

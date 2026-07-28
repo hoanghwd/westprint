@@ -10,7 +10,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Orders.css";
 import Accordion from "react-bootstrap/Accordion";
-import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
@@ -101,7 +100,7 @@ class RecentOrders extends Component {
                 let isChecked = this.miniJQ(id).checked;
                 if (isChecked) {
                     let inputValue = this.miniJQ(id).value;
-                    if (inputValue != "NA") {
+                    if (inputValue !== "NA") {
                         uniqueItemArray.push(inputValue);
                     }
                 }
@@ -112,7 +111,7 @@ class RecentOrders extends Component {
 
         //Get unqiue itemId
         uniqueItemArray = uniqueItemArray.filter(function (item, pos) {
-            return uniqueItemArray.indexOf(item) == pos;
+            return uniqueItemArray.indexOf(item) === pos;
         })
 
         return uniqueItemArray;
@@ -127,7 +126,7 @@ class RecentOrders extends Component {
     getReasonCollection(cancelType) {
         let orderInfo = this.state.orderInfo;
         let cancelCollection = [];
-        let cancelReasonArray = (cancelType == "order") ?
+        let cancelReasonArray = (cancelType === "order") ?
             orderInfo.editReasonCancelOrderCollection : orderInfo.editReasonCancelItemCollection;
         let k = 0;
 
@@ -146,7 +145,7 @@ class RecentOrders extends Component {
     }
 
     inputHasSpecialChar(postData) {
-        let specialChar = /[Â£{}~@:%|$&^<>\*+=;?`())[\]]/;
+        let specialChar = /[Â£{}~@:%|$&^<>*+=;?`())[\]]/;
         let counts = 0;
         for (let key of Object.keys(postData)) {
             let value = postData[key];
@@ -165,13 +164,13 @@ class RecentOrders extends Component {
         if( specialCharCounts > 0 ) {
             errorMsg = "Special characters not allowed!";
         }
-        else if( selectedReason == '' ) {
+        else if( selectedReason === '' ) {
             errorMsg = "Please select a reason!";
         }
-        else if( selectedReason != '' && !this.isOtherReason(selectedReason) && this.isRequiredDetails(selectedReason, cancelType) ) {
+        else if( selectedReason !== '' && !this.isOtherReason(selectedReason) && this.isRequiredDetails(selectedReason, cancelType) ) {
             errorMsg = "Please provide some details!";
         }
-        else if( (this.isOtherReason(selectedReason) && postData['details'] == '' ) ) {
+        else if( (this.isOtherReason(selectedReason) && postData['details'] === '' ) ) {
             errorMsg = 'Please provide some details!';
         }
 
@@ -192,7 +191,7 @@ class RecentOrders extends Component {
     isRequiredDetails(selectedReason, cancelType) {
         let result = false;
         let orderInfoObj = this.state.orderInfo;
-        let editReasonCollection = (cancelType == "order") ?
+        let editReasonCollection = (cancelType === "order") ?
             orderInfoObj.editReasonCancelOrderCollection : orderInfoObj.editReasonCancelItemCollection;
 
         for(let i in editReasonCollection) {
@@ -203,7 +202,7 @@ class RecentOrders extends Component {
             let isRequired = editReason.detailsRequired;
             let internalValue = reasonGroup + '-' + editSubGroup +  '-' + reason;
 
-            if( (internalValue == selectedReason) && isRequired == "Y" ) {
+            if( (internalValue === selectedReason) && isRequired === "Y" ) {
                 result = true;
                 break;
             }
@@ -265,7 +264,7 @@ class RecentOrders extends Component {
         let postData = this.getCancelOrderSubmitData();
         let errorMsg = this.validateSubmitData(postData, 'order');
 
-        if( errorMsg != '' ) {
+        if( errorMsg !== '' ) {
             alert(errorMsg);
         }
         else {
@@ -300,20 +299,20 @@ class RecentOrders extends Component {
         inputs.forEach(el => {
             el.addEventListener('input', function (ev) {
                 const { target } = ev
-                const { type, checked, id, value } = target
+                const { id, value } = target
                 let idParts = id.split('_');
 
                 if( idParts[0] === 'indexQty' ) {
                     let mouseDownId = id+ '_maxQty';
                     let maxQty = parseInt(this.miniJQ(mouseDownId).value);
 
-                    if( parseInt(value) == 0 ) {
+                    if( parseInt(value) === 0 ) {
                         this.miniJQ(id).style.border = "1px solid red";
                         this.miniRender(mouseDownId + '_ErrorMsg', 'Minimum Require 1');
                     }
                     else if ( parseInt(value) > maxQty ) {
                         this.miniJQ(id).style.border = "1px solid red";
-                        let errorMsg = ( maxQty == 1 ) ? "Max Value Allowed is 1" : "Please enter 1 to " + maxQty ;
+                        let errorMsg = ( maxQty === 1 ) ? "Max Value Allowed is 1" : "Please enter 1 to " + maxQty ;
                         this.miniRender(mouseDownId + '_ErrorMsg', errorMsg);
                     }
                     else {
@@ -385,7 +384,7 @@ class RecentOrders extends Component {
 
             for (let i = 0; i < itemCounts; i++) {
                 let currItemNumber = orderItems[i].itemNumber;
-                if (currItemNumber.toUpperCase() == "NA" || currItemNumber == '') {
+                if (currItemNumber.toUpperCase() === "NA" || currItemNumber === '') {
                     naCounts++;
                     break;
                 }
@@ -421,19 +420,19 @@ class RecentOrders extends Component {
                 //This will override the cancelItem button display
                 for (let i = 0; i < itemCounts; i++) {
                     let currItemNumber = orderItems[i].itemNumber;
-                    if(currItemNumber.toUpperCase() == "NA" || currItemNumber == '') {
+                    if(currItemNumber.toUpperCase() === "NA" || currItemNumber === '') {
                         naCounts++;
                     }
                 }
                 //If order has all NA items
-                if(naCounts == itemCounts) {
+                if(naCounts === itemCounts) {
                     action = 'none';
                     this.miniJQ('select-all-div').style.display = action;
                 }
                 //There are eligible items for cancel
                 else {
                     //Handle select All check box
-                    if( selectedItemIndex == 'clickAllItemChk' ) {
+                    if( selectedItemIndex === 'clickAllItemChk' ) {
                         this.handleClickAllItemsEvent(event);
                     }
                     //Individual item check  -> turn off select all
@@ -443,13 +442,13 @@ class RecentOrders extends Component {
                 }
 
                 //If there are eligible items for cancel
-                if( naCounts < itemCounts && selectedItemIndex != 'clickAllItemChk') {
+                if( naCounts < itemCounts && selectedItemIndex !== 'clickAllItemChk') {
                     for (let i = 0; i < itemCounts; i++) {
                         let currIndex = 'index_' + i;
                         try {
                             let currItem = this.miniJQ(currIndex);
                             //check all item check box with the same item number - for kit sku item
-                            if (currItem.value == selectedItemNumber) {
+                            if (currItem.value === selectedItemNumber) {
                                 currItem.checked = siblingAction;
                             }
 
@@ -463,7 +462,7 @@ class RecentOrders extends Component {
                 }
 
                 //Override
-                if ( selectedItemIndex == 'clickAllItemChk' ) {
+                if ( selectedItemIndex === 'clickAllItemChk' ) {
                     itemCheckedCounts = (selectedItemCheckAction) ? itemCounts : 0;
                 }
 
@@ -483,9 +482,9 @@ class RecentOrders extends Component {
             let id = '#index_' + i;
             let isChecked = document.querySelectorAll(id)[0].checked;
 
-            if (isChecked == true) {
+            if (isChecked === true) {
                 let inputValue = document.querySelectorAll(id)[0].value;
-                if (inputValue != "NA") {
+                if (inputValue !== "NA") {
                     let itemSelectedQty = this.miniJQ('indexQty_' + inputValue);
                     totalRequestImages +=  parseInt(itemSelectedQty.value)
                 }
@@ -500,7 +499,7 @@ class RecentOrders extends Component {
             '<div style="float: left" class="item-qty-input">' +
             '<input style="text-align: right;" type="integer" max="' +qty+ '" min="1" ' +
             'class="form-control total-qty-input" value="1" ' +
-            'onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"' +
+            'onkeypress="return (event.charCode !==8 && event.charCode ===0 || (event.charCode >= 48 && event.charCode <= 57))"' +
             'id="indexQty_' + itemId + '">' +
             '<input id="indexQty_' + itemId + '_maxQty" type="hidden" value="' + qty + '"/>' +
             '</div>' +
@@ -542,7 +541,7 @@ class RecentOrders extends Component {
         for (let i in sortedItemArray) {
             let itemInfo = sortedItemArray[i];
             let itemNumber = itemInfo.itemNumber;
-            if(targetItem == itemNumber) {
+            if(targetItem === itemNumber) {
                 occCounts++;
             }
         }
@@ -580,7 +579,7 @@ class RecentOrders extends Component {
             catch (e) { }
 
             //Beginning of the row
-            if (k == 0 || k % imagePerRow  == 0 ) {
+            if (k === 0 || k % imagePerRow  === 0 ) {
                 html +=
                     '<div class="itemCancelRow">';
             }
@@ -593,12 +592,11 @@ class RecentOrders extends Component {
             let cellWidth = 180;
             let psWidth = 160;
             let coE = 1;
-            let maxMultiple = ( occCounts > imagePerRow) ? imagePerRow : occCounts;
-
+            
             //console.log("max multiple = " + maxMultiple);
-            if(itemNumber != "NA" && occCounts > 1) {
+            if(itemNumber !== "NA" && occCounts > 1) {
                 //Beginning
-                if( prevItemNumber != itemNumber ) {
+                if( prevItemNumber !== itemNumber ) {
                     classKit = 'border-beginning';
                     /*
                     //Auto overflow
@@ -606,14 +604,14 @@ class RecentOrders extends Component {
                     coE = maxMultiple - rem;
                     if(k <= imagePerRow) {
                         coE = imagePerRow - rem;
-                        if( coE ==  imagePerRow) {
+                        if( coE ===  imagePerRow) {
                             coE = maxMultiple;
                         }
                     }
                     */
 
                     //Sitting at the last row
-                    if( (k+1) % imagePerRow  == 0 ) {
+                    if( (k+1) % imagePerRow  === 0 ) {
                         classKit = 'border-right-dot';
                     }
 
@@ -621,16 +619,16 @@ class RecentOrders extends Component {
                     customPsTitle = ' style="width: ' + psWidth + 'px !important;margin-top: 0px !important;" ';
                 }
                 //Middle
-                else if(printCounts[itemNumber] != (occCounts -1) ) {
+                else if(printCounts[itemNumber] !== (occCounts -1) ) {
                     classKit = 'border-middle';
                     displayChkBox = "none";
                     if( k > 0 ) {
                         //Sitting at the last row
-                        if( (k+1) % imagePerRow  == 0 ) {
+                        if( (k+1) % imagePerRow  === 0 ) {
                             classKit = 'border-middle-right-dot';
                         }
                         //Sitting at front of row
-                        else if(k % imagePerRow == 0) {
+                        else if(k % imagePerRow === 0) {
                             //if last member and is in front of the new row
                             classKit = 'border-middle-left-dot';
                         }
@@ -638,12 +636,12 @@ class RecentOrders extends Component {
                 }
 
                 //Last
-                if(printCounts[itemNumber] == (occCounts -1) ) {
+                if(printCounts[itemNumber] === (occCounts -1) ) {
                     customWidth = ' style="width: 145px !important; margin-right:40px" ';
                     displayChkBox = "none";
 
                     //Sitting in front of the new row
-                    if(k % imagePerRow == 0) {
+                    if(k % imagePerRow === 0) {
                         classKit = 'border-left-dot';
                     }
                     else {
@@ -657,7 +655,7 @@ class RecentOrders extends Component {
             html +=
                 '<div '+ customWidth +' class="itemCell ' + classKit + '" id="itemCell_' + itemNumber + '">' +
                 '<div class ="itemImageCell">';
-            if(itemNumber != "NA") {
+            if(itemNumber !== "NA") {
                 html +=
                     '<div ' + customMargin_left + ' class="itemCheckBoxCell">' +
                     '<input style="display: '+ displayChkBox +'" class="item-indv-checkbox" id="index_' + k + '" type="checkbox" value="' + itemNumber + '"/>' +
@@ -666,7 +664,7 @@ class RecentOrders extends Component {
             }
 
             let brokenImageUrl =  (orderInfo.siteUrl) + 'public/images/broken_image_gray.png';
-            let imgUrl = ( itemInfo.thumbLocation == null ) ? brokenImageUrl : itemInfo.thumbLocation;
+            let imgUrl = ( itemInfo.thumbLocation === null ) ? brokenImageUrl : itemInfo.thumbLocation;
             html +=
                 '<div class="imgContainer">' +
                     '<img class="mr-1" src="' + imgUrl + '" />' +
@@ -676,9 +674,9 @@ class RecentOrders extends Component {
             //If rendered then plus 1
             printCounts[itemNumber] += 1;
 
-            if(itemNumber != "NA") {
+            if(itemNumber !== "NA") {
                 //If next item is not related to the previous
-                if( prevItemNumber != itemNumber ) {
+                if( prevItemNumber !== itemNumber ) {
                     let itemQty = itemInfo.qt;
                     let itemQtySelHtml = this.createItemQtySelection(itemNumber, itemQty);
                     html +=
@@ -693,7 +691,7 @@ class RecentOrders extends Component {
             html += '</div>';
 
             //End of the row
-            if ( k > 0 && ((k+1) % imagePerRow == 0) ) {
+            if ( k > 0 && ((k+1) % imagePerRow === 0) ) {
                 html +=
                     '</div>';
             }
@@ -738,7 +736,7 @@ class RecentOrders extends Component {
             let inputValue = itemArray[i];
             let itemSelectedQty = parseInt(this.miniJQ('indexQty_' + inputValue).value);
             let itemSelectedMaxQty = parseInt(this.miniJQ('indexQty_' + inputValue + '_maxQty').value);
-            if( itemSelectedQty == 0 || (itemSelectedQty > itemSelectedMaxQty) ) {
+            if( itemSelectedQty === 0 || (itemSelectedQty > itemSelectedMaxQty) ) {
                 errorCount++;
             }
         }
@@ -767,7 +765,7 @@ class RecentOrders extends Component {
         if( errorMaxQtyCounts > 0 ) {
             alert("Please correct the error(s) and resubmit again!");
         }
-        else if( errorMsg != '' ) {
+        else if( errorMsg !== '' ) {
             alert(errorMsg);
         }
         else {
@@ -776,7 +774,7 @@ class RecentOrders extends Component {
             let imageCounts = orderInfo.imageCounts;
             let itemConfirm = this.getConfirmCancelItem();
             let totalRequestedQty = this.calculateTotalRequestCancelItems();
-            let confirmMsg = (totalRequestedQty == imageCounts) ?
+            let confirmMsg = (totalRequestedQty === imageCounts) ?
                 "This will cancel the whole order, are you sure you want to do this?" :
                 "Do you really want to cancel \n" + itemConfirm;
             let confirmBox = window.confirm(confirmMsg);
@@ -810,8 +808,7 @@ class RecentOrders extends Component {
                             console.log('case 2');
                             for (let i in resultData) {
                                 let itemInfo = resultData[i];
-                                let itemNumber = itemInfo.itemNumber;
-                                let itemMessage = itemInfo.itemMessage;
+                                                                let itemMessage = itemInfo.itemMessage;
                                 returnMultipleMsg += '<div class="returnItemMsg">' + itemMessage + '</div>';
                             }
                         }
@@ -843,16 +840,14 @@ class RecentOrders extends Component {
         }
         let status = orderInfo.statusFM;
         let testOrder = '';
-        if ( orderInfo.testMode == "1" ) {
+        if ( orderInfo.testMode === "1" ) {
             testOrder = <span style={{color: "#DC143C"}}>- Test Order</span>;
         }
 
         //Cancel order ///
         let cancelOrderCollection = this.getReasonCollection('order');
         let cancelOrderLink =
-            <a href="javascript:void(0)" style={{display: 'none'}} id="cancel-order-link">
-                Cancel Order
-            </a>
+            <button type="button" style={{display: 'none'}} id="cancel-order-link">Cancel Order</button>
         let cancelOrderModal =
             <dialog id="cancel-order-modal" className="dialog" style={{width: "60%"}}>
                 <p className="addressFormHeader">Cancel Order</p>
@@ -908,7 +903,7 @@ class RecentOrders extends Component {
 
         //Cancel item//
         let cancelItemCollection = this.getReasonCollection('item');
-        let cancelItemLink = <a href="javascript:void(0)" style={{display: 'none'}} id="openCancelItemModal">Cancel Item</a>;
+        let cancelItemLink = <button type="button" style={{display: 'none'}} id="openCancelItemModal">Cancel Item</button>;
         let cancelItemModal =
             <dialog id="cancel-item-modal" className="dialog">
                 <p className="addressFormHeader">Cancel Items</p>

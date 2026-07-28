@@ -141,7 +141,7 @@ class TestPlan extends Component {
 
 
         /*
-        if (testPlan == null || testPlan.length === 0) {
+        if (testPlan === null || testPlan.length === 0) {
             return (
                 <div className="OrdersTable">
                     No test orders found for this account. To test Cancel Order feature, please submit a few test orders.

@@ -81,7 +81,7 @@ class TabContent extends Component {
         
         const welcome= "You have completed the JONDO API Integration Process and are configured for live orders. To review any parts of the process, use left navigation";
         //const goLive = "Your request to Go Live has been received. We will notify you via email once the account has been validated & configured for production between the following 2 business days.";       
-        const goLive = "Your request to Go Live has been received. Once the account has been validated and configured for production, we will notify you via email within 2 business days."
+        //const goLive = "Your request to Go Live has been received. Once the account has been validated and configured for production, we will notify you via email within 2 business days."
         
         //const title = this.props.welcome ? 'WELCOME' : 'READY TO GO LIVE';    
         //const p = this.props.welcome ? welcome : goLive;
@@ -95,7 +95,7 @@ class TabContent extends Component {
                         <Col sm={10} className="d-flex flex-column">
                             <h5><b>{title}</b></h5>
                             <p>{p}</p>
-                            <p><img src={logo} /></p>
+                            <p><img src={logo} alt="JONDO API integration complete" /></p>
                         </Col>                    
                     </Tab.Pane>
                         

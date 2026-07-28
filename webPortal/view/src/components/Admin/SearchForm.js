@@ -65,7 +65,7 @@ const theme = {
 function getCookie(cName) {
     const name = cName + "=";
     const cDecoded = decodeURIComponent(document.cookie); //to be careful
-    const cArr = cDecoded .split('; ');
+    const cArr = cDecoded.split('; ');
     let res;
     cArr.forEach(val => {
         if (val.indexOf(name) === 0) res = val.substring(name.length);
@@ -151,7 +151,7 @@ class SearchForm extends Component {
     async componentDidMount() {
 
         //let adminName = this.props.userName;
-        //if(adminName == '') {
+        //if(adminName === '') {
         let  adminName = getCookie('adminName');
         if (!adminName) {
             adminName = this.props.userName;

@@ -34,11 +34,11 @@ const p8 = "When the Order Request succeeds, the code field contains the actual 
 //const p9 = "Below is a sample of xml where the Order Request has failed:"
 //const p10 = "One can tell that the order request for the above reply had an invalid username or password. Please refer to the Error Codes section of the COF API for the complete list."
 const p11 = "Each order placement is a two-step process: Order is Received & Order is Accepted.";
-const p12 = " - Successfully submitted orders will return an immediate response XML string (more info listed below) with a Success! message.\n\
-                This is to notify you that JONDO has successfully received your request XML for further validation.";
-const p13 = " - This status is used to notify you that your order request has been officially validated and accepted into our system for further production.\n\
-                Section D of the API Onboarding Process will allow you to test Accepted Order Statuses to ensure that you are able to receive our updates.\n\
-                For further information about status updates, please view the Status Update section of the JONDO API Documentation.";
+const p12 = ` - Successfully submitted orders will return an immediate response XML string (more info listed below) with a Success! message.
+                This is to notify you that JONDO has successfully received your request XML for further validation.`;
+const p13 = ` - This status is used to notify you that your order request has been officially validated and accepted into our system for further production.
+                Section D of the API Onboarding Process will allow you to test Accepted Order Statuses to ensure that you are able to receive our updates.
+                For further information about status updates, please view the Status Update section of the JONDO API Documentation.`;
 
 class Request extends Component {
    

@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { doToggleLoadOrders } from '../../actions'
 import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
-import Footer from "../Misc/Footer";
-import SortButton from "../Misc/SortButton";
 import Spinner from 'react-bootstrap/Spinner'
 import DOMPurify from "dompurify";
 import Card from "react-bootstrap/Card";
@@ -154,8 +152,6 @@ class OrderTable extends Component {
   render() {
     const { orders, isDataReady } = this.state;
 
-    const pageCount = Math.ceil(parseInt(this.state.total) / LIMIT);
-
     const header = (
       <thead>
         <tr>
@@ -224,7 +220,7 @@ class OrderTable extends Component {
     for(var i of orders) {
         var tracking = i.trackingNumber;
         if(i.trackingNumber !== "N/A") {
-            tracking = <a href={i.trackingURL} target="_blank">{i.trackingNumber}</a>;
+            tracking = <a href={i.trackingURL} target="_blank" rel="noopener noreferrer">{i.trackingNumber}</a>;
         }
 
         orderItems.push(

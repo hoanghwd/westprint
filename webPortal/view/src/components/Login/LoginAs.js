@@ -15,12 +15,6 @@ import CardTitle from "../Misc/CardTitle";
 import InputFormWithoutLabel from "../Forms/InputFormWithoutLabel";
 
 
-function getCookie(name) {
-    var cookie = "; " + document.cookie;
-    var parts = cookie.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-}
-
 class Login extends Component {
     constructor(props) {
         super(props);

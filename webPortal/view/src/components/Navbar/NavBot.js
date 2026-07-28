@@ -14,7 +14,7 @@ class NavBot extends Component {
         //const {userStatus} = this.props.userStatus;
 
         let progress = '';
-        if (this.props.progress < 100 && this.props.userStatus != "ENABLED") {
+        if (this.props.progress < 100 && this.props.userStatus !== "ENABLED") {
             //progress = (<Link to="/api/steps" className="dropdown-item">  Initiate Step-by-Step API Process </Link>);
             progress = (<Link to="/api/steps" className="dropdown-item"> API Onboarding </Link>);
 

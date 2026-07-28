@@ -62,7 +62,7 @@ class TestPlan extends Component {
         const nextPage = 'testPlanStatus_cancel';
         const skip = (this.props.skipped || this.props.approved) ? '' : (<Skip nextStage='redo' score={50} />);
         
-        if (testPlan == null || testPlan.length === 0) {
+        if (testPlan === null || testPlan.length === 0) {
             return (
                 <div className="OrdersTable">
                     No test orders found for this account. To test Cancel Order feature, please submit a few test orders.

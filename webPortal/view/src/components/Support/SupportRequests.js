@@ -12,7 +12,6 @@ import Alert from "react-bootstrap/Alert";
 
 import Navbar from "../Navbar/NavBar";
 import InputFormWithoutLabel from "../Forms/InputFormWithoutLabel";
-import InputFormWithLabel from "../Forms/InputFormWithLabel";
 
 
 class SupportRequest extends Component {
@@ -35,7 +34,7 @@ class SupportRequest extends Component {
         //console.log('this.props.userInfo')
         //console.log(this.props.userInfo)
 
-        const { phone, email, company, level, street, city, zip, state, country, shipUrl } = this.props.userInfo;
+        const { email } = this.props.userInfo;
 
         this.setState ({
             clientEmail: email,
@@ -99,7 +98,7 @@ class SupportRequest extends Component {
 
     isValidEmailValidation(clientEmail){
 
-        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regex = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
         return regex.test( clientEmail )
     }

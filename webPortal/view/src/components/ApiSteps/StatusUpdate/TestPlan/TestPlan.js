@@ -6,8 +6,6 @@ import Skip from '../../Shared/Skip'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import Spinner from 'react-bootstrap/Spinner'
-import Tooltip from 'react-bootstrap/Tooltip'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 
 //import "../Create.css";
 
@@ -174,7 +172,7 @@ class TestPlanStatus extends Component {
                     <tbody>
                     {testPlan.map( (item, i) => {
                         
-                        {/*
+                        /*
                         if (item.testingCatagory === 'Products' && item.section === 'Order Placement'){
                             testCaseText = `1 order / ${item.testCase}`
                             testCaseText = item.subTestCase !== '' ? testCaseText + ' - ' +item.subTestCase : testCaseText  
@@ -198,7 +196,7 @@ class TestPlanStatus extends Component {
                         }else{
                             testCaseText = ''
                         }
-                        */}
+                        */
 
                         testCaseText = item.testCase
                         return (

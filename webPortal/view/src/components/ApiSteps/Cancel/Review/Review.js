@@ -6,7 +6,6 @@ import Table from 'react-bootstrap/Table'
 import Approve from '../../Shared/Approve'
 import CommentBox from '../../Shared/Comment/CommentBox'
 import Spinner from 'react-bootstrap/Spinner'
-import { Link } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 
 const getTestPlan = async (userName, jwt) => {
@@ -136,14 +135,14 @@ class Review extends Component {
 
                     <tbody>
                     {orders.map( (order, i) => {
-                        {/*<Link to={"/viewXml/" + order.logId} className="link">View</Link>*/}
+                        //<Link to={"/viewXml/" + order.logId} className="link">View</Link>
                         return (
                             <tr key = {i}>
                                 <td>{order.poNumber}</td>
                                 <td>{order.status}</td>
                                 <td>
                                   {order.logId ? (
-                                    <a target="_blank" href={`#/viewXml/` + order.logId}>View</a>
+                                    <a target="_blank" rel="noopener noreferrer" href={`#/viewXml/` + order.logId}>View</a>
                                   ) : (
                                     'NA' 
                                   )} 

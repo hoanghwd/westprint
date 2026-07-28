@@ -422,7 +422,7 @@ class TestPlan extends Component {
                             {items.map( (item, i) => {
                                 return (
                                     <tr key = {i}>
-                                        <td><a target="_blank" href={item.imageUrl}>View</a></td>
+                                        <td><a target="_blank" rel="noopener noreferrer" href={item.imageUrl}>View</a></td>
                                         {/*<td>{item.imageType}</td>*/}
                                         <td>{item.finalX}</td>
                                         <td>{item.finalY}</td>                              
@@ -507,14 +507,14 @@ class TestPlan extends Component {
                         if(order.logId === null){
                             logId = 'NA'
                         }else{
-                            logId =  <a target="_blank" href={`#/viewXml/`+order.logId}>View</a>
+                            logId =  <a target="_blank" rel="noopener noreferrer" href={`#/viewXml/`+order.logId}>View</a>
                         }
 
                         if(this.state[order.id] && this.state[order.id].logId === null){
                             logId = 'NA'
                         }else if (this.state[order.id] && this.state[order.id].logId){
                             //logId = <Link to={"/viewXml/" + this.state[order.id].logId} className="link">View</Link>
-                            logId =  <a target="_blank" href={`#/viewXml/`+this.state[order.id].logId}>View</a>
+                            logId =  <a target="_blank" rel="noopener noreferrer" href={`#/viewXml/`+this.state[order.id].logId}>View</a>
                         }
 
                         if(this.state[order.id] && this.state[order.id].newOrderStatus){

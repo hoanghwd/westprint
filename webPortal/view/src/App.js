@@ -93,7 +93,7 @@ class App extends Component {
                     //this.props.logIn(JSON.parse(sessionAs));
 
                     const {
-                        userId, apiKey, phone, email, street, city, zip, state, country, shipUrl, level, userStatus, clientPortalStatuses, jwt, locations, order, request, status,
+                        userId, apiKey, phone, email, street, city, zip, state, country, shipUrl, level, userStatus, clientPortalStatuses, jwt,
                         company, userName
                     } = JSON.parse(sessionAs);
 
@@ -185,7 +185,7 @@ class App extends Component {
             localStorage.setItem('userData', JSON.stringify(session));
             localStorage.setItem('expire', expire);
 
-            if (level != 'basic') {
+            if (level !== 'basic') {
 
                 console.log('create storage AS');
                 const expireAs = Date.now() + 3600000;
@@ -289,4 +289,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(App);
-

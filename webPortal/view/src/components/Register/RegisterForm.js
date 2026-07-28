@@ -148,13 +148,6 @@ const submit = async (self,firstName,lastName,companyName,phone,email,streetAddr
     }
 };
 
-var urlDomain = function(url) {
-    var a = document.createElement('a');
-    a.href = url;
-
-    return a.hostname;
-};
-
 class RegisterForm extends Component {
     constructor(props) {
         super(props);
@@ -198,7 +191,7 @@ class RegisterForm extends Component {
 
         event.preventDefault();
 
-        const {firstName, lastName, companyName, phone, email, streetAddress, streetAddress2, city, state, zipCode, country, deliveryMethod, recaptchaFlag} = this.state;
+        const {firstName, lastName, companyName, phone, email, streetAddress, streetAddress2, city, state, zipCode, country, deliveryMethod} = this.state;
 
         let isError = false;
         await this.setState({ errors: []});
@@ -217,7 +210,7 @@ class RegisterForm extends Component {
         if (isError) {
             if (this.state.recaptchaFlag === true) {
 
-                this.state.reCaptchaResponse = "";
+                this.setState({reCaptchaResponse: ""});
 
                 window.grecaptcha.reset();
             }
@@ -238,11 +231,10 @@ class RegisterForm extends Component {
     };
 
     handleChange = event => {
-        this.setState({ [event.target.name]: event.target.value });
-
-        if(event.target.name == "country") {
-            this.state.state = "";
-        }
+        this.setState({
+            [event.target.name]: event.target.value,
+            ...(event.target.name === "country" ? { state: "" } : {})
+        });
     };
 
     handleClose() {
@@ -258,7 +250,7 @@ class RegisterForm extends Component {
         const valid = this.form.current.reportValidity();
 
         if (!valid) {
-            this.state.recaptchaToken = "";
+            this.setState({recaptchaToken: ""});
 
             window.grecaptcha.reset();
         }
@@ -321,7 +313,7 @@ class RegisterForm extends Component {
         }
 
         let setStateForm;
-        if(this.state.country == "US") {
+        if(this.state.country === "US") {
             setStateForm = <Form.Control
                 className="input"
                 as="select"

@@ -71,7 +71,7 @@ class ProductSku extends Component {
 
   async getCsvData() {
     const { userName, jwt } = this.props;
-    const {  id, description, category, subcategory, substrate, page } = this.state;
+    const { id } = this.state;
 
     //const searchParams = `?userName=${userName}&csv=1`;
     const searchParams = `?userName=${userName}&id=${id}&csv=1`;

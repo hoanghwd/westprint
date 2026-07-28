@@ -53,13 +53,13 @@ class ViewXml extends Component {
       }
       else if(respXml.search('<root>') !== -1) {
         respXml = response.data.respXml.replace(/(\r\n|\n|\r)/gm,"")
-        respXml = respXml.replace(/\>\s+\</g,'><')
+        respXml = respXml.replace(/>\s+</g,'><')
         respXml = respXml.replace(/\\/g, "")
         respXml = format(respXml, options2);
       }
 
-      let newReqXml = response.data.reqXml.
-      replace(/CancelledAfterProductionCommenced/g, "Cancelled After Production Commenced");
+      let newReqXml = response.data.reqXml
+      .replace(/CancelledAfterProductionCommenced/g, "Cancelled After Production Commenced");
 
       this.setState({ poNumber: response.data.poNumber, reqXml: newReqXml, respXml: respXml });
     }

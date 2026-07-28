@@ -175,12 +175,12 @@ class Review extends Component {
 
         //console.log(curOrder)
         
-        const frontPackingSlip = curOrder.frontPackingSlip !== '' ? <a target="_blank" href={curOrder.frontPackingSlip}>View</a>:'NA'
-        const backPackingSlip = curOrder.backPackingSlip !== '' ? <a target="_blank" href={curOrder.backPackingSlip}>View</a>:'NA'
-        const outsideInsertCard = curOrder.outsideInsertCard !== '' ? <a target="_blank" href={curOrder.outsideInsertCard}>View</a>:'NA'
-        const insideInsertCard = curOrder.insideInsertCard !== '' ? <a target="_blank" href={curOrder.insideInsertCard}>View</a>:'NA'
-        const frontSticker = curOrder.frontSticker !== '' ? <a target="_blank" href={curOrder.frontSticker}>View</a>:'NA'
-        const customLogo = curOrder.customLogo !== '' ? <a target="_blank" href={curOrder.customLogo}>View</a>:'NA'
+        const frontPackingSlip = curOrder.frontPackingSlip !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.frontPackingSlip}>View</a>:'NA'
+        const backPackingSlip = curOrder.backPackingSlip !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.backPackingSlip}>View</a>:'NA'
+        const outsideInsertCard = curOrder.outsideInsertCard !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.outsideInsertCard}>View</a>:'NA'
+        const insideInsertCard = curOrder.insideInsertCard !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.insideInsertCard}>View</a>:'NA'
+        const frontSticker = curOrder.frontSticker !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.frontSticker}>View</a>:'NA'
+        const customLogo = curOrder.customLogo !== '' ? <a target="_blank" rel="noopener noreferrer" href={curOrder.customLogo}>View</a>:'NA'
 
 
 
@@ -244,7 +244,7 @@ class Review extends Component {
                                         <td>{item.qt}</td>
                                         <td>${item.price}</td>
                                         <td>{item.itemCode}</td>
-                                        <td><a target="_blank" href={item.copy_img_loc}>View</a></td>
+                                        <td><a target="_blank" rel="noopener noreferrer" href={item.copy_img_loc}>View</a></td>
                                     </tr>
                                 );
                             })}

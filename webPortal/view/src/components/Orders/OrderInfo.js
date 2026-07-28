@@ -82,7 +82,7 @@ class OrderInfo extends Component {
             let isRequired = editReason.detailsRequired;
             let internalValue = reasonGroup + '-' + editSubGroup +  '-' + reason;
 
-            if( (internalValue == selectedReason) && isRequired == "Y" ) {
+            if( (internalValue === selectedReason) && isRequired === "Y" ) {
                 result = true;
                 break;
             }
@@ -93,31 +93,25 @@ class OrderInfo extends Component {
 
     updateSubmitCount(selector) {
         let btnClickCounts = this.miniJQ(selector).value;
-        btnClickCounts++;
         this.miniJQ(selector).value = btnClickCounts;
     }
 
     inputHasSpecialChar(postData) {
-        let specialChar = /[Â£{}~@:%|$&^<>\*+=;?`())[\]]/;
+        let specialChar = /[Â£{}~@:%|$&^<>*+=;?`())[\]]/;
         let specialCountsArray = {};
-        let counts = 0;
         for (let key of Object.keys(postData)) {
             let value = postData[key];
-            if( key == 'email' ) {
-                let emailCounts = 0;
+            if( key === 'email' ) {
                 let emailParts = value.split('@');
                 for(let i in emailParts) {
                     let partValue = emailParts[i];
                     if(specialChar.test(partValue)) {
-                        emailCounts++;
-                        counts++;
                         specialCountsArray['email'] = 'email';
                     }
                 }
             }
             else if(specialChar.test(value)) {
                 specialCountsArray[key] = key;
-                counts++;
             }
         }
 
@@ -136,29 +130,29 @@ class OrderInfo extends Component {
             }
         }
 
-        if( selectedReason == '' ) {
+        if( selectedReason === '' ) {
             errorMsg += "Please select a reason! \n";
         }
 
         if(
-            selectedReason != '' &&
+            selectedReason !== '' &&
             !this.isOtherReason(selectedReason) &&
             this.isRequiredDetails(selectedReason, collectionSource) ) {
             errorMsg += "Please provide some details! \n";
         }
 
-        if( (this.isOtherReason(selectedReason) && postData['details'] == ''  ) ) {
+        if( (this.isOtherReason(selectedReason) && postData['details'] === ''  ) ) {
             errorMsg += "Please provide some details! \n";
         }
 
         try {
-            if (postData['phone'] == '') {
+            if (postData['phone'] === '') {
                 errorMsg += "Incomplete Shipping Address: Phone Number missing \n";
             }
         } catch (e) { }
 
         try {
-            if( postData['firstName'] == '' && postData['lastName'] == ''  )  {
+            if( postData['firstName'] === '' && postData['lastName'] === ''  )  {
                 errorMsg += "Incomplete Shipping Address: Both First name and Last name cannot be missing! \n";
             }
         }
@@ -195,10 +189,10 @@ class OrderInfo extends Component {
         let stateCollection = [];
         let stateArray = [];
 
-        if(country == "US") {
+        if(country === "US") {
             stateArray = orderInfoObj.usSatesCollection;
         }
-        else if( country == 'CA') {
+        else if( country === 'CA') {
             stateArray = orderInfoObj.CASatesCollection;
         }
 
@@ -215,7 +209,7 @@ class OrderInfo extends Component {
         let country = selectedCountryObj.value;
         let html = '';
 
-        if( country == "US" || country == "CA") {
+        if( country === "US" || country === "CA") {
             let stateCollection = this.getStateCollection(country);
             html = '<select name="stateCollection" id="stateCollection" class="input form-control">';
             for(let i in stateCollection) {
@@ -240,7 +234,7 @@ class OrderInfo extends Component {
         let orderInfoObj = this.props.orderInfo;
         let stateHtml = '';
 
-        if(country == "US" || country == "CA") {
+        if(country === "US" || country === "CA") {
             stateHtml =
                 <Form.Control
                     id="stateCollection"
@@ -281,8 +275,8 @@ class OrderInfo extends Component {
             let editSubGroup = editReason.editSubGroup;
             let internalValue = reasonGroup + '-' + editSubGroup +  '-' + reason;
 
-            if( lastGroup !=  reasonGroup) {
-                if(lastGroup != '') {
+            if( lastGroup !==  reasonGroup) {
+                if(lastGroup !== '') {
                     html += "</optgroup>";
                 }
                 html += '<optgroup label="' + reasonGroup + '">';
@@ -329,7 +323,7 @@ class OrderInfo extends Component {
 
     addressInfoRestore() {
         let orderInfoObj = this.props.orderInfo;
-        let companyValue = (orderInfoObj.company == "NA") ? "" : orderInfoObj.company;
+        let companyValue = (orderInfoObj.company === "NA") ? "" : orderInfoObj.company;
 
         this.miniJQ('firstName').value = orderInfoObj.firstName;
         this.miniJQ('lastName').value = orderInfoObj.lastName;
@@ -366,11 +360,11 @@ class OrderInfo extends Component {
         postData['hdRequest'] = "N";
 
         for (const input of inputs){
-            if(input.name != '') {
+            if(input.name !== '') {
                 postData[input.name] = input.value;
             }
         }
-        if(selectedCountry.value == "US" || selectedCountry.value == "CA") {
+        if(selectedCountry.value === "US" || selectedCountry.value === "CA") {
             let selectedState = this.getSelectedValues("stateCollection");
             postData['state'] = selectedState['value'];
         }
@@ -388,7 +382,7 @@ class OrderInfo extends Component {
         let postData = this.getAddressSubmitData(orderInfoObj);
         let errorMsg = this.validateSubmitData(postData, orderInfoObj.editReasonCollection);
 
-        if(errorMsg != '') {
+        if(errorMsg !== '') {
             alert(errorMsg);
         }
         else {
@@ -399,7 +393,7 @@ class OrderInfo extends Component {
                 .then(response => {
                     let responseData = response.data;
                     let returnMsg = responseData.message;
-                    if(returnMsg == "Success!" && parseInt(responseData.status) == 1 && responseData.code === this.props.orderInfo.orderId) {
+                    if(returnMsg === "Success!" && parseInt(responseData.status) === 1 && responseData.code === this.props.orderInfo.orderId) {
                         returnMsg = "Successfully updated address!";
                     }
                     this.miniRender('updateShippingAddress-dialog', returnMsg);
@@ -429,8 +423,8 @@ class OrderInfo extends Component {
             let editSubGroup = editReason.editSubGroup;
             let internalValue = reasonGroup + '-' + editSubGroup +  '-' + reason;
 
-            if( lastGroup !=  reasonGroup) {
-                if(lastGroup != '') {
+            if( lastGroup !==  reasonGroup) {
+                if(lastGroup !== '') {
                     html += "</optgroup>";
                 }
                 html += '<optgroup label="' + reasonGroup + '">';
@@ -488,7 +482,7 @@ class OrderInfo extends Component {
         postData['hdRequest'] = "N";
 
         for (const input of inputs){
-            if(input.name != '') {
+            if(input.name !== '') {
                 postData[input.name] = input.value;
             }
         }
@@ -502,7 +496,7 @@ class OrderInfo extends Component {
         let postData = this.getUpdateShippingTypeSubmitData(orderInfoObj);
         let errorMsg = this.validateSubmitData(postData, orderInfoObj.editReasonShippingTypeCollection);
 
-        if(errorMsg != '') {
+        if(errorMsg !== '') {
             alert(errorMsg);
         }
         else {
@@ -513,7 +507,7 @@ class OrderInfo extends Component {
                 .then(response => {
                     let responseData = response.data;
                     let returnMsg = responseData.message;
-                    if(returnMsg == "Success!" && parseInt(responseData.status) == 1 ) {
+                    if(returnMsg === "Success!" && parseInt(responseData.status) === 1 ) {
                         returnMsg = "Successfully updated shipping type!";
                     }
                     this.miniRender('updateShippingType-dialog', returnMsg);
@@ -543,7 +537,7 @@ class OrderInfo extends Component {
         let countryCollection = this.getCountryCollection();
         let defaultCountry = orderInfoObj.country;
         let stateHtml = this.renderStateHtml(defaultCountry);
-        let companyValue = (orderInfoObj.company == "NA") ? "" : orderInfoObj.company;
+        let companyValue = (orderInfoObj.company === "NA") ? "" : orderInfoObj.company;
         let addressDialog =
             <dialog id="address-modal" className="dialog">
                 <p className="addressFormHeader">Update Shipping Address</p>
@@ -733,8 +727,8 @@ class OrderInfo extends Component {
     render() {
         let orderInfoObj = this.props.orderInfo;
         let trackingNum;
-        if( orderInfoObj.trackingUrl != "" ) {
-            trackingNum = <a href={this.props.orderInfo.trackingUrl} target="_blank">{this.props.orderInfo.trackingNumber}</a>;
+        if( orderInfoObj.trackingUrl !== "" ) {
+            trackingNum = <a href={this.props.orderInfo.trackingUrl} target="_blank" rel="noopener noreferrer">{this.props.orderInfo.trackingNumber}</a>;
         }
         else {
             trackingNum = "N/A";
@@ -742,7 +736,7 @@ class OrderInfo extends Component {
 
         //Edit Address/////
         let editAddressLink =
-            <a href="javascript:void(0)" style={{display:'none'}} id="openAddressModal" onClick={this.handleEditAddress}>[Edit]</a>;
+            <button type="button" style={{display:'none'}} id="openAddressModal" onClick={this.handleEditAddress}>[Edit]</button>;
         //To disable the link
         //editAddressLink = <span id="openAddressModal"></span>
 
@@ -752,7 +746,7 @@ class OrderInfo extends Component {
         //Update shipping type////
         let currShippingType = orderInfoObj.shippingType;
         let updateShippingTypeLink =
-            <a href="javascript:void(0)" style={{display:'none'}} id="openShippingTypeModal" onClick={this.handleUpdateShippingType}>[Edit]</a>;
+            <button type="button" style={{display:'none'}} id="openShippingTypeModal" onClick={this.handleUpdateShippingType}>[Edit]</button>;
         let shippingTypeCollection = this.getShippingCollection();
 
         let shippingTypeDialog =
@@ -820,7 +814,7 @@ class OrderInfo extends Component {
                 <input type="hidden" id="updateShippingTypeBtnClickCounts" value="0" />
             </dialog>;
         this.handleUpdateShippingTypeModalEvent();
-        if( parseInt(orderInfoObj.shippingCollectionSize) == 0 ) {
+        if( parseInt(orderInfoObj.shippingCollectionSize) === 0 ) {
             updateShippingTypeLink = <span id="openShippingTypeModal"></span>
         }
 

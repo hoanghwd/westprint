@@ -24,12 +24,7 @@ const p2_4 = `Shipped - Order is shipped`
 const p2_5 = `Cancelled - Order is cancelled`
 
 const p3 = ``
-const p4 = `To ensure that status updates are successfully received, responses to any status update post will be monitored.`
-const p5 = `Please choose the type of acknowledgement from the following two options:`
 const p6_1 = `HTTP Response – only the HTTP response code will be monitored. Any response code other than 200 will be considered as a failure and status updates will be retried. If a retry is not needed please respond with a HTTP 200.`
-const p6_2 = `Status Update Acknowledgement – a response with an XML String indicating success or failure. Please refer to the samples.`
-const p7 = `If no response is recorded within 60 seconds, the status update attempt will be treated as a failure.`
-const p8 = `Failures will be re-attempted thrice before it is escalated via email.`
 const p9 = `To utilize the ship notifications, please provide a URL to post this data to.`
 
 

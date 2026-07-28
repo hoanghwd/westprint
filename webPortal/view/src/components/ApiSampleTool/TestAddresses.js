@@ -3,28 +3,16 @@ import {Redirect} from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import ProgressBar from "react-bootstrap/ProgressBar";
 
 /**
  * Added by Huynh Do - 06/23/2021
  */
 import DOMPurify from 'dompurify';
 
-import {Link} from "react-router-dom";
-
 import Navbar from "../Navbar/NavBar";
 import "../MyAccount/MyAccount.css";
 
-import {connect} from 'react-redux';
-import {doSetOptions} from '../../actions'
 import axios from "axios";
-import Table from "react-bootstrap/Table";
-
-function getCookie(name) {
-    var cookie = "; " + document.cookie;
-    var parts = cookie.split("; " + name + "=");
-    if (parts.length === 2) return parts.pop().split(";").shift();
-}
 
 class TestAddresses extends Component {
     constructor(props) {
@@ -81,7 +69,7 @@ class TestAddresses extends Component {
         /**
          * When user has some sample addresses already set up
          */
-        if ( sampleAddresses.length > 0 && emptyMessage == '' ) {
+        if ( sampleAddresses.length > 0 && emptyMessage === '' ) {
             ZoneArrayHtml = sampleAddresses.map((zone) =>
                 <Card key={zone.zoneName} className="my-3 text-left">
                     <Card.Header className="card-header-account text-light">
@@ -159,7 +147,7 @@ class TestAddresses extends Component {
             let imgUrl = '';
             let zoneMapUser = 'Zone Map';
 
-            if( this.state.imgUrl != '' ) {
+            if( this.state.imgUrl !== '' ) {
                 zoneMapUser += ' - ' + this.state.zoneName;
                 imgUrl = '<img style=\'height: 100%; width: 100%; object-fit: contain\' title = "' + this.state.description + '" src="' + this.state.imgUrl + '" />';
             }

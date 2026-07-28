@@ -4,14 +4,10 @@ import {connect} from 'react-redux';
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import Accordion from 'react-bootstrap/Accordion'
-import Button from "react-bootstrap/Button"
 import {Link} from "react-router-dom";
 
 import Navbar from "../Navbar/NavBar";
 import "./MyAccount.css";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 class MyAccountInfo extends Component {
     constructor(props) {
@@ -120,12 +116,12 @@ class MyAccountInfo extends Component {
             toggledTittle = 'Hide API Key';
             toggledIcon = hideEye;
         } else {
-            {toggledContent = dots;}
+            toggledContent = dots;
             toggledTittle = 'Show API Key';
             toggledIcon = showEye;
         }
 
-        if (this.props.progress === 100 || this.props.userStatus == "ENABLED") {
+        if (this.props.progress === 100 || this.props.userStatus === "ENABLED") {
             message =
                 <div><b>Congratulations, you've completed the Direct API Integration and your account is LIVE!</b></div>
             progressBar = <ProgressBar

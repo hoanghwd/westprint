@@ -55,9 +55,6 @@ class GenerateToken extends Component {
                 </div>
             )
             : '';
-        const authUrl =  process.env.REACT_APP_WESTPRINT_API + process.env.REACT_APP_REQUEST_TOKEN;
-
-        
         return (
             <div className="generate-token">
                 <Modal

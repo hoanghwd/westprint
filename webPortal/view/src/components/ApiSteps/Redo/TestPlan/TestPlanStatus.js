@@ -117,7 +117,7 @@ class TestPlan extends Component {
         const skip = (this.props.skipped  || this.props.approved) ? '' : (<Skip nextStage='status' score={75} />);
         var increasePercentage = this.props.asUser? 0 : 10 ;
         /*
-        if (testPlan == null || testPlan.length === 0) {
+        if (testPlan === null || testPlan.length === 0) {
             return (
                 <div className="OrdersTable">
                     No test orders found for this account. To test Redo Order feature, please submit a few test orders.

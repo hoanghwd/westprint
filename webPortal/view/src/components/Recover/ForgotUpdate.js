@@ -14,10 +14,6 @@ import Alert from "react-bootstrap/Alert";
 
 import "../MyAccount/MyAccount.css";
 
-const passwordText =
-  "Your password must be at least 8 characters long. Use a mix of upper case letters, lower case letters, numbers, and symbols for a stronger password.";
-const confirmText = "Type your password again";
-
 var passwordValidator = require('password-validator');
 
 // Create a schema
@@ -160,7 +156,7 @@ class ForgotUpdate extends Component {
       );
     }
 
-    {/*
+    /*
     let error = "";
 
     error = this.state.error && (
@@ -168,7 +164,7 @@ class ForgotUpdate extends Component {
         {this.state.error}
       </Alert>
     );
-    */}
+    */
 
     return (
       <div className="Signin">

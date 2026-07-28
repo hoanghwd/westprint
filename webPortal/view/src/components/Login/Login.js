@@ -102,7 +102,7 @@ const submit = async (self, token) => {
         localStorage.setItem('options', JSON.stringify(options));
         setCookie('adminName', userName, 30);
 
-        if (level != 'basic') {
+        if (level !== 'basic') {
             localStorage.setItem('optionsAs', JSON.stringify(options));
         }
 
@@ -112,13 +112,6 @@ const submit = async (self, token) => {
         );
     }
 }
-
-var urlDomain = function (url) {
-    var a = document.createElement('a');
-    a.href = url;
-
-    return a.hostname;
-};
 
 class Login extends Component {
     constructor(props) {
@@ -244,14 +237,14 @@ class Login extends Component {
         const valid = this.form.current.reportValidity();
 
         if (!valid) {
-            this.state.recaptchaToken = "";
+            this.setState({recaptchaToken: ""});
             window.grecaptcha.reset();
         }
     }
 
     render() {
         if (this.props.userId) {
-            if (this.props.level != 'basic') {
+            if (this.props.level !== 'basic') {
                 return (
                     <Redirect
                         to={{
